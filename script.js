@@ -11,16 +11,13 @@ for(var i=0;i<14;i++)A.push({x:Math.random()*W,y:Math.random()*H,s:3+(i%2),v:.35
 function dr(){x.clearRect(0,0,W,H);A.forEach(function(a){var g=N[a.k],p=Math.round(a.x+Math.sin(a.y/60+a.p)*10);x.globalAlpha=.7;x.fillStyle=a.c;
 g.forEach(function(r,j){for(var m=0;m<r.length;m++)if(r[m]=="X")x.fillRect(p+m*a.s,Math.round(a.y)+j*a.s,a.s,a.s)});
 if(!R){a.y+=a.v;if(a.y>H){a.y=-40;a.x=Math.random()*W}}});if(!R)requestAnimationFrame(dr)}dr();
-// 角色滚动框
-var L=["sonic","riolu","lucario","torchic","blaziken","charmander","charizard"],T=document.getElementById("track"),G=["#6fc79a","#7fb8dc","#b9d98a"];
-function slime(c){return px(["................","................","................","................","................","......XXXX......","....XXXXXXXX....","...XXXXXXXXXX...","..XXXXXXXXXXXX..","..XXXXXXXXXXXX..",".XXXXXXXXXXXXXX.",".XXXXXXXXXXXXXX.","XXXXXXXXXXXXXXXX","XXXXXXXXXXXXXXXX","................","................"].map(function(r,j){return j==10?r.replace(/^(.{4})X{2}(.{4})X{2}/,"$1EE$2EE").replace(/^(.{4})X/,"$1E"):r}),{X:c,E:"#2f5d62"},2)}
-for(var t=0;t<2;t++)L.forEach(function(n,i){var im=new Image();im.alt="";im.src=new URL("images/sprites/"+n+".png",S).href;im.onerror=function(){im.onerror=null;im.src=slime(G[i%3])};T.appendChild(im)});
 // 光标：四叶草 / 点击青苹果 / 星星碎片
 if(matchMedia("(pointer:fine)").matches){
-var hf=["........","..DDDD..",".DHHLGD.",".DHLLGGD",".DLLGGGG","..DGGGGG","...DDGGG",".....DGG"].map(function(r){return r+r.split("").reverse().join("")});
-var cl=px(hf.concat(hf.slice().reverse()),{D:"#2f7f6b",G:"#5fbf9f",L:"#9be0c0",H:"#e4fff2"},2),
-ap=px([".......SS.......",".......S........","...DDDD.DDDD....","..DLLLGDGGGGD...",".DLHHLGGGGGGGD..",".DLHLGGGGGGGGGD.",".DLLGGGGGGGGGGD.",".DLGGGGGGGGGGGD.",".DGGGGGGGGGGGPD.",".DGGGGGGGGGGPPD.",".DGGGGGGGGGPPPD.","..DGGGGGGGGPPD..","...DGGGGGGPPD...","....DDGGGPDD....","......DDDD......","................"],{D:"#4f9a4a",G:"#98d672",L:"#c4f08f",H:"#f1ffd8",P:"#6fb85a",S:"#7a5a3a"},2),
-st=document.createElement("style");st.textContent='html,html *{cursor:url("'+cl+'") 16 16,auto!important}html.dn,html.dn *{cursor:url("'+ap+'") 16 16,auto!important}';document.head.appendChild(st);
+var AP=["........S.......","........S.FFFF..","..DDDDD.DDDDDD..",".DLLLLGDGGGGGGD.",".DLHHLGGGGGGGGGD",".DLHLGGGGGGGGGGD",".DLLGGGGGGGGGGPD",".DGGGKGGGGGKGGPD",".DGGGKGGGGGKGPPD",".DGGGGGKKGGGGPPD",".DGGGGGGGGGGPPPD","..DGGGGGGGGPPPD.","...DGGGGGGPPPD..","....DDGGGPPDD...","......DDDD......","................"],
+CU=["........S.......","........S.FFFF..","..DDDDD.DDDDDD..",".DGGGGGDGGGGGGD.",".DGCCCCCCCCCCCGD",".DGCCCCCCCCCCCGD",".DGCCCEEEEECCCGD",".DGCCCESESECCCGD",".DGCCCEESEECCCGD",".DGCCCEEEEECCCGD","..DGCCCCCCCCCGD.","...DGGCCCCCGGD..",".....DDGGGDD....","................","................","................"].map(function(r,i){return i>2&&i<13?r.slice(0,8)+"."+r.slice(9):r}),
+ap=px(AP,{D:"#3f8f4a",G:"#98d672",L:"#c4f08f",H:"#f4ffdc",P:"#6fb85a",S:"#7a5a3a",F:"#5fbf6a",K:"#2f4f3a"},2),
+cut=px(CU,{D:"#3f8f4a",G:"#98d672",C:"#f6ffd8",E:"#e3f0b4",S:"#7a5a3a",F:"#5fbf6a"},2),
+st=document.createElement("style");st.textContent='html,html *{cursor:url("'+ap+'") 16 16,auto!important}html.dn,html.dn *{cursor:url("'+cut+'") 16 16,auto!important}';document.head.appendChild(st);
 addEventListener("mousedown",function(){h.classList.add("dn")});addEventListener("mouseup",function(){h.classList.remove("dn")});
 var lt=0;if(!R)addEventListener("mousemove",function(e){var n=Date.now();if(n-lt<70)return;lt=n;var s=document.createElement("i");s.className="spk";
 s.style.left=e.clientX+(Math.random()*16-8)+"px";s.style.top=e.clientY+(Math.random()*12)+"px";s.style.setProperty("--dx",(Math.random()*20-10)+"px");
