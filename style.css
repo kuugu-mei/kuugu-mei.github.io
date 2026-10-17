@@ -1,0 +1,29 @@
+:root{--bg:#330066;--box:#ffffcc;--ink:#220044;--pink:#ff3399;--cyan:#0099cc;--yel:#ffee00}
+*{box-sizing:border-box}
+body{margin:0;padding:12px;font:15px/1.7 "MS PGothic","Osaka","PingFang SC","Microsoft YaHei",Verdana,sans-serif;color:var(--ink);
+background:var(--bg) repeating-conic-gradient(#3d0a7a 0 25%,#330066 0 50%) 0 0/16px 16px}
+a{color:#0000cc}a:visited{color:#990099}a:hover{background:var(--yel)}
+.wrap{max-width:860px;margin:0 auto}
+.top{background:#000;color:var(--yel);border:3px ridge #c0c0c0;overflow:hidden;white-space:nowrap;font-weight:bold}
+.top span{display:inline-block;padding-left:100%;animation:run 18s linear infinite}
+@keyframes run{to{transform:translateX(-100%)}}
+header{text-align:center;margin:12px 0}
+header h1{margin:0;font-size:2.2em;color:#fff;text-shadow:3px 3px 0 var(--pink),6px 6px 0 #000;letter-spacing:2px}
+.blink{animation:b 1s steps(2,start) infinite;color:var(--pink);font-weight:bold}
+@keyframes b{to{visibility:hidden}}
+.cols{display:flex;gap:12px;align-items:flex-start}
+nav{flex:0 0 150px;background:#ccffff;border:3px outset #fff;padding:8px}
+nav a{display:block;padding:4px 6px;margin:3px 0;border:2px outset #eee;background:#fff;text-decoration:none;text-align:center}
+nav a.on{background:var(--yel);border-style:inset}
+nav button{width:100%;margin-top:8px;font:inherit;border:2px outset #eee;background:var(--pink);color:#fff;cursor:pointer}
+main{flex:1;min-width:0;background:var(--box);border:3px ridge #c0c0c0;padding:14px 18px}
+main h2{margin-top:0;border-bottom:3px dotted var(--pink);color:#660099}
+main img{max-width:100%;height:auto;border:3px solid #fff;outline:1px solid #000}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.ph{aspect-ratio:1;background:#fff;border:2px dashed var(--cyan);display:flex;align-items:center;justify-content:center;text-align:center;font-size:12px;padding:6px}
+.card{background:#fff;border:2px solid var(--cyan);padding:6px 10px;margin:8px 0}
+footer{text-align:center;color:#fff;margin:14px 0;font-size:13px}
+[data-lang=zh] .ja,[data-lang=ja] .zh{display:none}
+a:focus-visible,button:focus-visible{outline:3px solid var(--pink)}
+@media(max-width:640px){.cols{flex-direction:column}nav{flex:none;width:100%}}
+@media(prefers-reduced-motion:reduce){.top span,.blink{animation:none;padding-left:0}}
