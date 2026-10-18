@@ -170,7 +170,5 @@ h1 .fish-right {
   50% { transform: translateY(-8px); }
   100% { transform: translateY(0); }
 }
-/* 隐藏副标题两边的小云朵 */
-.sub::before, .sub::after {
   display: none !important;
 }
