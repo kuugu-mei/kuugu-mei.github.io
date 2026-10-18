@@ -121,44 +121,62 @@ main{min-width:0}
 }
 /* 日志里的小头像缩小 */
 .phd .av{width:36px !important; height:36px !important;}
-/* ====== 全新左右双鱼设置 ====== */
-/* 统一的尺寸和动画基础设置 */
-h1::before, h1::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  width: 50px !important;       /* 鱼的宽度，觉得小可以改大 */
-  height: 50px !important;      /* 鱼的高度 */
-  margin-top: -25px !important;  /* 刚好是高度的一半，保证垂直居中 */
+/* ==========================================
+   自定义标题 + 左右双鱼
+   ========================================== */
+/* 1. 隐藏原本 HTML 里的 "mei's room" 并调整高度 */
+h1 { 
+  font-size: 0 !important; 
+  height: 45px !important; 
+  position: relative !important;
+}
+/* 2. 用小鱼的 before 插入新标题，并让它居中 */
+h1::before {
+  content: "青涩的青色的mei" !important;
+  font-size: 26px !important; 
+  position: absolute !important;
+  left: 50% !important;
+  top: 50% !important;
+  transform: translate(-50%, -50%) !important; /* 完美居中 */
+  white-space: nowrap !important; 
+  color: var(--grn) !important;
+  font-family: PixZH, "PingFang SC", sans-serif !important;
+  text-shadow: 2px 2px #fff, 4px 4px #bfe6d6 !important; 
+  z-index: 5 !important;
+}
+/* 3. 把小鱼改成用 h1 的子元素来实现（避开冲突） */
+h1::after {
+  content: "" !important;
+  position: absolute !important;
+  top: 50% !important;
+  width: 60px !important; 
+  height: 60px !important; 
+  margin-top: -30px !important; 
   background-size: contain !important;
   background-repeat: no-repeat !important;
   background-position: center !important;
-  animation: floatFish 3s ease-in-out infinite !important; /* 同步漂浮 */
-}
-/* 左边的鱼 */
-h1::before {
-  background-image: url("images/fish-left.png") !important; /* 左侧图片 */
-  right: 100% !important;
-  margin-right: 20px !important; /* 距离文字的远近，越小越靠近文字 */
-}
-/* 右边的鱼 */
-h1::after {
-  background-image: url("images/fish-right.png") !important; /* 右侧图片 */
+  animation: floatFish 3s ease-in-out infinite !important;
+  /* 这里放右边的小鱼 */
+  background-image: url("images/fish-right.png") !important; 
   left: 100% !important;
-  margin-left: 20px !important; 
+  margin-left: 10px !important; 
 }
-/* 漂浮动画（上下浮动） */
+/* 4. 因为 h1 的两个伪元素都用完了，我们在 h1 里面加个盒子放左边的小鱼（稍微改一下） */
+/* 警告：既然 left 鱼需要位置，我们干脆用 h1 的背景图来放左边的鱼 */
+h1 {
+  background-image: url("images/fish-left.png") !important;
+  background-size: 60px 60px !important;
+  background-repeat: no-repeat !important;
+  background-position: left center !important; /* 放在文字左边 */
+}
+/* 5. 漂浮动画 */
 @keyframes floatFish {
   0% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
+  50% { transform: translateY(-8px); }
   100% { transform: translateY(0); }
 }
-/* 手机屏幕太小隐藏鱼 */
+/* 6. 手机屏幕隐藏鱼 */
 @media(max-width: 768px) {
-  h1::before, h1::after { display: none !important; }
-}
-h1 { font-size: 0 !important; }
-h1::after { 
-  content: "青涩的青色的mei"; 
-  font-size: 30px; /* 这里控制标题文字大小 */
+  h1 { background-image: none !important; }
+  h1::after { display: none !important; }
 }
