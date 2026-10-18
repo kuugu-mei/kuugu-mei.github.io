@@ -1,7 +1,7 @@
 (function(){var S=document.currentScript.src,d=document.body,h=document.documentElement,l="zh",R=matchMedia("(prefers-reduced-motion:reduce)").matches;
 try{l=localStorage.getItem("lang")||"zh"}catch(e){}
 function set(){d.setAttribute("data-lang",l);h.lang=l}set();
-document.getElementById("lang").onclick=function(){l=l==="zh"?"ja":"zh";set();try{localStorage.setItem("lang",l)}catch(e){}};
+document.getElementById("lang").onclick=function(){l=l==="zh"?"ja":"zh";set();if(window.__lg)window.__lg();try{localStorage.setItem("lang",l)}catch(e){}};
 // 像素音符背景
 var N=[["..XX..","..X.X.","..X..X","..X...","..X...","XXX...","XXX...",".X...."],["..XXXXX","..X...X","..X...X","..X...X","XXX.XXX","XXX.XXX",".X...X."]],
 C=["#6fb3a4","#7fb0d6","#8fd0a0","#5fa0c0"],cv=document.getElementById("notes"),x=cv.getContext("2d"),A=[],W,H;
@@ -42,7 +42,7 @@ put("a-text",SP(AB.text));put("a-contact",lst("plain",AB.contact));put("a-soc",l
 var pe=gid("a-pets");
 if(pe)(AB.pets||[]).forEach(function(p){var d=el("div","pet"),im=el("div","pimg",p.img?"":"照片");if(p.img)pic(p.img,p.name,"照片",im);d.appendChild(im);d.appendChild(el("b",0,p.name||""));d.appendChild(el("small",0,p.info||""));pe.appendChild(d)});
 var bo=gid("books");
-if(bo)(SI.books||[]).forEach(function(b){var d=el("div","bk"),l=el("div"),r=el("div");l.appendChild(el("b",0,b.title||""));l.appendChild(document.createTextNode(" "+(b.author||"")));l.appendChild(el("br"));l.appendChild(el("small",0,b.note?"感想："+b.note:""));r.appendChild(el("span","chip "+({"读完":"b","想读":"t"}[b.status]||""),b.status||""));d.appendChild(l);d.appendChild(r);bo.appendChild(d)});
+if(bo)(SI.books||[]).forEach(function(b){var d=el("div","bk"),l=el("div"),r=el("div");l.appendChild(el("b",0,b.title||""));l.appendChild(document.createTextNode(" "+(b.author||"")));r.appendChild(el("span","chip "+({"读完":"b","想读":"t"}[b.status]||""),b.status||""));d.appendChild(l);d.appendChild(r);bo.appendChild(d)});
 var lk=gid("links");
 if(lk)(SI.links||[]).forEach(function(k){var d=el("div","card"),a=el("a",0,k.name||k.url);a.href=k.url||"#";a.target="_blank";a.rel="noopener";d.appendChild(a);d.appendChild(el("br"));d.appendChild(document.createTextNode(k.desc||""));lk.appendChild(d)});
 put("c-text",SP(SI.contact));
@@ -71,6 +71,34 @@ hl.appendChild(el("p",0,"阳历 "+sd.getYear()+"年"+sd.getMonth()+"月"+sd.getD
 hl.appendChild(el("p",0,"农历 "+lu.getYearInGanZhi()+"年 "+lu.getMonthInChinese()+"月"+lu.getDayInChinese()));
 if(fs.length)hl.appendChild(el("p","fs",fs.join("、")));
 hl.appendChild(el("p","yi","宜："+lu.getDayYi().slice(0,8).join("、")));hl.appendChild(el("p","ji","忌："+lu.getDayJi().slice(0,8).join("、")))}catch(e){hl.style.display="none"}}else hl.style.display="none"}
+// 小外星人（只在首页）
+(function(){var al=gid("alien");if(!al)return;
+var im=al.querySelector("img"),bb=al.querySelector(".bub"),AM=(SI.alien&&SI.alien.messages)||[],ax=0,ay=0,tx=0,ty=0,flip=1,st="rest",wait=1,last=0,lm=-1,SPD=50;
+if(!AM.length)AM=["最近在研究：（在 data.js 的 alien 里写）"];
+function lg(){return document.documentElement.lang==="ja"?"ja":"zh"}
+function txt(m){return typeof m==="string"?m:(m[lg()]||m.zh||"")}
+function rnd(a,b){return a+Math.random()*(b-a)}
+function maxX(){return Math.max(120,innerWidth-80)}function maxY(){return Math.max(180,innerHeight-96)}
+function pick(){tx=rnd(10,maxX());ty=rnd(70,maxY())}
+function draw(){al.style.transform="translate("+ax.toFixed(1)+"px,"+ay.toFixed(1)+"px)";im.style.transform="scaleX("+flip+")"}
+ax=rnd(10,maxX());ay=rnd(70,maxY());pick();draw();
+function step(t){var dt=last?Math.min(.05,(t-last)/1000):0;last=t;
+if(st==="walk"){var dx=tx-ax,dy=ty-ay,d=Math.sqrt(dx*dx+dy*dy);if(d<3){st="rest";wait=rnd(.6,2.2)}else{ax+=dx/d*SPD*dt;ay+=dy/d*SPD*dt;if(Math.abs(dx)>6)flip=dx<0?-1:1}}
+else if(st==="rest"){wait-=dt;if(wait<=0){pick();st="walk"}}
+draw();requestAnimationFrame(step)}
+if(!R)requestAnimationFrame(step);
+addEventListener("resize",function(){ax=Math.min(ax,maxX());ay=Math.min(ay,maxY());draw()});
+al.addEventListener("click",function(){if(st==="talk")return;st="talk";var k;do{k=Math.floor(Math.random()*AM.length)}while(AM.length>1&&k===lm);lm=k;
+bb.textContent=txt(AM[k]);bb.className="bub show"+(ax<120?" l":(ax>innerWidth-190?" r":""))+(ay<120?" below":"");al.classList.add("talk");
+setTimeout(function(){bb.className="bub";al.classList.remove("talk");st="rest";wait=.5},4800)});
+})();
+// 留言板（Waline）
+(function(){var bx=gid("waline");if(!bx)return;var GB=SI.guestbook||{};
+if(!GB.serverURL||!window.Waline){var c=el("div","card");c.appendChild(TX({zh:"留言板还在准备中，暂时请通过上面的联系方式找我～",ja:"掲示板は準備中です。しばらくは連絡先からどうぞ。"}));bx.appendChild(c);return}
+function lg(){return document.documentElement.lang==="ja"?"jp-JP":"zh-CN"}
+var wl=Waline.init({el:"#waline",serverURL:GB.serverURL,path:"/guestbook",lang:lg(),login:"enable",meta:["nick","mail"],requiredMeta:[],wordLimit:500,pageSize:10,emoji:false,search:false,imageUploader:false,reaction:false,dark:false});
+window.__lg=function(){if(wl&&wl.update)wl.update({lang:lg()})};
+})();
 // 背景音乐：依次尝试 mp3 / m4a / ogg / wav
 var names=["qingmen.mp3","qingmeng.mp3","qingmeng.m4a","qingmeng.ogg","qingmeng.wav","qingmeng.mp3.mp3","青梦.mp3","青梦 - Youzee Music.mp3"],ni=0,bad=false,au=new Audio(),b=document.getElementById("bgm"),on=true;
 try{on=localStorage.getItem("bgm")!=="off"}catch(e){}

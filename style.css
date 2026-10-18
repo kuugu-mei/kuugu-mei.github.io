@@ -104,7 +104,7 @@ footer .fret{margin:6px auto;max-width:480px}
 @media(prefers-reduced-motion:reduce){.sub::before,.sub::after{animation:none}}
 
 h1::before,h1::after{content:"";position:absolute;top:50%;height:60px;margin-top:-30px;background:no-repeat center/contain;animation:fl 4s ease-in-out infinite}
-h1::before{width:42px;right:100%;margin-right:10px;background-image:url(images/orn-left.png?v=1)}
+h1::before{width:62px;right:100%;margin-right:10px;background-image:url(images/orn-left.png?v=1)}
 h1::after{width:42px;left:100%;margin-left:10px;background-image:url(images/orn-right.png?v=1);animation-delay:-2s}
 @keyframes fl{50%{transform:translateY(-6px)}}
 @media(prefers-reduced-motion:reduce){h1::before,h1::after{animation:none}}
@@ -112,3 +112,25 @@ h1::after{width:42px;left:100%;margin-left:10px;background-image:url(images/orn-
 .hl{margin-top:10px;padding:6px 8px;background:#eef9f4;box-shadow:0 0 0 2px var(--edge);font-size:12px;line-height:1.7;text-align:left}
 .hl h3{margin:0 -4px 4px;font-size:14px}.hl p{margin:2px 0;padding:0;text-align:left}
 .hl .yi{color:#247a50}.hl .ji{color:#4a55b0}.hl .fs{color:#1d6f8a}
+
+html{overflow-x:hidden}
+.bar .fly{position:absolute;bottom:4px;z-index:2;display:none;pointer-events:none}
+@media(min-width:1180px){.bar .fly{display:block}}
+.bar .fl{left:8px;height:78px;animation:inL 3.4s cubic-bezier(.2,.7,.2,1) both,bob 6s ease-in-out 3.4s infinite}
+.bar .fr{right:8px;height:108px;animation:inR 3.4s cubic-bezier(.2,.7,.2,1) both,bob 6.6s ease-in-out 3.4s infinite}
+@keyframes inL{from{transform:translateX(-110vw) rotate(-6deg)}to{transform:none}}
+@keyframes inR{from{transform:translateX(110vw) rotate(6deg)}to{transform:none}}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-9px) rotate(2deg)}}
+.alien{position:fixed;left:0;top:0;z-index:6;width:60px;height:72px;padding:0;border:0;background:none;will-change:transform}
+.alien img{width:60px;height:72px;display:block;image-rendering:pixelated;pointer-events:none;animation:hop 1.2s ease-in-out infinite}
+.alien.talk img{animation:jump .5s ease-in-out infinite}
+@keyframes hop{50%{margin-top:-5px}}@keyframes jump{50%{margin-top:-11px}}
+.bub{display:none;position:absolute;bottom:100%;left:50%;width:max-content;max-width:190px;transform:translateX(-50%);margin-bottom:12px;padding:6px 10px;background:#fff;color:#28708f;font-size:13px;line-height:1.6;text-align:left;box-shadow:0 0 0 2px #7bbfae,0 0 0 4px #fff,0 0 0 6px #cfeee0}
+.bub::after{content:"";position:absolute;left:50%;top:100%;margin-left:-6px;border:6px solid transparent;border-top-color:#fff}
+.bub.show{display:block;animation:pop .25s ease-out}
+@keyframes pop{from{opacity:0}}
+.bub.l{left:0;transform:none}.bub.l::after{left:24px}
+.bub.r{left:auto;right:0;transform:none}.bub.r::after{left:auto;right:24px;margin-left:0}
+.bub.below{bottom:auto;top:100%;margin:12px 0 0}.bub.below::after{top:auto;bottom:100%;border-top-color:transparent;border-bottom-color:#fff}
+#waline{--waline-theme-color:#5fb58f;--waline-active-color:#3f8f6a;--waline-font-size:14px;margin-top:10px}
+@media(prefers-reduced-motion:reduce){.bar .fly,.alien img,.alien.talk img{animation:none}}
