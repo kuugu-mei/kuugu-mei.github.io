@@ -121,7 +121,6 @@ main{min-width:0}
 }
 /* 替换云朵为小鱼 */
 h1::before,h1::after{
-h1::before,h1::after{
   background:url("images/fish.png") no-repeat center/contain !important;
   animation:floatFish 3s ease-in-out infinite;
   width: 140px !important;   /* 宽度变大 */
