@@ -124,9 +124,9 @@ h1::before,h1::after{
 h1::before,h1::after{
   background:url("images/fish.png") no-repeat center/contain !important;
   animation:floatFish 3s ease-in-out infinite;
-  width: 100px !important;   /* 宽度变大 */
-  height: 100px !important;  /* 高度变大 */
-  margin-top: -50px !important; /* 重新居中，刚好是高度的一半 */
+  width: 140px !important;   /* 宽度变大 */
+  height: 140px !important;  /* 高度变大 */
+  margin-top: -70px !important; /* 重新居中，刚好是高度的一半 */
 }
 /* 因为小鱼变宽了，左边的距离可能会盖住文字，往左挪一点点 */
 h1::before {
