@@ -123,24 +123,27 @@ main{min-width:0}
 h1::before,h1::after{
   background:url("images/fish.png") no-repeat center/contain !important;
   animation:floatFish 3s ease-in-out infinite;
-  width: 140px !important;   /* 宽度变大 */
-  height: 140px !important;  /* 高度变大 */
-  margin-top: -70px !important; /* 重新居中，刚好是高度的一半 */
+  width: 120px !important;   /* 宽度 */
+  height: 120px !important;  /* 高度 */
+  margin-top: -60px !important; /* 高度的一半，用来居中 */
+  z-index: 10; /* 保证小鱼在最上层 */
 }
-/* 因为小鱼变宽了，左边的距离可能会盖住文字，往左挪一点点 */
+/* 左边的小鱼 */
 h1::before {
-  margin-right: 5px !important; 
+  right: 100% !important;
+  margin-right: -10px !important; 
 }
-/* 右边的小鱼也一样 */
+/* 右边的小鱼 */
 h1::after {
-  margin-left: 5px !important; 
+  left: 100% !important;
+  margin-left: -10px !important; 
 }
-/* 两条小鱼一前一后，错开漂浮节奏 */
+/* 两条小鱼错开漂浮节奏 */
 h1::before{animation-delay:0s}
 h1::after{animation-delay:1.5s}
 @keyframes floatFish{
   0%{transform:translateY(0)}
-  50%{transform:translateY(-8px)}
+  50%{transform:translateY(-10px)}
   100%{transform:translateY(0)}
 }
 /* 小屏幕隐藏小鱼防重叠 */
