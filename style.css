@@ -157,13 +157,13 @@ h1 .fish-left, h1 .fish-right {
 /* 左边小鱼的具体位置（距离中心点往左推） */
 h1 .fish-left {
   background-image: url("images/fish-left.png") !important; 
-  right: calc(50% + 140px) !important; /* 如果鱼离字太远，把 140px 改小一点，比如 120px */
+  right: calc(50% + 120px) !important; /* 如果鱼离字太远，把 140px 改小一点，比如 120px */
 }
 
 /* 右边小鱼的具体位置（距离中心点往右推） */
 h1 .fish-right {
   background-image: url("images/fish-right.png") !important; 
-  left: calc(50% + 140px) !important; /* 如果鱼离字太远，把 140px 改小一点 */
+  left: calc(50% + 120px) !important; /* 如果鱼离字太远，把 140px 改小一点 */
 }
 
 /* 4. 漂浮动画 */
