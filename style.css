@@ -134,3 +134,5 @@ h1::after{animation-delay:1.5s}
 }
 /* 小屏幕隐藏小鱼防重叠 */
 @media(max-width:700px){h1::before,h1::after{display:none}}
+/* 日志里的小头像缩小 */
+.phd .av{width:36px !important; height:36px !important;}
