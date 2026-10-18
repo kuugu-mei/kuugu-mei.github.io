@@ -122,14 +122,16 @@ main{min-width:0}
 /* 日志里的小头像缩小 */
 .phd .av{width:36px !important; height:36px !important;}
 /* ==========================================
-   自定义标题 + 左右双鱼
+   终极完美版：自定义标题 + 左右双鱼
    ========================================== */
+
 /* 1. 隐藏原本 HTML 里的 "mei's room" 并调整高度 */
 h1 { 
   font-size: 0 !important; 
   height: 45px !important; 
   position: relative !important;
 }
+
 /* 2. 用小鱼的 before 插入新标题，并让它居中 */
 h1::before {
   content: "青涩的青色的mei" !important;
@@ -144,6 +146,7 @@ h1::before {
   text-shadow: 2px 2px #fff, 4px 4px #bfe6d6 !important; 
   z-index: 5 !important;
 }
+
 /* 3. 把小鱼改成用 h1 的子元素来实现（避开冲突） */
 h1::after {
   content: "" !important;
@@ -156,11 +159,13 @@ h1::after {
   background-repeat: no-repeat !important;
   background-position: center !important;
   animation: floatFish 3s ease-in-out infinite !important;
+  
   /* 这里放右边的小鱼 */
   background-image: url("images/fish-right.png") !important; 
   left: 100% !important;
   margin-left: 10px !important; 
 }
+
 /* 4. 因为 h1 的两个伪元素都用完了，我们在 h1 里面加个盒子放左边的小鱼（稍微改一下） */
 /* 警告：既然 left 鱼需要位置，我们干脆用 h1 的背景图来放左边的鱼 */
 h1 {
@@ -169,12 +174,14 @@ h1 {
   background-repeat: no-repeat !important;
   background-position: left center !important; /* 放在文字左边 */
 }
+
 /* 5. 漂浮动画 */
 @keyframes floatFish {
   0% { transform: translateY(0); }
   50% { transform: translateY(-8px); }
   100% { transform: translateY(0); }
 }
+
 /* 6. 手机屏幕隐藏鱼 */
 @media(max-width: 768px) {
   h1 { background-image: none !important; }
