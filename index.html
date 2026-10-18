@@ -1,8 +1,83 @@
-<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>首页 - mei's room</title><link rel="stylesheet" href="style.css?v=8"></head><body data-lang="zh"><canvas id="notes"></canvas><div class="wrap">
-<header class="win head"><h1>mei's room</h1><p class="sub"><span class="zh">欢迎来到我的小站，慢慢逛，请多多指教～</span><span class="ja">ようこそ、ゆっくりしていってね～</span></p><hr class="fret"></header>
-<nav class="win bar"><a href="index.html" class=on><span class="zh">首页</span><span class="ja">ホーム</span></a><a href="about.html"><span class="zh">关于我</span><span class="ja">自己紹介</span></a><a href="blog.html"><span class="zh">日志</span><span class="ja">日記</span></a><a href="sizhu.html"><span class="zh">丝竹</span><span class="ja">糸竹</span></a><a href="moxiang.html"><span class="zh">墨香</span><span class="ja">墨香</span></a><a href="gallery.html"><span class="zh">相册</span><span class="ja">ギャラリー</span></a><a href="links.html"><span class="zh">友链</span><span class="ja">リンク</span></a><a href="contact.html"><span class="zh">留言</span><span class="ja">連絡</span></a><button id="lang" type="button">中 / 日</button></nav>
-<div class="cols"><aside class="win side"><div class="ava"><span class="zh">头像</span><span class="ja">アイコン</span><img src="images/avatar.png" alt="" onerror="this.style.display='none'"></div><div class="name">mei</div><p class="zh">在这里写一句简介。</p><p class="ja">ひとこと紹介をここに。</p></aside>
-<main class="scroll"><div class="rod top"></div><div class="paper"><h2><span class="zh">欢迎</span><span class="ja">ようこそ</span></h2><p class="zh">这里是我的个人小站，记录日常、图片和喜欢的东西。</p><p class="ja">ここは私の個人サイトです。日常や写真、好きなものを記録します。</p><hr class="fret"><div class="tri"><div class="box"><h3><span class="zh">最近在玩</span><span class="ja">最近遊んでる</span></h3><ul class="plain"><li>寂静岭 Silent Hill</li><li>（游戏名）</li><li>（游戏名）</li></ul></div><div class="box"><h3><span class="zh">最近在听</span><span class="ja">最近聴いてる</span></h3><ol class="rank"><li>青梦 · Youzee Music</li><li>（曲名 · 歌手）</li><li>（曲名 · 歌手）</li></ol></div><div class="box"><h3><span class="zh">最近在读</span><span class="ja">最近読んでる</span></h3><ul class="plain"><li>（书名）</li><li>（书名）</li></ul></div></div><hr class="fret"><h2><span class="zh">最新日志</span><span class="ja">最新の日記</span></h2><div class="tri" id="latest"></div></div><div class="rod bot"></div></main>
-<aside class="win side r"><h3><span class="zh">更新记录</span><span class="ja">更新履歴</span></h3><div class="card">10-18<br><span class="zh">小站开张！</span><span class="ja">オープン！</span></div><h3><span class="zh">小提示</span><span class="ja">ヒント</span></h3><p class="zh">菜单里的「中 / 日」可以切换语言。</p><p class="ja">メニューの「中 / 日」で言語を切り替えられます。</p></aside></div>
-<footer>Since 2026 · kuugu-mei.github.io</footer></div><button id="bgm" type="button">♪</button><script src="data.js?v=8"></script><script src="script.js?v=8"></script></body></html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kuugu-mei 的博客</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="pixel-theme">
+    <div class="falling-container" id="falling-container"></div>
+    <header class="header-banner border-corner">
+        <h1>Welcome to kuugu-mei's Space</h1>
+    </header>
+    
+    <div class="main-layout">
+        <!-- 左侧个人信息 -->
+        <aside class="sidebar-left border-corner">
+            <div class="avatar-box">
+                <img src="images/avatar.png" alt="Avatar" class="avatar-img-large">
+            </div>
+            <div class="bio-text">
+                <h3>kuugu-mei</h3>
+                <p>欢迎来到我的像素灵感小屋！记录生活与奇思妙想。</p>
+            </div>
+            <nav class="nav-menu">
+                <a href="index.html" class="active">首页</a>
+                <a href="blog.html">日志</a>
+                <a href="collection.html">藏品</a>
+                <a href="gallery.html">相册</a>
+                <a href="about.html">关于我</a>
+                <a href="contact.html">联系我</a>
+            </nav>
+        </aside>
+
+        <!-- 中间主要内容 -->
+        <main class="content-center">
+            <!-- 公告栏 -->
+            <section class="notice-board border-corner">
+                <div class="notice-header">
+                    <span class="notice-title">📢 站点公告栏</span>
+                    <span class="notice-date" id="current-date"></span>
+                </div>
+                <div class="notice-content">
+                    <p class="highlight-text">[更新 v10] 新增【藏品】界面，重构卷轴与边框装饰，嵌入音乐视频！</p>
+                </div>
+            </section>
+
+            <!-- 主页最新日志（纵向排列） -->
+            <section class="latest-posts border-corner">
+                <h2>最新日志</h2>
+                <div class="vertical-posts-list">
+                    <article class="post-item-vertical">
+                        <img src="images/avatar.png" class="post-avatar-mini" alt="avatar">
+                        <div class="post-info">
+                            <h4><a href="blog.html">博客新装上线！</a></h4>
+                            <span class="post-time">2026-10-18</span>
+                            <p>今天整理了整个博客的布局，加入了更炫酷的像素装饰与隐藏藏品阁...</p>
+                        </div>
+                    </article>
+                    <article class="post-item-vertical">
+                        <img src="images/avatar.png" class="post-avatar-mini" alt="avatar">
+                        <div class="post-info">
+                            <h4><a href="blog.html">关于收藏与心爱之物</a></h4>
+                            <span class="post-time">2026-10-17</span>
+                            <p>有些物件虽然微小，却承载着满满的回忆。可以在藏品页面看看我的小宝贝们...</p>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- 嵌入 YouTube 视频 -->
+            <section class="video-section border-corner">
+                <h2>Music Box</h2>
+                <div class="video-wrapper">
+                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/u9J99gB5psc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
