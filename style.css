@@ -139,13 +139,13 @@ h1::before, h1::after {
 h1::before {
   background-image: url("images/fish-left.png") !important; /* 左侧图片 */
   right: 100% !important;
-  margin-right: -10px !important; /* 距离文字的远近，越小越靠近文字 */
+  margin-right: 20px !important; /* 距离文字的远近，越小越靠近文字 */
 }
 /* 右边的鱼 */
 h1::after {
   background-image: url("images/fish-right.png") !important; /* 右侧图片 */
   left: 100% !important;
-  margin-left: -10px !important; 
+  margin-left: 20px !important; 
 }
 /* 漂浮动画（上下浮动） */
 @keyframes floatFish {
@@ -156,4 +156,9 @@ h1::after {
 /* 手机屏幕太小隐藏鱼 */
 @media(max-width: 768px) {
   h1::before, h1::after { display: none !important; }
+}
+h1 { font-size: 0 !important; }
+h1::after { 
+  content: "青涩的青色的mei"; 
+  font-size: 30px; /* 这里控制标题文字大小 */
 }
