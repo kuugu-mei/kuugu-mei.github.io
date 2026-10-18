@@ -119,34 +119,5 @@ main{min-width:0}
   .cols{flex-direction:column}
   .side,.side.r{flex:none;width:100%}
 }
-/* 替换云朵为小鱼 */
-h1::before,h1::after{
-  background:url("images/fish.png") no-repeat center/contain !important;
-  animation:floatFish 3s ease-in-out infinite;
-  width: 120px !important;   /* 宽度 */
-  height: 120px !important;  /* 高度 */
-  margin-top: -60px !important; /* 高度的一半，用来居中 */
-  z-index: 10; /* 保证小鱼在最上层 */
-}
-/* 左边的小鱼 */
-h1::before {
-  right: 100% !important;
-  margin-right: -10px !important; 
-}
-/* 右边的小鱼 */
-h1::after {
-  left: 100% !important;
-  margin-left: -10px !important; 
-}
-/* 两条小鱼错开漂浮节奏 */
-h1::before{animation-delay:0s}
-h1::after{animation-delay:1.5s}
-@keyframes floatFish{
-  0%{transform:translateY(0)}
-  50%{transform:translateY(-10px)}
-  100%{transform:translateY(0)}
-}
-/* 小屏幕隐藏小鱼防重叠 */
-@media(max-width:700px){h1::before,h1::after{display:none}}
 /* 日志里的小头像缩小 */
 .phd .av{width:36px !important; height:36px !important;}
