@@ -119,3 +119,18 @@ main{min-width:0}
   .cols{flex-direction:column}
   .side,.side.r{flex:none;width:100%}
 }
+/* 替换云朵为小鱼 */
+h1::before,h1::after{
+  background:url("images/fish.png") no-repeat center/contain !important;
+  animation:floatFish 3s ease-in-out infinite;
+}
+/* 两条小鱼一前一后，错开漂浮节奏 */
+h1::before{animation-delay:0s}
+h1::after{animation-delay:1.5s}
+@keyframes floatFish{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-8px)}
+  100%{transform:translateY(0)}
+}
+/* 小屏幕隐藏小鱼防重叠 */
+@media(max-width:700px){h1::before,h1::after{display:none}}
