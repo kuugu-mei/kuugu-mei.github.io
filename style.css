@@ -134,21 +134,26 @@ html{overflow-x:hidden}
 .bub.below{bottom:auto;top:100%;margin:12px 0 0}.bub.below::after{top:auto;bottom:100%;border-top-color:transparent;border-bottom-color:#fff}
 #waline{--waline-theme-color:#5fb58f;--waline-active-color:#3f8f6a;--waline-font-size:14px;margin-top:10px}
 @media(prefers-reduced-motion:reduce){.bar .fly,.alien img,.alien.talk img{animation:none}}
-/* 缩小 Waline 用户头像 */
-.wl-avatar {
-    width: 36px !important;
-    height: 36px !important;
+/* 调整图标大小 */
+.waline-container {
+  --waline-icon-size: 20px; /* 根据需要调整数值，默认是 16px */
 }
 
-/* 调整留言框与按钮颜色，匹配你的绿/蓝主色调 */
-:root {
-    --waline-theme-color: #3ab795 !important; /* 提交按钮主色 */
-    --waline-active-color: #52b788 !important;
-    --waline-font-size: 14px !important; /* 文字字号 */
-    --waline-bg-color: rgba(255, 255, 255, 0.6) !important; /* 背景透明度 */
+/* 调整头像大小 */
+.waline-container {
+  --waline-avatar-size: 3rem; /* 调整桌面端头像大小，默认是 3.25rem */
+  --waline-m-avatar-size: 2.08rem; /* 调整移动端头像大小 */
 }
+.waline-container {
+  /* 自定义主题色（比如提交按钮的颜色） */
+  --waline-theme-color: #42b983;
+  --waline-active-color: #369e6c;
 
-/* 隐藏右下角不必要的图标或水印（可选） */
-.wl-power {
-    display: none !important;
+  /* 调整输入框的圆角 */
+  --waline-radius: 12px;
+
+  /* 移除评论区的边框，让它和你的网站风格更融合 */
+  --waline-border: none;
+  /* 或者改用阴影 */
+  /* --waline-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); */
 }
