@@ -26,7 +26,6 @@ function fd(d,t){return String(d||"").replace(/^(\d{4})-(\d{1,2})-(\d{1,2})$/,fu
 function paras(box,t){String(t||"").split("\n").forEach(function(s){if(s)box.appendChild(el("p",0,s))})}
 function TX(o){var f=document.createDocumentFragment();if(o==null)return f;if(typeof o=="string"){f.appendChild(document.createTextNode(o));return f}f.appendChild(el("span","zh",o.zh));f.appendChild(el("span","ja",o.ja!=null?o.ja:o.zh));return f}
 function SP(o){var f=document.createDocumentFragment();if(o==null)return f;if(typeof o=="string"){f.appendChild(el("p",0,o));return f}f.appendChild(el("p","zh",o.zh));f.appendChild(el("p","ja",o.ja!=null?o.ja:o.zh));return f}
-function SPN(o){var f=document.createDocumentFragment();if(o==null)return f;var L=typeof o==="string"?[[null,o]]:[["zh",o.zh],["ja",o.ja!=null?o.ja:o.zh]];L.forEach(function(p){String(p[1]||"").split("\n").forEach(function(t){if(t)f.appendChild(el("p",p[0],t))})});return f}
 function put(i,n){var e=gid(i);if(e&&n){e.textContent="";e.appendChild(n)}}
 function lst(cls,items){var u=el(cls=="rank"?"ol":"ul",cls);(items||[]).forEach(function(x){var li=el("li");li.appendChild(TX(x));u.appendChild(li)});return u}
 function avatar(){var d=el("div","av"),i=new Image();i.src="images/avatar.png";i.alt="";i.onerror=function(){i.remove()};d.appendChild(i);return d}
@@ -39,8 +38,7 @@ if(SI.intro)put("intro",SP(SI.intro));
 put("h-welcome",SP(HM.welcome));put("h-play",lst("plain",HM.playing));put("h-listen",lst("rank",HM.listening));put("h-read",lst("plain",HM.reading));
 var vd=gid("video");
 if(vd){if(HM.video&&HM.video.id){var v=el("div","vid"),fr=document.createElement("iframe");fr.src="https://www.youtube-nocookie.com/embed/"+HM.video.id;fr.title="video";fr.loading="lazy";fr.allowFullscreen=true;fr.setAttribute("referrerpolicy","strict-origin-when-cross-origin");fr.setAttribute("allow","encrypted-media; picture-in-picture; fullscreen");v.appendChild(fr);vd.appendChild(v);var cp=el("p","cap");cp.appendChild(TX(HM.video.caption));vd.appendChild(cp);vd.appendChild(SP({zh:"视频来自 YouTube，部分地区可能无法播放。",ja:"動画はYouTubeです。地域によっては再生できない場合があります。"}))}else{var vh=gid("vh");if(vh)vh.style.display="none"}}
-(function(){var at=gid("a-text");if(!at)return;at.textContent="";if(AB.text)at.appendChild(SPN(AB.text));
-(AB.sections||[]).forEach(function(s){if(s.title){var h=el("h3");h.appendChild(TX(s.title));at.appendChild(h)}if(s.text)at.appendChild(SPN(s.text))})})();put("a-contact",lst("plain",AB.contact));put("a-soc",lst("plain",AB.socials));
+put("a-text",SP(AB.text));put("a-contact",lst("plain",AB.contact));put("a-soc",lst("plain",AB.socials));
 var pe=gid("a-pets");
 if(pe)(AB.pets||[]).forEach(function(p){var d=el("div","pet"),im=el("div","pimg",p.img?"":"照片");if(p.img)pic(p.img,p.name,"照片",im);d.appendChild(im);d.appendChild(el("b",0,p.name||""));d.appendChild(el("small",0,p.info||""));pe.appendChild(d)});
 var bo=gid("books");
