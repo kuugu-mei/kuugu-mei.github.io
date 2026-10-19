@@ -69,7 +69,7 @@ window.SITE={
  ]},
 
  // ---------- 留言板：开通后把服务器网址填在引号里，没开通就保持空 "" ----------
- guestbook:{serverURL:""}
+ guestbook:{serverURL:"https://waline-server-ten-inky.vercel.app"}
 };
 
 // ---------- 日志：date 日期，time 时间，text 内容（没有标题）；img 可选，填图片路径 ----------
