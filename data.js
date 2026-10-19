@@ -32,11 +32,11 @@ window.SITE={
   socials:["ig：（账号）","X（原twitter）：（账号）","小红书：（账号）","微博：（账号）"],   // 社交平台，一行一条
   // 宠物：img 是照片路径，照片放进仓库的 images/pets 文件夹；没有照片会显示占位框
   pets:[
-   {name:"王子",info:"Rex兔 · 6岁 · F）家中之王。",img:"images/pets/1.jpg"},
-   {name:"吉日",info:"玉米蛇 · 3岁 · ？）100%chill guy",img:"images/pets/2.jpg"},
-   {name:"乖乖",info:"球蟒 · 6-7岁 · M）呆得不行，但进食是跳脸式的惊吓。",img:"images/pets/3.jpg"},
-   {name:"香香",info:"花枝鼠 · 11个月 · F）还算乖的姐；疑似被上任主人养到臭得要死。",img:"images/pets/4.jpg"},
-   {name:"慢慢",info:"花枝鼠 · 10个月 · F）ADHD的妹；乐于把睡着的姐姐踩醒",img:"images/pets/5.jpg"}
+   {name:"王子",info:"【Rex兔 · 6岁 · F】家中之王。幼时以为是男儿身才取的此名",img:"images/pets/1.jpg"},
+   {name:"吉日",info:"【玉米蛇 · 3岁 · ？】100%chill guy，旺饲主",img:"images/pets/2.jpg"},
+   {name:"乖乖",info:"【球蟒 · 6-7岁 · M】跟饲主一样有紧张就无法进食的毛病；进食会跳脸式惊吓饲主。",img:"images/pets/3.jpg"},
+   {name:"香香",info:"【花枝鼠 · 11个月 · F】还算乖的姐；疑似被上任主人养到臭得要死。希望她香一点故取名香香",img:"images/pets/4.jpg"},
+   {name:"慢慢",info:"【花枝鼠 · 10个月 · F】ADHD的妹；乐于把睡着的姐姐踩醒。希望她冷静一点故取名慢慢",img:"images/pets/5.jpg"}
   ]
  },
 
