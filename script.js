@@ -105,12 +105,12 @@ function LC(){return document.documentElement.lang==="ja"?{placeholder:"お気�
 var AV=["guest1","guest2"],BASE=new URL("images/avatars/",location.href).href,ALIEN=new URL("images/alien.png",location.href).href,cur=1;
 try{cur=+localStorage.getItem("meiav")||1}catch(e){}if(cur<1||cur>AV.length)cur=1;
 var API=GB.serverURL.replace(/\/+$/,"")+"/api/comment",of=window.fetch;
-function fx(c){if(!c||typeof c!=="object")return;var m=/#av=(\d+)/.exec(c.link||"");
-if(c.type==="administrator")c.avatar=BASE+"admin.png";else if(m&&AV[m[1]-1])c.avatar=BASE+AV[m[1]-1]+".png";else c.avatar=ALIEN;
+function fx(c){if(!c||typeof c!=="object")return;var m=/#av=(\d+|admin)/.exec(c.link||"");
+if(c.type==="administrator"||(m&&m[1]==="admin"))c.avatar=BASE+"admin.png";else if(m&&AV[m[1]-1])c.avatar=BASE+AV[m[1]-1]+".png";else c.avatar=ALIEN;
 if(m)c.link="";arr(c.children).forEach(fx)}
 if(of)window.fetch=function(u,o){var url=typeof u==="string"?u:(u&&u.url)||"",same=url.split("?")[0]===API;if(!same)return of.apply(this,arguments);
 var meth=((o&&o.method)||(u&&u.method)||"GET").toUpperCase();
-if(meth==="POST"&&o&&typeof o.body==="string"){try{var b=JSON.parse(o.body);if(!b.link||b.link.indexOf("#av=")<0){b.link=location.origin+"/#av="+cur;o=Object.assign({},o,{body:JSON.stringify(b)})}}catch(e){}return of.call(this,u,o)}
+if(meth==="POST"&&o&&typeof o.body==="string"){try{var b=JSON.parse(o.body);var hd=(o&&o.headers)||{},adm=!!(hd.Authorization||hd.authorization);if(!b.link||b.link.indexOf("#av=")<0){b.link=location.origin+"/#av="+(adm?"admin":cur);o=Object.assign({},o,{body:JSON.stringify(b)})}}catch(e){}return of.call(this,u,o)}
 if(meth!=="GET")return of.apply(this,arguments);
 return of.apply(this,arguments).then(function(r){return r.clone().json().then(function(j){try{arr(j&&j.data&&j.data.data).forEach(fx)}catch(e){}return new Response(JSON.stringify(j),{status:r.status,headers:{"Content-Type":"application/json"}})}).catch(function(){return r})})};
 var pk=el("div","avpick"),lb=el("span","avlab");lb.appendChild(TX({zh:"选一个头像：",ja:"アイコンを選んでね："}));pk.appendChild(lb);
