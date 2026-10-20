@@ -42,7 +42,7 @@ put("h-welcome",SP(HM.welcome));put("h-play",lst("plain",HM.playing));put("h-lis
 var vd=gid("video");
 if(vd){if(HM.video&&HM.video.id){var v=el("div","vid"),fr=document.createElement("iframe");fr.src="https://www.youtube-nocookie.com/embed/"+HM.video.id;fr.title="video";fr.loading="lazy";fr.allowFullscreen=true;fr.setAttribute("referrerpolicy","strict-origin-when-cross-origin");fr.setAttribute("allow","encrypted-media; picture-in-picture; fullscreen");v.appendChild(fr);vd.appendChild(v);var cp=el("p","cap");cp.appendChild(TX(HM.video.caption));vd.appendChild(cp);vd.appendChild(SP({zh:"视频来自 YouTube，部分地区可能无法播放。",ja:"動画はYouTubeです。地域によっては再生できない場合があります。"}))}else{var vh=gid("vh");if(vh)vh.style.display="none"}}
 (function(){var at=gid("a-text");if(!at)return;try{at.textContent="";if(AB.text)at.appendChild(SPN(AB.text));
-arr(AB.sections).forEach(function(s){if(!s||typeof s!=="object")return;if(s.title){var h=el("h3");h.appendChild(TX(s.title));at.appendChild(h)}if(s.text)at.appendChild(SPN(s.text))})}catch(e){console.error("[小站] 关于我小标题出错：",e)}})();
+arr(AB.sections).forEach(function(s){if(!s||typeof s!=="object")return;if(s.title){var h=el("h3","ab-h");h.appendChild(TX(s.title));at.appendChild(h)}if(s.text)at.appendChild(SPN(s.text))})}catch(e){console.error("[小站] 关于我小标题出错：",e)}})();
 put("a-contact",lst("plain",AB.contact));put("a-soc",lst("plain",AB.socials));
 var pe=gid("a-pets");
 if(pe)arr(AB.pets).forEach(function(p){var d=el("div","pet"),im=el("div","pimg",p.img?"":"照片");if(p.img)pic(p.img,p.name,"照片",im);d.appendChild(im);d.appendChild(el("b",0,p.name||""));d.appendChild(el("small",0,p.info||""));pe.appendChild(d)});
@@ -102,6 +102,21 @@ setTimeout(function(){bb.className="bub";al.classList.remove("talk");st="rest";w
 if(!GB.serverURL||!window.Waline){var c=el("div","card");c.appendChild(TX({zh:"留言板还在准备中，暂时请通过上面的联系方式找我～",ja:"掲示板は準備中です。しばらくは連絡先からどうぞ。"}));bx.appendChild(c);return}
 function lg(){return document.documentElement.lang==="ja"?"jp-JP":"zh-CN"}
 function LC(){return document.documentElement.lang==="ja"?{placeholder:"お気軽にどうぞ～（メールは書かなくてOK）",sofa:"最初のコメントをどうぞ～",submit:"送信"}:{placeholder:"欢迎留言～（邮箱可以不填）",sofa:"来发第一条留言吧～",submit:"发送"}}
+var AV=["guest1","guest2"],BASE=new URL("images/avatars/",location.href).href,ALIEN=new URL("images/alien.png",location.href).href,cur=1;
+try{cur=+localStorage.getItem("meiav")||1}catch(e){}if(cur<1||cur>AV.length)cur=1;
+var API=GB.serverURL.replace(/\/+$/,"")+"/api/comment",of=window.fetch;
+function fx(c){if(!c||typeof c!=="object")return;var m=/#av=(\d+)/.exec(c.link||"");
+if(c.type==="administrator")c.avatar=BASE+"admin.png";else if(m&&AV[m[1]-1])c.avatar=BASE+AV[m[1]-1]+".png";else c.avatar=ALIEN;
+if(m)c.link="";arr(c.children).forEach(fx)}
+if(of)window.fetch=function(u,o){var url=typeof u==="string"?u:(u&&u.url)||"",same=url.split("?")[0]===API;if(!same)return of.apply(this,arguments);
+var meth=((o&&o.method)||(u&&u.method)||"GET").toUpperCase();
+if(meth==="POST"&&o&&typeof o.body==="string"){try{var b=JSON.parse(o.body);if(!b.link||b.link.indexOf("#av=")<0){b.link=location.origin+"/#av="+cur;o=Object.assign({},o,{body:JSON.stringify(b)})}}catch(e){}return of.call(this,u,o)}
+if(meth!=="GET")return of.apply(this,arguments);
+return of.apply(this,arguments).then(function(r){return r.clone().json().then(function(j){try{arr(j&&j.data&&j.data.data).forEach(fx)}catch(e){}return new Response(JSON.stringify(j),{status:r.status,headers:{"Content-Type":"application/json"}})}).catch(function(){return r})})};
+var pk=el("div","avpick"),lb=el("span","avlab");lb.appendChild(TX({zh:"选一个头像：",ja:"アイコンを選んでね："}));pk.appendChild(lb);
+AV.forEach(function(n,i){var b=el("button","avopt"+(i+1===cur?" on":""));b.type="button";b.setAttribute("aria-label","avatar "+(i+1));var im=el("img");im.src=BASE+n+".png";im.alt="";b.appendChild(im);
+b.onclick=function(){cur=i+1;try{localStorage.setItem("meiav",cur)}catch(e){}Array.prototype.forEach.call(pk.querySelectorAll(".avopt"),function(x,k){x.classList.toggle("on",k===i)})};pk.appendChild(b)});
+bx.parentNode.insertBefore(pk,bx);
 var wl=Waline.init({el:"#waline",serverURL:GB.serverURL,path:"/guestbook",lang:lg(),locale:LC(),login:"enable",meta:["nick","mail"],requiredMeta:[],wordLimit:500,pageSize:10,emoji:false,search:false,imageUploader:false,reaction:false,dark:false});
 window.__lg=function(){if(wl&&wl.update)wl.update({lang:lg(),locale:LC()})};
 })();

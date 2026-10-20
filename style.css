@@ -104,7 +104,7 @@ footer .fret{margin:6px auto;max-width:480px}
 @media(prefers-reduced-motion:reduce){.sub::before,.sub::after{animation:none}}
 
 h1::before,h1::after{content:"";position:absolute;top:50%;height:60px;margin-top:-30px;background:no-repeat center/contain;animation:fl 4s ease-in-out infinite}
-h1::before{width:62px;right:100%;margin-right:10px;background-image:url(images/orn-left.png?v=1)}
+h1::before{width:46px;right:100%;margin-right:10px;background-image:url(images/orn-left.png?v=1)}
 h1::after{width:42px;left:100%;margin-left:10px;background-image:url(images/orn-right.png?v=1);animation-delay:-2s}
 @keyframes fl{50%{transform:translateY(-6px)}}
 @media(prefers-reduced-motion:reduce){h1::before,h1::after{animation:none}}
@@ -134,37 +134,9 @@ html{overflow-x:hidden}
 .bub.below{bottom:auto;top:100%;margin:12px 0 0}.bub.below::after{top:auto;bottom:100%;border-top-color:transparent;border-bottom-color:#fff}
 @media(prefers-reduced-motion:reduce){.bar .fly,.alien img,.alien.talk img{animation:none}}
 
-/* 留言板外观（Waline） */
-#waline *{font-family:inherit}
-#waline .wl-panel{border:0;border-radius:0;background:#fff;box-shadow:0 0 0 2px #8cc9bd,0 0 0 4px #fff,0 0 0 6px #cfeee6;margin:8px 6px}
-#waline .wl-header{border-bottom:2px dotted #b4dcd2}
-#waline .wl-header input,#waline .wl-editor{background:transparent;color:#28708f}
-#waline .wl-btn{border:0;border-radius:0;background:#e0f5ea;color:#247a50;box-shadow:inset -2px -2px #8fd0ae,inset 2px 2px #fff,0 0 0 2px #8cc9bd}
-#waline .wl-btn:hover{background:#b5e5cb;color:#14502f}
-#waline .wl-btn.primary{background:#5fb58f;color:#fff;box-shadow:inset -2px -2px #3f8f6a,inset 2px 2px #8fd8b8,0 0 0 2px #3f8f6a}
-#waline .wl-card{padding:6px 10px;margin:12px 6px;background:#eef9f4;box-shadow:0 0 0 2px #8cc9bd}
-#waline .wl-nick{color:#247a50}
-#waline .wl-count,#waline .wl-sort{color:#247a50}
-#waline .wl-avatar{margin:0 12px 0 0;background:#cfeee0 url(images/alien.png) center/78% no-repeat;image-rendering:pixelated;box-shadow:0 0 0 2px #fff,0 0 0 4px #8cc9bd;border:0;overflow:hidden}
-#waline .wl-avatar img{opacity:0}
-#waline .wl-power{font-size:12px;opacity:.7}
 
 .err{position:relative;z-index:50;margin:0 0 10px;padding:8px 14px;background:#fff3cd;color:#7a5200;font-size:14px;box-shadow:0 0 0 2px #e0b84d}
-/* ===== 留言板（Waline）配色与像素风 ===== */
-#waline{--waline-font-size:14px;--waline-theme-color:#5fb58f;--waline-active-color:#3f8f6a;--waline-color:#28708f;--waline-bg-color:#f4fbf8;--waline-bg-color-light:#eaf7f0;--waline-bg-color-hover:#dff3ea;--waline-border-color:#9fd3c4;--waline-border:1px solid #9fd3c4;--waline-box-shadow:none;--waline-info-color:#6b9bb0;--waline-badge-color:#4a55b0;--waline-avatar-size:2.1rem;--waline-m-avatar-size:1.9rem;--waline-user-avatar-size:2.1rem;--waline-avatar-radius:50%;margin-top:10px}
-#waline,#waline *{font-family:inherit}
-#waline .wl-panel{margin:8px 6px 18px;border:0;border-radius:0;background:#f4fbf8;box-shadow:0 0 0 2px #8cc9bd,0 0 0 4px #fff,0 0 0 6px #cfeee6}
-#waline .wl-header{border-radius:0;border-bottom:2px dashed #b4dcd2}
-#waline .wl-editor,#waline .wl-input{background:transparent;color:#28708f}
-#waline .wl-btn{border:0;border-radius:0;background:#e0f5ea;color:#247a50;font-family:PixZH,"PingFang SC","Microsoft YaHei",sans-serif;box-shadow:inset -2px -2px #8fd0ae,inset 2px 2px #fff,0 0 0 2px #8cc9bd}
-#waline .wl-btn.primary{background:#5fb58f;color:#fff;box-shadow:inset -2px -2px #3f8f6a,inset 2px 2px #8fd9b4,0 0 0 2px #3f8f6a}
-#waline .wl-btn:hover{filter:brightness(1.06)}
-#waline .wl-count,#waline .wl-sort li.active{color:#247a50}
-#waline .wl-count{font-family:PixZH,"PingFang SC","Microsoft YaHei",sans-serif}
-#waline .wl-card-item{margin:8px 0;padding:8px 10px;background:#eef9f4;box-shadow:0 0 0 2px #cfeee6}
-#waline .wl-card .wl-nick{color:#247a50}
-#waline .wl-card .wl-time{color:#6b9bb0}
-/* 默认头像：用小外星人代替，并缩小 */
-html html #waline .wl-user,html #waline .wl-cards .wl-user{background:#dff3ea url(images/alien.png) center/78% no-repeat;border-radius:50%;box-shadow:0 0 0 2px #8cc9bd}
-#waline .wl-cards .wl-user .wl-user-avatar{opacity:0}
-#waline .wl-power{font-size:12px;opacity:.7}
+
+/* 关于我小标题：无底框，胭脂色 */
+.paper h3.ab-h{margin:20px 0 4px;padding:0;background:none;box-shadow:none;color:#b4566b;font-size:16px}
+.paper h3.ab-h::before{content:"◆";margin-right:6px;font-size:11px;vertical-align:2px;color:#e3a0a9}
