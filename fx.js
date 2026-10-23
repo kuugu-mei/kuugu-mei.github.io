@@ -1,4 +1,4 @@
-/* 新增效果（v18）：背景视频、标题乱码出现、绳结卷轴开场、水墨转场、藏品散落与老电视弹窗。
+/* 新增效果（v19）：背景视频、标题乱码出现、绳结卷轴开场、藏品散落与照片弹窗。
    文字内容全部仍来自 data.js；这个文件只负责动画和排版，不需要修改。 */
 (function(){
 "use strict";
@@ -96,62 +96,6 @@ safe(function(){
   })
 });
 
-/* ---------------- 水墨转场（只用于去「首页」「关于我」） ---------------- */
-var ink,inkx,SP=null;
-var RAMP=" .:-=+*#%@";
-function sprites(cell){
-  if(SP&&SP.cell===cell)return SP;
-  var cols=["rgba(150,200,255,1)","rgba(232,242,255,1)"],A=[];
-  cols.forEach(function(col){var row=[];for(var g=0;g<RAMP.length;g++){var c=document.createElement("canvas");c.width=c.height=cell;var x=c.getContext("2d");x.font="bold "+(cell+1)+"px ui-monospace,Menlo,Consolas,monospace";x.textAlign="center";x.textBaseline="middle";x.fillStyle=col;x.fillText(RAMP.charAt(g),cell/2,cell/2);row.push(c)}A.push(row)});
-  SP={cell:cell,a:A};return SP
-}
-function inkSetup(){
-  if(!ink){ink=document.createElement("canvas");ink.id="ink";document.body.appendChild(ink)}
-  var cell=16,W=innerWidth,H=innerHeight,cols=Math.ceil(W/cell),rows=Math.ceil(H/cell),N=cols*rows;
-  ink.width=cols*cell;ink.height=rows*cell;inkx=ink.getContext("2d");
-  var n=4+Math.floor(Math.random()*3),O=[];for(var i=0;i<n;i++)O.push([Math.random()*W,Math.random()*H,Math.random()*.2]);
-  var maxD=Math.hypot(W,H)*.6,dist=new Float32Array(N),nz=new Float32Array(N);
-  function lat(sz){var gw=Math.ceil(cols/sz)+2,gh=Math.ceil(rows/sz)+2,g=[];for(var i=0;i<gw*gh;i++)g.push(Math.random());
-    return function(x,y){var fx=x/sz,fy=y/sz,ix=Math.floor(fx),iy=Math.floor(fy),tx=fx-ix,ty=fy-iy;tx=tx*tx*(3-2*tx);ty=ty*ty*(3-2*ty);var a=g[iy*gw+ix],b=g[iy*gw+ix+1],d=g[(iy+1)*gw+ix],e=g[(iy+1)*gw+ix+1];return(a+(b-a)*tx)*(1-ty)+(d+(e-d)*tx)*ty}}
-  var A=lat(8),B=lat(3.2),C=lat(1.5);
-  for(var y=0;y<rows;y++)for(var x=0;x<cols;x++){var k=y*cols+x,m=9;for(var j=0;j<n;j++){var d=Math.hypot((x+.5)*cell-O[j][0],(y+.5)*cell-O[j][1])/maxD+O[j][2];if(d<m)m=d}dist[k]=m;nz[k]=A(x,y)*.6+B(x,y)*.3+C(x,y)*.1}
-  return{cell:cell,cols:cols,rows:rows,dist:dist,nz:nz,sp:sprites(cell)}
-}
-function inkDraw(S,f,cover){
-  var c=inkx,cell=S.cell,cols=S.cols,rows=S.rows,dist=S.dist,nz=S.nz,sp=S.sp.a;
-  c.clearRect(0,0,ink.width,ink.height);
-  var fr=Math.floor(f*40);
-  for(var y=0;y<rows;y++)for(var x=0;x<cols;x++){var k=y*cols+x,a=(f-dist[k]-nz[k]*.3)/.24;a=a<0?0:a>1?1:a;if(!cover)a=1-a;
-    if(a<.03)continue;var px=x*cell,py=y*cell;
-    c.globalAlpha=.5*a;c.fillStyle="rgb(8,16,36)";c.fillRect(px,py,cell,cell);
-    if(a>.97){var g=((x*7+y*13+fr)%13+13)%13;if(g<2){c.globalAlpha=.3;c.drawImage(sp[1][3+g*3],px,py)}continue}
-    c.globalAlpha=a<.35?.35+a*1.2:.5+a*.45;c.drawImage(sp[a<.35?0:1][Math.min(9,Math.floor(a*10))],px,py)}
-  c.globalAlpha=1
-}
-function warm(href){try{var l=document.createElement("link");l.rel="prefetch";l.href=href;document.head.appendChild(l)}catch(e){}try{fetch(href,{credentials:"same-origin"}).catch(function(){})}catch(e){}}
-function inkOut(href){
-  warm(href);
-  var S=inkSetup(),t0=null,D=620;
-  function f(t){if(t0===null)t0=t;var p=clamp((t-t0)/D,0,1);inkDraw(S,-.3+1.7*p,true);
-    if(p<1)requestAnimationFrame(f);else{SS.set("ink","1");location.href=href}}
-  requestAnimationFrame(f)
-}
-safe(function(){
-  if(!html.classList.contains("inkin"))return;
-  SS.del("ink");
-  if(R){html.classList.remove("inkin");return}
-  var S=inkSetup();inkDraw(S,2,true);html.classList.remove("inkin");
-  var t0=null,D=800;function f(t){if(t0===null)t0=t;var p=clamp((t-t0)/D,0,1);inkDraw(S,-.3+1.7*p,false);
-    if(p<1)requestAnimationFrame(f);else{inkx.clearRect(0,0,ink.width,ink.height)}}requestAnimationFrame(f)
-});
-document.addEventListener("pointerover",function(e){var a=e.target.closest&&e.target.closest(".bar a");if(a&&/(^|\/)(index|about)\.html/.test(a.getAttribute("href")||"")&&!a.__w){a.__w=1;try{var l=document.createElement("link");l.rel="prefetch";l.href=a.href;document.head.appendChild(l)}catch(x){}}},{passive:true});
-document.addEventListener("click",function(e){
-  var a=e.target.closest&&e.target.closest(".bar a");if(!a||e.defaultPrevented||e.metaKey||e.ctrlKey||e.shiftKey||e.button)return;
-  var h=a.getAttribute("href")||"";if(!/(^|\/)(index|about)\.html(\?.*)?$/.test(h))return;
-  if(a.pathname===location.pathname||R)return;
-  e.preventDefault();safe(function(){inkOut(a.href)})
-});
-
 /* ---------------- 藏品：散落排列 + 老电视弹窗 ---------------- */
 function langOf(o){var l=html.lang==="ja"?"ja":"zh";if(o==null)return"";if(typeof o==="string")return o;var v=o[l];return v!=null?v:(o.zh||"")}
 function fd(d){return String(d||"").replace(/^(\d{4})-(\d{1,2})-(\d{1,2})$/,function(m,y,mo,da){return y+"年"+(+mo)+"月"+(+da)+"日"})}
@@ -189,7 +133,7 @@ safe(function(){
     b.addEventListener("click",function(){openTV(it)});cl.appendChild(b);els.push(b)});
   function layout(){
     var W=cl.clientWidth||600,N=els.length;if(!N)return;
-    var cols=clamp(Math.round(Math.sqrt(N*1.5)),1,Math.max(1,Math.floor(W/110))),rows=Math.ceil(N/cols),cw=W/cols,s=Math.min(cw*.76,200),ch=s*1.22;
+    var cols=clamp(Math.round(Math.sqrt(N*2.4)),1,Math.max(1,Math.floor(W/90))),rows=Math.ceil(N/cols),cw=W/cols,s=Math.min(cw*.5,104),ch=s*1.3;
     els.forEach(function(e,i){var r=Math.floor(i/cols),c=i%cols,rnd=rng(i*97+13),
       x=c*cw+(cw-s)/2+(rnd()*2-1)*(cw-s)*.4+((r%2)?cw*.08:-cw*.04),y=r*ch+(ch-s)/2+(rnd()*2-1)*(ch-s)*.45+((c%2)?ch*.08:-ch*.03);
       x=clamp(x,0,Math.max(0,W-s-24));y=Math.max(6,y);e.style.cssText+=";left:"+x.toFixed(1)+"px;top:"+y.toFixed(1)+"px;width:"+s.toFixed(1)+"px;height:"+s.toFixed(1)+"px"});
