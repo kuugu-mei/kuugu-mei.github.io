@@ -100,6 +100,7 @@ window.NOTICES=[
 
 // ---------- 藏品：img 填图片路径（放在 images 文件夹里），图片可以很小很糊 ----------
 window.COLLECTION=[
- {date:"2026-10-18",title:"（示例）藏品名称",img:"",text:"写下它的来历，和它对你的意义。"},
- {date:"2026-10-10",title:"（示例）另一件藏品",img:"",text:"可以写很短，也可以写很长。"}
+ {date:"2026-10-20",title:"藏品一",img:"images/col-1.png",text:"这是第一件藏品的说明。"},
+ {date:"2026-10-19",title:"藏品二",img:"images/col-2.png",text:"这是第二件藏品的说明。"},
+ {date:"2026-10-18",title:"藏品三",img:"images/col-3.png",text:"这是第三件藏品的说明。"}
 ];
