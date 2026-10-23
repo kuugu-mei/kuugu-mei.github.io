@@ -2,16 +2,6 @@
 try{l=localStorage.getItem("lang")||"zh"}catch(e){}
 function set(){d.setAttribute("data-lang",l);h.lang=l}set();
 document.getElementById("lang").onclick=function(){l=l==="zh"?"ja":"zh";set();if(window.__lg)window.__lg();try{localStorage.setItem("lang",l)}catch(e){}};
-// 像素音符背景
-var N=[["..XX..","..X.X.","..X..X","..X...","..X...","XXX...","XXX...",".X...."],["..XXXXX","..X...X","..X...X","..X...X","XXX.XXX","XXX.XXX",".X...X."]],
-C=["#6fb3a4","#7fb0d6","#8fd0a0","#5fa0c0"],cv=document.getElementById("notes"),x=cv.getContext("2d"),A=[],W,H;
-function rs(){W=cv.width=innerWidth;H=cv.height=innerHeight}rs();addEventListener("resize",rs);
-for(var i=0;i<24;i++)A.push({x:Math.random()*W,y:Math.random()*H,s:3+(i%2),v:.35+Math.random()*.45,k:i%2,c:C[i%4],p:Math.random()*6});
-var G={"春": [".....X......", ".XXXXXXXXX..", "....X.......", ".XXXXXXXXX..", "...X........", "XXXXXXXXXXX.", "..X.....X...", ".XX.....XX..", "X.XXXXXXX.X.", "..X.....X...", "..XXXXXXX..."], "夏": ["XXXXXXXXXXX.", ".....X......", ".XXXXXXXXX..", ".X.......X..", ".XXXXXXXXX..", ".X.......X..", ".XXXXXXXXX..", "..X.....X...", "XX.X...X....", "....XXX.....", "XXXX...XXXX."], "秋": ["...X...X....", "XXX....X....", "..X..X.X..X.", "..X..X.X..X.", "XXX.X..X.X..", "..X....X....", ".XX....X....", ".XXX..X.X...", "X.X...X.X...", "..X..X...X..", "..X.X.....X."], "冬": ["...X........", "...XXXXXX...", "..X.....X...", "XX.X...X....", "....XXX.....", "..XX...XX...", "XX..XX...XX.", "......XX....", "..XX........", "....XX......", "......XXX..."]},SEA=['春','夏','秋','冬'],SCOL=['#7fcf9a','#4fa3d6','#a9c46f','#8bb8e8'];
-for(var q=0;q<8;q++)A.push({x:Math.random()*W,y:Math.random()*H,s:3,v:.28+Math.random()*.35,g:G[SEA[q%4]],c:SCOL[q%4],p:Math.random()*6});
-function dr(){x.clearRect(0,0,W,H);A.forEach(function(a){var g=a.g||N[a.k],p=Math.round(a.x+Math.sin(a.y/60+a.p)*10);x.globalAlpha=.7;x.fillStyle=a.c;
-g.forEach(function(r,j){for(var m=0;m<r.length;m++)if(r[m]=="X")x.fillRect(p+m*a.s,Math.round(a.y)+j*a.s,a.s,a.s)});
-if(!R){a.y+=a.v;if(a.y>H){a.y=-40;a.x=Math.random()*W}}});if(!R)requestAnimationFrame(dr)}dr();
 // 彩色星星碎片；光标图案已写在样式文件里
 if(matchMedia("(pointer:fine)").matches){
 var SC=["#4da3ff","#4fd6a0","#ffcf4d","#ff8fb8","#a58bff","#3fd0d8"],lt=0;if(!R)addEventListener("mousemove",function(e){var n=Date.now();if(n-lt<70)return;lt=n;var s=document.createElement("i");s.className="spk";s.style.setProperty("--c",SC[Math.floor(Math.random()*SC.length)]);
@@ -65,9 +55,6 @@ if(se)srt(arr(SZ.entries),"date").forEach(function(e){var a=el("article","post")
 // 公告栏 / 藏品
 var nt=gid("notice");
 if(nt)srt(arr(window.NOTICES),"date").forEach(function(n){var d=el("div","nt");d.appendChild(el("time",0,fd(n.date,n.time)));d.appendChild(el("p",0,n.text));nt.appendChild(d)});
-var cl=gid("coll");
-if(cl)srt(arr(window.COLLECTION),"date").forEach(function(c){var d=el("article","item"),pc=el("div","pic"),b=el("div","txt");if(c.img)pic(c.img,c.title,"图片",pc);else pc.textContent="图片";
-b.appendChild(el("time",0,fd(c.date)));b.appendChild(el("h3",0,c.title));paras(b,c.text);d.appendChild(pc);d.appendChild(b);cl.appendChild(d)});
 // 黄历（本地用 lunar-javascript 计算，不联网）
 var hl=gid("huangli");
 if(hl){if(window.Solar){try{var sd=Solar.fromDate(new Date()),lu=sd.getLunar(),fs=lu.getFestivals().concat(sd.getFestivals());

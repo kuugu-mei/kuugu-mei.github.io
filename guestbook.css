@@ -1,34 +1,34 @@
 /* 留言板（Waline）外观：配色、像素风边框、小外星人头像。只作用于留言页的 #waline */
-#waline,#waline [data-waline]{--waline-font-size:14px;--waline-theme-color:#5fb58f;--waline-active-color:#3f8f6a;--waline-color:#28708f;--waline-bg-color:#f4fbf8;--waline-bg-color-light:#eaf7f0;--waline-bg-color-hover:#dff3ea;--waline-border-color:#9fd3c4;--waline-border:1px solid #9fd3c4;--waline-box-shadow:none;--waline-info-color:#6b9bb0;--waline-badge-color:#4a55b0;--waline-avatar-size:3.6rem;--waline-m-avatar-size:3rem;--waline-user-avatar-size:3.6rem;--waline-avatar-radius:50%}
+#waline,#waline [data-waline]{--waline-font-size:14px;--waline-theme-color:#ac6e68;--waline-active-color:#864d48;--waline-color:#844133;--waline-bg-color:#faf5f5;--waline-bg-color-light:#f6eceb;--waline-bg-color-hover:#f1e3e1;--waline-border-color:#cda9a5;--waline-border:1px solid #cda9a5;--waline-box-shadow:none;--waline-info-color:#a87c73;--waline-badge-color:#a56855;--waline-avatar-size:3.6rem;--waline-m-avatar-size:3rem;--waline-user-avatar-size:3.6rem;--waline-avatar-radius:50%}
 #waline{margin-top:10px}
 #waline *{font-family:inherit}
-#waline .wl-panel{margin:8px 6px 18px;border:0;border-radius:0;background:#f4fbf8;box-shadow:0 0 0 2px #8cc9bd,0 0 0 4px #fff,0 0 0 6px #cfeee6}
-#waline .wl-header{border-radius:0;border-bottom:2px dashed #b4dcd2}
-#waline .wl-editor,#waline .wl-input{background:transparent;color:#28708f}
-#waline .wl-btn{border:0;border-radius:0;background:#e0f5ea;color:#247a50;font-family:PixZH,"PingFang SC","Microsoft YaHei",sans-serif;box-shadow:inset -2px -2px #8fd0ae,inset 2px 2px #fff,0 0 0 2px #8cc9bd}
-#waline .wl-btn.primary{background:#5fb58f;color:#fff;box-shadow:inset -2px -2px #3f8f6a,inset 2px 2px #8fd9b4,0 0 0 2px #3f8f6a}
+#waline .wl-panel{margin:8px 6px 18px;border:0;border-radius:0;background:#faf5f5;box-shadow:0 0 0 2px #c29893,0 0 0 4px #fff,0 0 0 6px #ebd5d2}
+#waline .wl-header{border-radius:0;border-bottom:2px dashed #d8bcb8}
+#waline .wl-editor,#waline .wl-input{background:transparent;color:#844133}
+#waline .wl-btn{border:0;border-radius:0;background:#f3e4e2;color:#71332d;font-family:PixZH,"PingFang SC","Microsoft YaHei",sans-serif;box-shadow:inset -2px -2px #c99a96,inset 2px 2px #fff,0 0 0 2px #c29893}
+#waline .wl-btn.primary{background:#ac6e68;color:#fff;box-shadow:inset -2px -2px #864d48,inset 2px 2px #d19c97,0 0 0 2px #864d48}
 #waline .wl-btn:hover{filter:brightness(1.06)}
-#waline .wl-count{font-family:PixZH,"PingFang SC","Microsoft YaHei",sans-serif;color:#247a50}
-#waline .wl-sort li.active{color:#247a50}
-#waline .wl-card-item{margin:8px 0;padding:8px 10px;background:#eef9f4;box-shadow:0 0 0 2px #cfeee6}
-#waline .wl-card .wl-nick{color:#247a50}
-#waline .wl-card .wl-time{color:#6b9bb0}
+#waline .wl-count{font-family:PixZH,"PingFang SC","Microsoft YaHei",sans-serif;color:#71332d}
+#waline .wl-sort li.active{color:#71332d}
+#waline .wl-card-item{margin:8px 0;padding:8px 10px;background:#f8f0ef;box-shadow:0 0 0 2px #ebd5d2}
+#waline .wl-card .wl-nick{color:#71332d}
+#waline .wl-card .wl-time{color:#a87c73}
 /* 小图标上色 */
-#waline .wl-action{color:#5fb58f}
-#waline .wl-action:hover{color:#3f8f6a}
-#waline .wl-action.active{color:#e0699b}
+#waline .wl-action{color:#ac6e68}
+#waline .wl-action:hover{color:#864d48}
+#waline .wl-action.active{color:#d39d76}
 #waline .wl-power{font-size:12px;opacity:.7}
 /* ===== 头像：圆形、不拉伸 ===== */
 #waline{--waline-avatar-size:3.6rem;--waline-m-avatar-size:3rem}
 #waline .wl-card-item>.wl-user,#waline .wl-card .wl-user{position:relative;flex:none;align-self:flex-start;width:var(--waline-avatar-size);height:var(--waline-avatar-size);margin-right:12px;border-radius:50%}
 #waline .wl-card .wl-card .wl-user{width:var(--waline-m-avatar-size);height:var(--waline-m-avatar-size)}
-#waline .wl-user .wl-user-avatar{display:block;width:100%;height:100%;object-fit:cover;border-radius:50%;background:#dff3ea;box-shadow:0 0 0 2px #8cc9bd;opacity:1}
+#waline .wl-user .wl-user-avatar{display:block;width:100%;height:100%;object-fit:cover;border-radius:50%;background:#f1e3e1;box-shadow:0 0 0 2px #c29893;opacity:1}
 #waline .wl-user .verified-icon{width:16px;height:16px;right:-2px;bottom:-2px}
 /* 选头像那一排 */
-.avpick{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:6px 6px 4px;padding:8px 12px;background:#eef9f4;box-shadow:0 0 0 2px #cfeee6}
-.avpick .avlab{color:#247a50;font-size:14px}
-.avpick .avopt{width:52px;height:52px;padding:0;border:0;border-radius:50%;background:#dff3ea;box-shadow:0 0 0 2px #cfeee6;cursor:pointer;overflow:hidden;opacity:.7;transition:transform .15s}
+.avpick{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:6px 6px 4px;padding:8px 12px;background:#f8f0ef;box-shadow:0 0 0 2px #ebd5d2}
+.avpick .avlab{color:#71332d;font-size:14px}
+.avpick .avopt{width:52px;height:52px;padding:0;border:0;border-radius:50%;background:#f1e3e1;box-shadow:0 0 0 2px #ebd5d2;cursor:pointer;overflow:hidden;opacity:.7;transition:transform .15s}
 .avpick .avopt img{display:block;width:100%;height:100%;object-fit:cover}
 .avpick .avopt:hover{opacity:1;transform:scale(1.06)}
-.avpick .avopt.on{opacity:1;box-shadow:0 0 0 3px #5fb58f,0 0 0 5px #fff}
+.avpick .avopt.on{opacity:1;box-shadow:0 0 0 3px #ac6e68,0 0 0 5px #fff}
 #waline .wl-user .verified-icon{display:none}
