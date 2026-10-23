@@ -35,7 +35,7 @@ function titleIn(){
 }
 
 /* ---------------- 像素卷轴与绳结 ---------------- */
-var K={ol:"#5b749a",lt:"#f1f5fa",bs:"#d9e3f1",sh:"#b8c9e0",dk:"#8ba3c6",fr:"#6f89b0",cream:"#fbefd2",tan:"#d3b97e",ed:"#8a6c3a",w:"#ffffff"};
+var K={ol:"#2b4fc0",lt:"#f4f8ff",bs:"#d6e4fb",sh:"#aac7f3",dk:"#6f9be6",fr:"#4068d8",cream:"#fbefd2",tan:"#d3b97e",ed:"#8a6c3a",w:"#ffffff"};
 var FRET=["............",".XXXXXXXXXX.",".X........X.",".X.XXXXXX.X.",".X.X......X.",".X.XXXXXXXX.",".X.........."];
 var rolled=$("rolled"),rc=$("rc"),rcx=rc&&rc.getContext("2d");
 function drawRoll(p){
