@@ -35,30 +35,34 @@ function titleIn(){
 }
 
 /* ---------------- 像素卷轴与绳结 ---------------- */
-var K={ol:"#2f8f7c",lt:"#f2fbf8",bs:"#d4efe7",sh:"#a8dccd",dk:"#6fbfa9",fr:"#3f9d89",cream:"#fbefd2",tan:"#d3b97e",ed:"#8a6c3a",w:"#ffffff"};
+var K={ol:"#5d7a35",lt:"#f6f8ec",bs:"#e0e8c8",sh:"#bccb8f",dk:"#8fa65a",fr:"#6f8c3e",cream:"#fbefd2",tan:"#d3b97e",ed:"#8a6c3a",w:"#ffffff"};
 var FRET=["............",".XXXXXXXXXX.",".X........X.",".X.XXXXXX.X.",".X.X......X.",".X.XXXXXXXX.",".X.........."];
 var rolled=$("rolled"),rc=$("rc"),rcx=rc&&rc.getContext("2d");
-function drawRoll(p){
+function drawRollP(p,P){
   if(!rc)return;var box=rc.parentNode,cols=Math.max(80,Math.min(150,Math.floor((box.clientWidth||560)/4))),H=29;
   if(rc.width!==cols||rc.height!==H){rc.width=cols;rc.height=H;rc.style.width=cols*4+"px";rc.style.height=H*4+"px"}
   var c=rcx;c.clearRect(0,0,cols,H);
   function px(x,y,col,w,h){c.fillStyle=col;c.fillRect(Math.round(x),Math.round(y),w||1,h||1)}
   var x0=9,x1=cols-10;
-  for(var y=3;y<=15;y++){var col=y===3||y===15?K.ol:y<=5?K.lt:y<=10?K.bs:y<=13?K.sh:K.dk;px(x0,y,col,x1-x0+1,1)}
-  for(var ty=0;ty<7;ty++)for(var x=x0;x<=x1;x++){if(FRET[ty].charAt((x-x0)%12)==="X")px(x,6+ty,K.fr)}
-  function cap(cx){for(var y=0;y<19;y++)for(var x=cx-9;x<=cx+9;x++){var d=Math.sqrt((x-cx)*(x-cx)+(y-9)*(y-9));if(d>9.4)continue;px(x,y,d>7.8?K.ol:d>6.2?K.dk:d>3.4?K.lt:d>2.2?((x+y)%2?K.dk:K.lt):K.dk)}}
+  for(var y=3;y<=15;y++){var col=y===3||y===15?P.ol:y<=5?P.lt:y<=10?P.bs:y<=13?P.sh:P.dk;px(x0,y,col,x1-x0+1,1)}
+  if(P.pat===2){for(var x=x0;x<=x1;x++){if(x%2===0){px(x,7,P.fr);px(x,12,P.fr)}if((x-x0)%12===5){px(x,9,P.fr);px(x,10,P.fr)}}}else if(P.pat!==0){for(var ty=0;ty<7;ty++)for(var x=x0;x<=x1;x++){if(FRET[ty].charAt((x-x0)%12)==="X")px(x,6+ty,P.fr)}}
+  function cap(cx){for(var y=0;y<19;y++)for(var x=cx-9;x<=cx+9;x++){var d=Math.sqrt((x-cx)*(x-cx)+(y-9)*(y-9));if(d>9.4)continue;px(x,y,d>7.8?(P.c0||P.ol):d>6.2?(P.c1||P.dk):d>3.4?(P.c2||P.lt):d>2.2?((x+y)%2?(P.c1||P.dk):(P.c2||P.lt)):(P.c1||P.dk))}}
   cap(9);cap(cols-10);
   var cx=Math.floor(cols/2);
   var a=p==null?0:p;
-  function band(x,al,dx){c.globalAlpha=al;for(var y=2;y<=16;y++){px(x+dx,y,K.ed);px(x+dx+1,y,y%2?K.cream:K.tan);px(x+dx+2,y,y%2?K.tan:K.cream);px(x+dx+3,y,K.ed)}c.globalAlpha=1}
+  function band(x,al,dx){c.globalAlpha=al;for(var y=2;y<=16;y++){px(x+dx,y,P.ed);px(x+dx+1,y,y%2?P.cream:P.tan);px(x+dx+2,y,y%2?P.tan:P.cream);px(x+dx+3,y,P.ed)}c.globalAlpha=1}
   var bAl=1-clamp((a-.2)/.5,0,1);
   if(bAl>0){band(cx-8,bAl,-Math.round(a*18));band(cx+4,bAl,Math.round(a*18))}
   var kAl=1-clamp(a/.35,0,1),sh=a>0&&a<.18?(Math.random()<.5?1:-1):0;
-  if(kAl>0){c.globalAlpha=kAl;for(var j=0;j<6;j++)for(var i=0;i<6;i++){var edge=i===0||j===0||i===5||j===5;px(cx-3+i+sh,6+j,edge?K.ed:((i+j)%2?K.cream:K.tan))}c.globalAlpha=1}
+  if(kAl>0){c.globalAlpha=kAl;for(var j=0;j<6;j++)for(var i=0;i<6;i++){var edge=i===0||j===0||i===5||j===5;px(cx-3+i+sh,6+j,edge?P.ed:((i+j)%2?P.cream:P.tan))}c.globalAlpha=1}
   var tAl=1-clamp((a-.25)/.5,0,1);
   if(tAl>0){c.globalAlpha=tAl;var fall=Math.round(a*a*44);
-    for(var k=0;k<11;k++){var sx=Math.floor(k*.5)+Math.round(a*8);px(cx-2-sx,12+k+fall,K.ed);px(cx-1-sx,12+k+fall,k%2?K.cream:K.tan);px(cx+2+sx,12+k+fall,K.ed);px(cx+1+sx,12+k+fall,k%2?K.tan:K.cream)}
-    px(cx-8-Math.round(a*8),23+fall,K.tan,3,2);px(cx+6+Math.round(a*8),23+fall,K.tan,3,2);c.globalAlpha=1}
+    for(var k=0;k<11;k++){var sx=Math.floor(k*.5)+Math.round(a*8);px(cx-2-sx,12+k+fall,P.ed);px(cx-1-sx,12+k+fall,k%2?P.cream:P.tan);px(cx+2+sx,12+k+fall,P.ed);px(cx+1+sx,12+k+fall,k%2?P.tan:P.cream)}
+    px(cx-8-Math.round(a*8),23+fall,P.tan,3,2);px(cx+6+Math.round(a*8),23+fall,P.tan,3,2);c.globalAlpha=1}
+}
+
+function drawRoll(p){
+  drawRollP(p,K)
 }
 function animate(from,to,ms,step,done){var t0=null;function f(t){if(t0===null)t0=t;var p=clamp((t-t0)/ms,0,1);step(from+(to-from)*ease(p),p);if(p<1)requestAnimationFrame(f);else if(done)done()}requestAnimationFrame(f)}
 var userScrolled=false,opening=false;

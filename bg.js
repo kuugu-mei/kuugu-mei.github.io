@@ -8,23 +8,25 @@ var RM=false;try{RM=matchMedia("(prefers-reduced-motion:reduce)").matches}catch(
 var GLYPHS=["花","鳥","草","木","魚","蟲","獸"],CELL=20;
 var VS="#version 300 es\nvoid main(){vec2 p=vec2((gl_VertexID<<1)&2,gl_VertexID&2);gl_Position=vec4(p*2.-1.,0.,1.);}";
 var FS="#version 300 es\nprecision highp float;\n"+
-"uniform sampler2D uA,uB,uG,uH;uniform vec2 uRes,uHT;uniform float uCell,uTime,uPh,uAct,uMix,uCalm,uLodA,uLodB;uniform vec4 uCA,uCB;out vec4 o;\n"+
+"uniform sampler2D uA,uB,uG,uH;uniform vec2 uRes,uHT;uniform float uCell,uTime,uPh,uAct,uMix,uCalm,uLodA,uLodB;uniform vec4 uCA,uCB;uniform float uTn,uPx,uBl;out vec4 o;\n"+
 "float hash(vec2 p){p=fract(p*vec2(123.34,456.21));p+=dot(p,p+45.32);return fract(p.x*p.y);}\n"+
 "vec3 ph(vec2 s,float la,float lb){vec3 a=textureLod(uA,uCA.xy+s*uCA.zw,la).rgb;vec3 b=textureLod(uB,uCB.xy+s*uCB.zw,lb).rgb;return mix(a,b,uMix);}\n"+
 "void main(){\n"+
 " vec2 f=vec2(gl_FragCoord.x,uRes.y-gl_FragCoord.y);vec2 s=f/uRes;\n"+
 " float hx=texture(uH,s+vec2(uHT.x,0.)).r-texture(uH,s-vec2(uHT.x,0.)).r;float hy=texture(uH,s+vec2(0.,uHT.y)).r-texture(uH,s-vec2(0.,uHT.y)).r;\n"+
-" vec2 g=vec2(hx,hy);vec2 sd=s+g*.095;\n"+
-" vec3 base=ph(sd,0.,0.);\n"+
-" vec3 bl=ph(sd,uLodA+2.6,uLodB+2.6);\n"+
+" vec2 g=vec2(hx,hy);float en=smoothstep(.12,.7,length(g)*7.);vec2 sd=s+g*.022;\n"+
+" vec2 pf=sd*uRes/(uPx+.0001);if(uPx>0.)sd=(floor(pf)+.5)*uPx/uRes;\n"+
+" vec3 base=ph(sd,uBl,uBl);\n"+
+" if(uPx>0.){vec2 q2=fract(pf)-.5;base*=mix(.4,1.3,smoothstep(.52,.34,abs(q2.x)+abs(q2.y)));}\n"+
+" vec3 bl=ph(sd,uLodA+2.6+uBl,uLodB+2.6+uBl);\n"+
 " vec3 col=1.-(1.-base)*(1.-bl*.28);\n"+
-" vec2 cell=floor(f/uCell);vec2 cuv=(cell+.5)*uCell/uRes;vec2 cd=cuv+g*.095;\n"+
+" vec2 cell=floor(f/uCell);vec2 cuv=(cell+.5)*uCell/uRes;vec2 cd=cuv+g*.02;\n"+
 " vec3 cc=ph(cd,uLodA,uLodB);float lum=dot(cc,vec3(.299,.587,.114));\n"+
 " float hc=texture(uH,cuv).r-.5;\n"+
 " float br=smoothstep(.5,.95,lum);float core=smoothstep(.76,.97,lum);float hs=hash(cell);\n"+
 " float sp=.55+hash(cell+7.3)*1.6;\n"+
 " float wv=sin(f.x/uRes.x*5.+f.y/uRes.y*3.5-uTime*.35)*1.4+sin(f.x/uRes.x*2.2-f.y/uRes.y*4.1+uTime*.21)*1.1;\n"+
-" float t=uPh*sp*(1.+br*1.9)+hs*40.+lum*2.+hc*11.+wv;\n"+
+" float t=uPh*sp*(1.+br*1.9)+hs*40.+lum*2.+hc*11.+en*7.+wv;\n"+
 " float s0=floor(t);float fr=fract(t);float w=smoothstep(.45,1.,fr);\n"+
 " float i0=floor(hash(cell*1.37+s0)*7.);float i1=floor(hash(cell*1.37+s0+1.)*7.);\n"+
 " vec2 gp=fract(f/uCell);\n"+
@@ -32,19 +34,22 @@ var FS="#version 300 es\nprecision highp float;\n"+
 " float nz=hash(floor(gp*5.)+cell*3.1+s0);float sel=smoothstep(nz-.14,nz+.14,w*1.28-.14);float m=mix(m0,m1,sel);\n"+
 " float tw=.5+.5*sin(uTime*(.7+hash(cell+3.1)*1.5)+hs*50.);\n"+
 " vec3 sat=mix(vec3(lum),cc,1.2);\n"+
-" float vis=(.3+.7*smoothstep(.02,.42,lum))*(1.+.3*br*tw)*(1.+uAct*.45);\n"+
-" vec3 stroke=mix(col,sat*1.15+.04,.58);stroke=mix(stroke,cc*vec3(.5,.58,.34)+.03,core*.9);\n"+
+" float vis=(.3+.7*smoothstep(.02,.42,lum))*(1.+.3*br*tw)*(1.+uAct*.45)*(1.+.3*step(1.,uBl));\n"+
+" float ew=clamp(en*1.2+abs(hc)*.8,0.,1.);vec3 pas=.62+.38*cos(6.2832*(vec3(0.,.16,.34)+.08+hs*.12+ew*.25+uTime*.02));\n"+
+" vec3 stroke=mix(col,sat*1.15+.04,.58);stroke=mix(stroke,pas,ew*.62);stroke=mix(stroke,cc*vec3(.5,.58,.34)+.03,core*.9);\n"+
 " vec3 gap=col*(1.-.15*vis);\n"+
 " col=mix(gap,stroke,clamp(m*vis,0.,1.));\n"+
 " col+=sat*abs(hc)*m*1.1;\n"+
-" float cr=clamp(length(g)*10.,0.,1.);col+=vec3(.82,.94,1.)*cr*cr*.15;\n"+
+" float mh=0.;for(int k=0;k<4;k++){vec2 od=vec2(k<2?-.28:.28,(k&1)==0?-.28:.28);mh+=texture(uG,(vec2(i0,0.)+clamp(gp+od,0.,1.))/vec2(7.,1.)).r;}mh*=.25;\n"+
+" col+=pas*(mh*.5+m*.3)*ew*ew*.8;\n"+
 " vec2 q=s-.5;col*=1.-dot(q,q)*.5;\n"+
+" col=mix(col,mix(vec3(.02,.13,.12),vec3(.86,1.,.93),pow(clamp(dot(col,vec3(.299,.587,.114)),0.,1.),.85)),uTn);\n"+
 " o=vec4(col,1.);}\n";
 function sh(t,src){var s=gl.createShader(t);gl.shaderSource(s,src);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS)){console.error(gl.getShaderInfoLog(s))}return s}
 var pr=gl.createProgram();gl.attachShader(pr,sh(gl.VERTEX_SHADER,VS));gl.attachShader(pr,sh(gl.FRAGMENT_SHADER,FS));gl.linkProgram(pr);
 if(!gl.getProgramParameter(pr,gl.LINK_STATUS)){console.error(gl.getProgramInfoLog(pr));return}
 gl.useProgram(pr);
-var U={};["uA","uB","uG","uH","uRes","uHT","uCell","uTime","uPh","uAct","uMix","uCalm","uLodA","uLodB","uCA","uCB"].forEach(function(n){U[n]=gl.getUniformLocation(pr,n)});
+var U={};["uA","uB","uG","uH","uRes","uHT","uCell","uTime","uPh","uAct","uMix","uCalm","uLodA","uLodB","uCA","uCB","uTn","uPx","uBl"].forEach(function(n){U[n]=gl.getUniformLocation(pr,n)});
 gl.uniform1i(U.uA,0);gl.uniform1i(U.uB,1);gl.uniform1i(U.uG,2);gl.uniform1i(U.uH,3);
 
 
@@ -89,8 +94,8 @@ function frame(now){if(!running)return;var dt=Math.min(.1,(now-last)/1000);last=
  upload();
  var a=crop(IM,time);
  gl.uniform4f(U.uCA,a[0],a[1],a[2],a[3]);gl.uniform4f(U.uCB,a[0],a[1],a[2],a[3]);
- gl.uniform1f(U.uTime,time);gl.uniform1f(U.uPh,ph);gl.uniform1f(U.uAct,act);gl.uniform1f(U.uMix,0);gl.uniform1f(U.uCalm,RM?1:0);
- var lod=Math.max(0,Math.log2(CELL*dpr*a[2]*IM.w/W));gl.uniform1f(U.uLodA,lod);gl.uniform1f(U.uLodB,lod);
+ gl.uniform1f(U.uTime,time);gl.uniform1f(U.uPh,ph);gl.uniform1f(U.uAct,act);gl.uniform1f(U.uMix,0);gl.uniform1f(U.uTn,window.BGTN||0);var bv=window.BGV||"a";gl.uniform1f(U.uPx,bv==="b"?4*dpr:0);gl.uniform1f(U.uCalm,RM?1:0);
+ var lod=Math.max(0,Math.log2(CELL*dpr*a[2]*IM.w/W));gl.uniform1f(U.uLodA,lod);gl.uniform1f(U.uLodB,lod);gl.uniform1f(U.uBl,bv==="b"?Math.max(0,lod-2.3):bv==="c"?3.8:0);
  gl.drawArrays(gl.TRIANGLES,0,3);if(!RM)requestAnimationFrame(frame)}
 document.addEventListener("visibilitychange",function(){if(document.hidden){running=false}else if(!running){running=true;last=performance.now();if(!RM)requestAnimationFrame(frame)}});
 var im=new Image();
