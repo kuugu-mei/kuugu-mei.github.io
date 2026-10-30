@@ -37,7 +37,11 @@ put("a-contact",lst("plain",AB.contact));put("a-soc",lst("plain",AB.socials));
 var pe=gid("a-pets");
 if(pe)arr(AB.pets).forEach(function(p){var d=el("div","pet"),im=el("div","pimg",p.img?"":"照片");if(p.img)pic(p.img,p.name,"照片",im);d.appendChild(im);d.appendChild(el("b",0,p.name||""));d.appendChild(el("small",0,p.info||""));pe.appendChild(d)});
 var bo=gid("books");
-if(bo)arr(SI.books).forEach(function(b){var d=el("div","bk"),l=el("div"),r=el("div");l.appendChild(el("b",0,b.title||""));l.appendChild(document.createTextNode(" "+(b.author||"")));r.appendChild(el("span","chip "+({"读完":"b","想读":"t"}[b.status]||""),b.status||""));d.appendChild(l);d.appendChild(r);bo.appendChild(d)});
+if(bo){var bl=arr(SI.books).filter(function(b){return b.status!=="想读"}).map(function(b,i){var y=+b.year||(b.date?parseInt(b.date,10):0)||0;return{b:b,i:i,y:y||9999}});
+ bl.sort(function(a,c){return (c.y-a.y)||String(c.b.date||"").localeCompare(String(a.b.date||""))||(a.i-c.i)});
+ var cy=null,cnt={};bl.forEach(function(o){cnt[o.y]=(cnt[o.y]||0)+1});
+ bl.forEach(function(o){var b=o.b;if(o.y!==cy){cy=o.y;var h=el("div","yr"+(bo.children.length?" nx":""));h.appendChild(el("span","y",o.y===9999?"NOW":String(o.y)));h.appendChild(el("span","n",cnt[o.y]+" 本 / books"));bo.appendChild(h)}
+  var d=el("div","bk"),l=el("div"),r=el("div");l.appendChild(el("b",0,b.title||""));l.appendChild(document.createTextNode(" "+(b.author||"")));r.appendChild(el("span","chip "+({"读完":"b","想读":"t"}[b.status]||""),b.status||""));d.appendChild(l);d.appendChild(r);bo.appendChild(d)})}
 var lk=gid("links");
 if(lk)arr(SI.links).forEach(function(k){var d=el("div","card"),a=el("a",0,k.name||k.url);a.href=k.url||"#";a.target="_blank";a.rel="noopener";d.appendChild(a);d.appendChild(el("br"));d.appendChild(document.createTextNode(k.desc||""));lk.appendChild(d)});
 put("c-text",SP(SI.contact));
@@ -108,7 +112,7 @@ var wl=Waline.init({el:"#waline",serverURL:GB.serverURL,path:"/guestbook",lang:l
 window.__lg=function(){if(wl&&wl.update)wl.update({lang:lg(),locale:LC()})};
 })();
 // 背景音乐：依次尝试 mp3 / m4a / ogg / wav
-var names=["qingmen.mp3","qingmeng.mp3","qingmeng.m4a","qingmeng.ogg","qingmeng.wav","qingmeng.mp3.mp3","青梦.mp3","青梦 - Youzee Music.mp3"],ni=0,bad=false,au=new Audio(),b=document.getElementById("bgm"),on=true;
+var names=["qingmen.mp3","qingmeng.mp3","qingmeng.m4a","qingmeng.ogg","qingmeng.wav","qingmeng.mp3.mp3","青梦.mp3","青梦 - Youzee Music.mp3"],ni=0,bad=false,au=window.bgmAudio=new Audio(),b=document.getElementById("bgm"),on=true;
 try{on=localStorage.getItem("bgm")!=="off"}catch(e){}
 au.loop=true;au.volume=.4;au.preload="auto";
 function ui(){b.textContent=bad?"♪ 没找到音乐":(au.paused?"♪ OFF":"♪ ON");b.title=bad?"请把音乐文件放进 music 文件夹，命名为 qingmeng.mp3":"背景音乐"}

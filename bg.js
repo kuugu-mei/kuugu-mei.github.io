@@ -34,15 +34,14 @@ var FS="#version 300 es\nprecision highp float;\n"+
 " float nz=hash(floor(gp*5.)+cell*3.1+s0);float sel=smoothstep(nz-.14,nz+.14,w*1.28-.14);float m=mix(m0,m1,sel);\n"+
 " float tw=.5+.5*sin(uTime*(.7+hash(cell+3.1)*1.5)+hs*50.);\n"+
 " vec3 sat=mix(vec3(lum),cc,1.2);\n"+
-" float vis=(.3+.7*smoothstep(.02,.42,lum))*(1.+.3*br*tw)*(1.+uAct*.45)*(1.+.3*step(1.,uBl));\n"+
-" float ew=clamp(en*1.2+abs(hc)*.8,0.,1.);vec3 pas=.62+.38*cos(6.2832*(vec3(0.,.16,.34)+.08+hs*.12+ew*.25+uTime*.02));\n"+
-" vec3 stroke=mix(col,sat*1.15+.04,.58);stroke=mix(stroke,pas,ew*.62);stroke=mix(stroke,cc*vec3(.5,.58,.34)+.03,core*.9);\n"+
-" vec3 gap=col*(1.-.15*vis);\n"+
-" col=mix(gap,stroke,clamp(m*vis,0.,1.));\n"+
-" col+=sat*abs(hc)*m*1.1;\n"+
+" float vis=(.55+.45*smoothstep(.2,.95,lum))*(1.+.35*tw)*(1.+uAct*.5);\n"+
+" float ew=clamp(en*1.2+abs(hc)*.8,0.,1.);vec3 pas=.5+.32*cos(6.2832*(vec3(0.,.16,.34)+.30+hs*.12+ew*.25+uTime*.02));\n"+
+" vec3 ink=mix(vec3(.16,.36,.28),cc*vec3(.42,.5,.34),.5);vec3 stroke=mix(ink,pas,ew*.7);\n"+
+" col=mix(col,stroke,clamp(m*vis*.7,0.,1.));\n"+
+" col=mix(col,pas*.9,clamp(abs(hc)*m*2.2,0.,.6));\n"+
 " float mh=0.;for(int k=0;k<4;k++){vec2 od=vec2(k<2?-.28:.28,(k&1)==0?-.28:.28);mh+=texture(uG,(vec2(i0,0.)+clamp(gp+od,0.,1.))/vec2(7.,1.)).r;}mh*=.25;\n"+
-" col+=pas*(mh*.5+m*.3)*ew*ew*.8;\n"+
-" vec2 q=s-.5;col*=1.-dot(q,q)*.5;\n"+
+" col=mix(col,pas,clamp((mh*.5+m*.3)*ew*ew*.9,0.,.8));\n"+
+" vec2 q=s-.5;col*=1.-dot(q,q)*.18;\n"+
 " col=mix(col,mix(vec3(.02,.13,.12),vec3(.86,1.,.93),pow(clamp(dot(col,vec3(.299,.587,.114)),0.,1.),.85)),uTn);\n"+
 " o=vec4(col,1.);}\n";
 function sh(t,src){var s=gl.createShader(t);gl.shaderSource(s,src);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS)){console.error(gl.getShaderInfoLog(s))}return s}
@@ -55,7 +54,7 @@ gl.uniform1i(U.uA,0);gl.uniform1i(U.uB,1);gl.uniform1i(U.uG,2);gl.uniform1i(U.uH
 
 
 function mkTex(unit){var t=gl.createTexture();gl.activeTexture(gl.TEXTURE0+unit);gl.bindTexture(gl.TEXTURE_2D,t);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);return t}
-var IM={fx:.463,fy:.673,z:1.18,w:1,h:1};
+var IM={fx:.5,fy:.5,z:1.0,w:1,h:1};
 /* 字形图集：7 个字横排 */
 (function(){var c=document.createElement("canvas"),S=96;c.width=S*7;c.height=S;var x=c.getContext("2d");x.fillStyle="#000";x.fillRect(0,0,c.width,c.height);x.fillStyle="#fff";x.textAlign="center";x.textBaseline="middle";x.font="600 70px \"Noto Serif SC\",\"Songti SC\",\"STSong\",\"Source Han Serif SC\",\"Hiragino Mincho ProN\",\"SimSun\",serif";
  GLYPHS.forEach(function(g,i){x.fillText(g,S*i+S/2,S/2+3)});
@@ -89,7 +88,7 @@ document.addEventListener("pointerleave",function(){lp=null});
 addEventListener("resize",resize);
 var t0=performance.now(),acc=0,last=t0,first=true,ph=0,running=true;
 function frame(now){if(!running)return;var dt=Math.min(.1,(now-last)/1000);last=now;acc+=dt;var n=0;while(acc>=1/48&&n<4){step();acc-=1/48;n++}
- var time=(now-t0)/1000;act*=Math.exp(-dt*.55);ph+=RM?0:dt*(.16+act*1.1);
+ var time=(now-t0)/1000;act*=Math.exp(-dt*.55);ph+=RM?0:dt*(.07+act*.45);
  if(first&&time>1.0){first=false;drop(GW*.46,GH*.62,5,.6)}
  upload();
  var a=crop(IM,time);
@@ -103,6 +102,6 @@ im.onload=function(){IM.w=im.naturalWidth;IM.h=im.naturalHeight;
  mkTex(0);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,im);gl.generateMipmap(gl.TEXTURE_2D);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR_MIPMAP_LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
  mkTex(1);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,im);gl.generateMipmap(gl.TEXTURE_2D);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR_MIPMAP_LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
  resize();cv.style.background="none";requestAnimationFrame(frame)};
-im.src="images/bg-bamboo.jpg?v=1";
+im.src="images/bg-petri.jpg?v=1";
 if(document.fonts&&document.fonts.ready){}
 })();

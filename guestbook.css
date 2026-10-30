@@ -1,34 +1,39 @@
-/* 留言板（Waline）外观：配色、像素风边框、小外星人头像。只作用于留言页的 #waline */
-#waline,#waline [data-waline]{--waline-font-size:14px;--waline-theme-color:#5fb59d;--waline-active-color:#3f8f79;--waline-color:#288f8a;--waline-bg-color:#f4fbf9;--waline-bg-color-light:#eaf7f3;--waline-bg-color-hover:#dff3ed;--waline-border-color:#9fd3c7;--waline-border:1px solid #9fd3c7;--waline-box-shadow:none;--waline-info-color:#6bb0ad;--waline-badge-color:#4aa3b0;--waline-avatar-size:3.6rem;--waline-m-avatar-size:3rem;--waline-user-avatar-size:3.6rem;--waline-avatar-radius:50%}
+/* 留言板（Waline）外观：像素边框 + 站点绿色。只作用于留言页的 #waline */
+#waline,#waline [data-waline]{--waline-font-size:14px;--waline-theme-color:var(--rd);--waline-active-color:var(--t1);--waline-color:var(--ink);--waline-bg-color:var(--card);--waline-bg-color-light:var(--mint);--waline-bg-color-hover:var(--b1);--waline-border-color:var(--rd);--waline-border:2px solid var(--rd);--waline-box-shadow:none;--waline-info-color:var(--ink2);--waline-badge-color:var(--t2);--waline-avatar-size:3.4rem;--waline-m-avatar-size:2.8rem;--waline-user-avatar-size:3.4rem;--waline-avatar-radius:0}
 #waline{margin-top:10px}
-#waline *{font-family:inherit}
-#waline .wl-panel{margin:8px 6px 18px;border:0;border-radius:0;background:#f4fbf9;box-shadow:0 0 0 2px #8cc9bd,0 0 0 4px #fff,0 0 0 6px #cfeee7}
-#waline .wl-header{border-radius:0;border-bottom:2px dashed #b4dcd3}
-#waline .wl-editor,#waline .wl-input{background:transparent;color:#288f8a}
-#waline .wl-btn{border:0;border-radius:0;background:#e0f5ef;color:#247a61;font-family:PixZH,"PingFang SC","Microsoft YaHei",sans-serif;box-shadow:inset -2px -2px #8fd0bd,inset 2px 2px #fff,0 0 0 2px #8cc9bd}
-#waline .wl-btn.primary{background:#5fb59d;color:#fff;box-shadow:inset -2px -2px #3f8f79,inset 2px 2px #8fd9c3,0 0 0 2px #3f8f79}
-#waline .wl-btn:hover{filter:brightness(1.06)}
-#waline .wl-count{font-family:PixZH,"PingFang SC","Microsoft YaHei",sans-serif;color:#247a61}
-#waline .wl-sort li.active{color:#247a61}
-#waline .wl-card-item{margin:8px 0;padding:8px 10px;background:#eef9f6;box-shadow:0 0 0 2px #cfeee7}
-#waline .wl-card .wl-nick{color:#247a61}
-#waline .wl-card .wl-time{color:#6bb0ad}
-/* 小图标上色 */
-#waline .wl-action{color:#5fb59d}
-#waline .wl-action:hover{color:#3f8f79}
-#waline .wl-action.active{color:#6995e0}
+#waline *{font-family:var(--serif),PixZH,"PingFang SC","Microsoft YaHei",sans-serif;border-radius:0}
+.card{padding:6px 10px;border:6px solid transparent;border-image:var(--u-card) 3/6px stretch;background:var(--card) padding-box;color:var(--ink2)}
+/* 输入面板：像素边框 */
+#waline .wl-panel{margin:8px 2px 18px;border:8px solid transparent;border-image:var(--u-card) 3/6px stretch;background:var(--card) padding-box;box-shadow:none}
+#waline .wl-header{border-bottom:1px dotted var(--ink2)}
+#waline .wl-header-item label,#waline .wl-header label{color:var(--t1)}
+#waline .wl-editor,#waline .wl-input{background:transparent;color:var(--ink);font-size:14px}
+#waline .wl-input:focus,#waline .wl-editor:focus{background:var(--b1)}
+#waline .wl-footer{border-top:1px dotted var(--ink2)}
+/* 按钮：像素小方块 */
+#waline .wl-btn{padding:2px 14px;border:2px solid var(--ink);background:var(--rl);color:var(--ink);font-size:13px;line-height:22px;cursor:pointer;box-shadow:2px 2px 0 var(--r);transition:none}
+#waline .wl-btn:hover{background:var(--b2);border-color:var(--ink);color:var(--ink)}
+#waline .wl-btn:active{transform:translate(1px,1px);box-shadow:1px 1px 0 var(--r)}
+#waline .wl-btn.primary{background:var(--rd);color:#f6f2e3;border-color:var(--ink)}
+#waline .wl-btn.primary:hover{background:var(--t1);color:#f6f2e3}
+#waline .wl-count,#waline .wl-text-number{color:var(--ink2)}
+#waline .wl-sort li{color:var(--ink2)}#waline .wl-sort li.active{color:var(--t1)}
+/* 留言卡片 */
+#waline .wl-card-item{margin:8px 0;padding:6px 10px;border:6px solid transparent;border-image:var(--u-card) 3/6px stretch;background:var(--card) padding-box;box-shadow:none}
+#waline .wl-card .wl-nick{color:var(--t1)}
+#waline .wl-card .wl-time{color:var(--ink2)}
+#waline .wl-card .wl-badge{border:1px solid var(--t2);color:var(--t2)}
+#waline .wl-action{color:var(--rd)}#waline .wl-action:hover{color:var(--t1)}#waline .wl-action.active{color:var(--t4)}
 #waline .wl-power{font-size:12px;opacity:.7}
-/* ===== 头像：圆形、不拉伸 ===== */
-#waline{--waline-avatar-size:3.6rem;--waline-m-avatar-size:3rem}
-#waline .wl-card-item>.wl-user,#waline .wl-card .wl-user{position:relative;flex:none;align-self:flex-start;width:var(--waline-avatar-size);height:var(--waline-avatar-size);margin-right:12px;border-radius:50%}
+/* 头像：方形像素框 */
+#waline .wl-card-item>.wl-user,#waline .wl-card .wl-user{position:relative;flex:none;align-self:flex-start;width:var(--waline-avatar-size);height:var(--waline-avatar-size);margin-right:12px}
 #waline .wl-card .wl-card .wl-user{width:var(--waline-m-avatar-size);height:var(--waline-m-avatar-size)}
-#waline .wl-user .wl-user-avatar{display:block;width:100%;height:100%;object-fit:cover;border-radius:50%;background:#dff3ed;box-shadow:0 0 0 2px #8cc9bd;opacity:1}
-#waline .wl-user .verified-icon{width:16px;height:16px;right:-2px;bottom:-2px}
-/* 选头像那一排 */
-.avpick{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:6px 6px 4px;padding:8px 12px;background:#eef9f6;box-shadow:0 0 0 2px #cfeee7}
-.avpick .avlab{color:#247a61;font-size:14px}
-.avpick .avopt{width:52px;height:52px;padding:0;border:0;border-radius:50%;background:#dff3ed;box-shadow:0 0 0 2px #cfeee7;cursor:pointer;overflow:hidden;opacity:.7;transition:transform .15s}
-.avpick .avopt img{display:block;width:100%;height:100%;object-fit:cover}
-.avpick .avopt:hover{opacity:1;transform:scale(1.06)}
-.avpick .avopt.on{opacity:1;box-shadow:0 0 0 3px #5fb59d,0 0 0 5px #fff}
+#waline .wl-user .wl-user-avatar{display:block;width:100%;height:100%;object-fit:cover;background:var(--b1);border:2px solid var(--ink);box-shadow:2px 2px 0 var(--r);box-sizing:border-box;image-rendering:pixelated;opacity:1}
 #waline .wl-user .verified-icon{display:none}
+/* 选头像那一排 */
+.avpick{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:6px 2px 4px;padding:8px 12px;background:var(--mint);border:2px solid var(--rd)}
+.avpick .avlab{color:var(--t1);font-size:14px}
+.avpick .avopt{width:50px;height:50px;padding:0;border:2px solid var(--ink);border-radius:0;background:var(--b1);cursor:pointer;overflow:hidden;opacity:.7;box-shadow:2px 2px 0 var(--r)}
+.avpick .avopt img{display:block;width:100%;height:100%;object-fit:cover;image-rendering:pixelated}
+.avpick .avopt:hover{opacity:1}
+.avpick .avopt.on{opacity:1;outline:3px solid var(--t2);outline-offset:1px}
