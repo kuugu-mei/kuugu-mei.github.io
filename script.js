@@ -112,17 +112,15 @@ var wl=Waline.init({el:"#waline",serverURL:GB.serverURL,path:"/guestbook",lang:l
 window.__lg=function(){if(wl&&wl.update)wl.update({lang:lg(),locale:LC()})};
 })();
 // 背景音乐：依次尝试 mp3 / m4a / ogg / wav
-var names=["qingmen.mp3","qingmeng.mp3","qingmeng.m4a","qingmeng.ogg","qingmeng.wav","qingmeng.mp3.mp3","青梦.mp3","青梦 - Youzee Music.mp3"],ni=0,bad=false,au=window.bgmAudio=new Audio(),b=document.getElementById("bgm"),on=true;
+var names=["maybe-tomorrow.mp3","qingmeng.mp3"],ni=0,bad=false,au=window.bgmAudio||(window.bgmAudio=new Audio()),b=document.getElementById("bgm"),on=true;
 try{on=localStorage.getItem("bgm")!=="off"}catch(e){}
 au.loop=true;au.volume=.4;au.preload="auto";
-function ui(){b.textContent=bad?"♪ 没找到音乐":(au.paused?"♪ OFF":"♪ ON");b.title=bad?"请把音乐文件放进 music 文件夹，命名为 qingmeng.mp3":"背景音乐"}
+function ui(){b.textContent=bad?"♪ 没找到音乐":(au.paused?"♪ OFF":"♪ ON");b.title=bad?"请把音乐文件放进 music 文件夹，命名为 maybe-tomorrow.mp3":"背景音乐"}
 function go(){if(on&&!bad)au.play().catch(function(){})}
 function load(){au.src=new URL("music/"+names[ni],S).href}
 au.onerror=function(){ni++;if(ni<names.length){load();go()}else{bad=true;ui()}};
-au.addEventListener("loadedmetadata",function(){try{var s=+sessionStorage.getItem("bgmT");if(s&&s<au.duration)au.currentTime=s}catch(e){}});
-au.addEventListener("timeupdate",function(){try{sessionStorage.setItem("bgmT",au.currentTime)}catch(e){}});
 au.addEventListener("play",ui);au.addEventListener("pause",ui);
 b.onclick=function(){if(bad)return;if(au.paused){on=true;au.play().catch(function(){})}else{on=false;au.pause()}try{localStorage.setItem("bgm",on?"on":"off")}catch(e){}};
-load();ui();go();
+if(!au.src)load();ui();go();
 addEventListener("pointerdown",function f(e){if(e.target===b)return;go();removeEventListener("pointerdown",f)});
 })();

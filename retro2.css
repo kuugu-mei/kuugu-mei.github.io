@@ -1,0 +1,106 @@
+
+/* ======================= 第二轮调整：缩小、变细、卷边花角 ======================= */
+html[data-ui="y2k"]{--fs:12px}
+html[data-ui="y2k"] .alien{z-index:60!important}
+html[data-ui="y2k"]:not(.intro) .wrap{width:min(1020px,95vw);height:min(700px,calc(100vh - 56px));max-height:none;margin:28px auto;padding:5px 6px 3px;gap:5px;border-width:10px;border-image:url(images/f-frame.png?v=26) 5/10px round;box-shadow:6px 8px 0 rgba(63,43,45,.25)}
+html[data-ui="y2k"]:not(.intro) .wrap::after{inset:-14px;background:url(images/f-corner-tl.png?v=26) left top,url(images/f-corner-tr.png?v=26) right top,url(images/f-corner-bl.png?v=26) left bottom,url(images/f-corner-br.png?v=26) right bottom;background-size:72px 72px;background-repeat:no-repeat}
+/* 刊头：宽横幅（图三） */
+html[data-ui="y2k"]:not(.intro) .head{height:154px;border-width:6px;border-image:url(images/f-panel-paper.png?v=26) 3/6px stretch;background:#efe3dc url(images/d-banner.png?v=26) center/cover no-repeat padding-box!important}
+html[data-ui="y2k"]:not(.intro) .head h1{top:14px;height:72px;background-size:226px 64px}
+html[data-ui="y2k"]:not(.intro) .head .ear{display:none}
+html[data-ui="y2k"]:not(.intro) .hstrip{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:stretch;background:var(--paper);border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);font:11px/1.4 var(--serif);letter-spacing:.1em;color:var(--ink)}
+html[data-ui="y2k"]:not(.intro) .hstrip>*{padding:3px 12px;border-right:1px dotted var(--ink2);white-space:nowrap}
+html[data-ui="y2k"]:not(.intro) .hstrip>*:last-child{border-right:0}
+html[data-ui="y2k"]:not(.intro) .hstrip .sub{position:static!important;flex:1;margin:0!important;padding:3px 12px!important;background:none!important;border:0!important;border-right:1px dotted var(--ink2)!important;font:11px/1.4 var(--serif)!important;text-align:center;white-space:normal;overflow:hidden}
+html[data-ui="y2k"]:not(.intro) .hstrip .sub::before,html[data-ui="y2k"]:not(.intro) .hstrip .sub::after{display:none!important}
+html[data-ui="y2k"]:not(.intro) .head .sub::before,html[data-ui="y2k"]:not(.intro) .head .sub::after{display:none!important}
+/* 三栏 */
+html[data-ui="y2k"]:not(.intro) .cols{grid-template-columns:172px minmax(0,1fr) 186px;gap:5px}
+html[data-ui="y2k"]:not(.intro) .colL,html[data-ui="y2k"]:not(.intro) .colR{gap:8px;padding:0 2px 8px 0}
+html[data-ui="y2k"]:not(.intro) .colR{padding:0 0 8px 2px}
+html[data-ui="y2k"]:not(.intro) .mod h4{width:72%;height:20px;margin-bottom:-6px;border-width:6px;border-image:url(images/f-plaque.png?v=26) 3/6px stretch;font-size:10.5px;letter-spacing:.14em;line-height:1}
+html[data-ui="y2k"]:not(.intro) .mb{border-width:6px;border-image:url(images/f-panel-mint.png?v=26) 3/6px stretch;padding:11px 4px 5px;font-size:12px;line-height:1.6}
+html[data-ui="y2k"]:not(.intro) .ava{width:92px;height:92px;aspect-ratio:auto;margin:0 auto 6px}
+html[data-ui="y2k"]:not(.intro) .name{font-size:15px;margin:0 4px 4px;padding-bottom:3px}
+html[data-ui="y2k"]:not(.intro) #intro{font-size:12px}
+html[data-ui="y2k"] .hl .yi,html[data-ui="y2k"] .hl .ji,html[data-ui="y2k"] .hl .fs{font-size:11.5px;line-height:1.55}
+html[data-ui="y2k"] .cal{font-size:10px}
+html[data-ui="y2k"] .np,html[data-ui="y2k"] .pl li{font-size:11px}
+html[data-ui="y2k"] .nt p{font-size:12px;line-height:1.55}
+html[data-ui="y2k"] .nt time{font-size:11px}
+/* 目录 */
+html[data-ui="y2k"]:not(.intro) .bar{padding:9px 2px 4px;border-width:6px!important;border-image:url(images/f-panel-mint.png?v=26) 3/6px stretch!important}
+html[data-ui="y2k"]:not(.intro) .bar a{gap:7px;padding:3px 5px;font-size:13px;line-height:1.2}
+html[data-ui="y2k"]:not(.intro) .bar a::before{width:18px;height:18px;background-size:180px 18px;background-position:calc(var(--n,0)*-18px) 0}
+html[data-ui="y2k"]:not(.intro) .bar button{margin:6px 4px 1px;width:calc(100% - 8px);font-size:11px;padding:2px 0}
+/* 中间 */
+html[data-ui="y2k"]:not(.intro) main.scroll{border-width:6px;border-image:url(images/f-panel-paper.png?v=26) 3/6px stretch}
+html[data-ui="y2k"]:not(.intro) .paper{padding:10px 16px 18px;font-size:12.5px;line-height:1.75}
+html[data-ui="y2k"]:not(.intro) .paper h2{gap:8px;margin:10px 0 8px;padding:5px 0 4px;font-size:19px;letter-spacing:.1em}
+html[data-ui="y2k"]:not(.intro) .paper h2::before,html[data-ui="y2k"]:not(.intro) .paper h2::after{width:26px;height:10px;background:url(images/px-fleur.png?v=26) center/26px 10px no-repeat}
+html[data-ui="y2k"]:not(.intro) .paper h2::after{background-image:url(images/px-fleur.png?v=26)}
+html[data-ui="y2k"]:not(.intro) .paper h3:not(.ab-h):not(.hd),html[data-ui="y2k"]:not(.intro) .box h3,html[data-ui="y2k"]:not(.intro) .post h3{padding:2px 6px 2px 24px;font-size:13px;background:var(--mint) url(images/px-dia.png?v=26) 8px 50%/10px no-repeat!important}
+html[data-ui="y2k"]:not(.intro) .stack .post:nth-of-type(2n) h3,html[data-ui="y2k"]:not(.intro) .recs .rec:nth-child(4n+2) h3{background-image:url(images/px-dia2.png?v=26)!important}
+html[data-ui="y2k"] .stack .box time,html[data-ui="y2k"] .post time,html[data-ui="y2k"] .box time{font-size:12px}
+html[data-ui="y2k"] .chip{font-size:11px}
+/* 首页：删“最近在玩/听/读” */
+html[data-ui="y2k"] .tri,html[data-ui="y2k"] #h-welcome+.fret{display:none!important}
+/* 今日新闻：单栏 */
+html[data-ui="y2k"] .news .en{font-size:23px}
+html[data-ui="y2k"] .news .zn{font-size:12px}
+html[data-ui="y2k"] .news .nh em{font-size:11px}
+html[data-ui="y2k"] .news h3.hd{font-size:17px;line-height:1.3}
+html[data-ui="y2k"] .news .by{font-size:11px}
+html[data-ui="y2k"] .news .nbody{grid-template-columns:minmax(0,1fr) 150px;gap:14px}
+html[data-ui="y2k"] .news .tx{columns:1!important;column-rule:0}
+html[data-ui="y2k"] .news .tx p{font-size:12.5px;text-indent:2em;margin:0 0 .5em}
+html[data-ui="y2k"] .news .tx p:first-child::first-letter{all:unset}
+html[data-ui="y2k"] .infobox{font-size:11px}
+html[data-ui="y2k"] .infobox .it{font-size:12px}
+html[data-ui="y2k"] .brf b{font-size:13px}
+html[data-ui="y2k"] .brf p{font-size:11.5px}
+html[data-ui="y2k"] .brf img{width:54px}
+/* 图片占位（不做 ascii，只标记这里是图片） */
+html[data-ui="y2k"] .phb{display:grid;place-items:center;aspect-ratio:4/3;margin:6px;border:2px dashed var(--rd);background:repeating-linear-gradient(45deg,rgba(156,102,104,.08) 0 4px,transparent 4px 8px);color:var(--rd);font:700 11px var(--serif);letter-spacing:.3em}
+html[data-ui="y2k"] .wk .phb{margin:0 0 4px;aspect-ratio:1/1}
+html[data-ui="y2k"] .phb.sm{width:54px;aspect-ratio:1/1;margin:0;flex:none;font-size:9px;letter-spacing:.1em}
+html[data-ui="y2k"] .wk .wkt{font:italic 12px var(--serif);text-align:left;color:var(--rd)}
+html[data-ui="y2k"] .wk p{margin:4px 0 0;font-size:11.5px;line-height:1.6;color:var(--ink2);text-align:left}
+html[data-ui="y2k"] .cap2,html[data-ui="y2k"] .ic{font-size:10px}
+/* ---------- 关于我：宠物（贴纸/拍立得，错落摆放） ---------- */
+html[data-ui="y2k"]:not(.intro) .pets{display:flex;flex-wrap:wrap;gap:16px 14px;padding:8px 2px 0;align-items:flex-start}
+html[data-ui="y2k"]:not(.intro) .pet{position:relative;width:128px;padding:7px 7px 8px;background:#f2eddc!important;border:1px solid var(--ink)!important;box-shadow:3px 3px 0 var(--rl)!important;text-align:left;transform:rotate(var(--rot,-1.5deg))}
+html[data-ui="y2k"]:not(.intro) .pet:nth-child(2n){--rot:1.6deg;margin-top:14px}
+html[data-ui="y2k"]:not(.intro) .pet:nth-child(3n){--rot:-.8deg;margin-top:6px}
+html[data-ui="y2k"]:not(.intro) .pet:nth-child(4n){--rot:2deg}
+html[data-ui="y2k"]:not(.intro) .pet::before{content:"";position:absolute;left:50%;top:-8px;width:44px;height:14px;margin-left:-22px;background:rgba(232,194,122,.7);border:1px solid rgba(122,76,80,.35);transform:rotate(-3deg)}
+html[data-ui="y2k"]:not(.intro) .pet .pimg{width:100%!important;aspect-ratio:1/1;height:auto!important;margin:0 0 5px;border:1px solid var(--ink);background:#e3d9c8;display:grid;place-items:center;font-size:11px}
+html[data-ui="y2k"]:not(.intro) .pet .pimg img{width:100%;height:100%;object-fit:cover}
+html[data-ui="y2k"]:not(.intro) .pet b{display:block;text-align:center;font:700 13px var(--serif);color:var(--rd);border-bottom:1px dotted var(--r);padding-bottom:2px}
+html[data-ui="y2k"]:not(.intro) .pet small{display:block;text-align:center;font-size:11px;color:var(--ink2);margin-top:3px;line-height:1.5}
+/* ---------- 推荐页（参考 ribo.zone/recs） ---------- */
+html[data-ui="y2k"] .rf{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:0 0 12px;padding:6px 8px;border:1px dashed var(--ink2);background:rgba(255,255,255,.25)}
+html[data-ui="y2k"] .rf .rl{font:12px var(--serif);color:var(--ink2);margin-right:4px;letter-spacing:.1em}
+html[data-ui="y2k"] .rf button{display:inline-flex;align-items:center;gap:6px;padding:2px 9px 2px 6px;border:2px solid var(--ink);background:#eae3d2;color:var(--ink);font:12px var(--serif);cursor:pointer;box-shadow:2px 2px 0 var(--rl)}
+html[data-ui="y2k"] .rf button i{display:inline-block;width:10px;height:10px;border:2px solid var(--ink);background:#fff}
+html[data-ui="y2k"] .rf button.on i{background:var(--rd);box-shadow:inset 0 0 0 2px #fff}
+html[data-ui="y2k"] .rf button:not(.on){opacity:.6;box-shadow:none}
+html[data-ui="y2k"] .rg{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:14px 12px;align-items:start}
+html[data-ui="y2k"] .rc{display:block;padding:4px 4px 6px;background:#4b3235;border:2px solid var(--ink);box-shadow:3px 3px 0 var(--r);color:#f3e7e0!important;text-decoration:none;text-align:center}
+html[data-ui="y2k"] .rc:nth-child(3n+2){margin-top:12px}html[data-ui="y2k"] .rc:nth-child(3n){margin-top:5px}
+html[data-ui="y2k"] .rc .ty{display:block;text-align:left;font:700 9px var(--serif);letter-spacing:.18em;color:#d8b8b2;padding:0 2px 3px}
+html[data-ui="y2k"] .rc .im{position:relative;border:1px solid #2a1b1d;background:#d9c9bd;overflow:hidden}
+html[data-ui="y2k"] .rc img{display:block;width:100%;height:auto;image-rendering:pixelated;mix-blend-mode:normal;filter:grayscale(1) contrast(1.12) sepia(.45) hue-rotate(-22deg) saturate(1.25) brightness(1.02)!important}
+html[data-ui="y2k"] .rc .im::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(rgba(63,28,34,.75) 0.9px,transparent 1.2px) 0 0/3px 3px,rgba(207,156,152,.28);mix-blend-mode:multiply}
+html[data-ui="y2k"] .rc .im.none{aspect-ratio:2/3;background:repeating-linear-gradient(45deg,#cdb9ad 0 4px,#d9c9bd 4px 8px)}
+html[data-ui="y2k"] .rc .tt{margin-top:5px;font:12px/1.35 var(--serif),PixZH;color:#f6ece6;letter-spacing:.04em;padding:0 2px}
+html[data-ui="y2k"] .rc:hover{background:#5d3c40}
+/* 窄屏微调 */
+@media(max-width:900px){
+html[data-ui="y2k"]:not(.intro) .wrap{width:98vw}
+html[data-ui="y2k"]:not(.intro) .head{height:124px}
+html[data-ui="y2k"]:not(.intro) .head h1{background-size:170px 48px;top:8px;height:54px}
+html[data-ui="y2k"]:not(.intro) .hstrip>.c{display:none}
+html[data-ui="y2k"] .news .nbody{grid-template-columns:1fr}
+html[data-ui="y2k"] .rg{grid-template-columns:repeat(auto-fill,minmax(90px,1fr))}
+}
