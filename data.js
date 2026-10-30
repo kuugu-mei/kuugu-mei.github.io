@@ -17,10 +17,8 @@ window.SITE={
 
  // ---------- 首页 ----------
  home:{
-  welcome:{zh:"这里是个人自建的blog网站，更多是记录自己的生活与见闻。",ja:"ここは私の個人サイトです。日常や写真、好きなものを記録します。"},
-  playing:["三国无双起源","Mouthwashing","Pokemon"],                    // 最近在玩
-  listening:["米兰的小铁匠 · 周杰伦","若し塵世猶美しければ · 猶狩","Dont Stop Movin' · S Club 7"],        // 最近在听
-  reading:["小说是什么","某bl日语原文小说"],                                              // 最近在读
+  welcome:{zh:"这里是个人自建的blog网站，更多是记录自己的生活与见闻。",ja:"ここは私の個人サイトです。日常や写真、好きなものを記録します。"},                  // 最近在玩
+  listening:["Maybe Tomorrow · Stereophonics"],        // 最近在听
   // 视频：id 是 YouTube 网址里 v= 后面那一串；不想要视频就把 id 改成 ""
   video:{id:"u9J99gB5psc",caption:{zh:"周杰伦 · 梯田（官方 MV）",ja:"周杰倫 · 梯田（公式MV）"}}
  },
