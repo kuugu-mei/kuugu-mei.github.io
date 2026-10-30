@@ -39,7 +39,9 @@ function init(){
   ui();return true}
  if(!wirePlayer()){var n=0,iv=setInterval(function(){if(wirePlayer()||++n>40)clearInterval(iv)},150)}
  // 右栏：目录下面接 News + 留给 ASCII 图的位置
- var nw='<div class="wk"><div class="phb"><span>IMAGE</span></div><div class="cap2">FIG.02 — （这里放新闻图片）</div><p class="zh">（示例）在这里写一小段配图文字：最近发生的一件小事、一次展览、一个想法。</p><p class="ja">（サンプル）ここに写真のコメントを書きます。</p></div>';
+ var NW=window.NEWS||{},E=function(t){return String(t==null?"":t).replace(/&/g,"&amp;").replace(/</g,"&lt;")};
+ var nimg=NW.img?'<div class="phb" style="padding:0;border:0;background:none"><img src="'+E(NW.img)+'" alt="" style="width:100%;height:100%;object-fit:cover;display:block"></div>':'<div class="phb"><span>IMAGE</span></div>';
+ var nw='<div class="wk">'+nimg+'<div class="cap2">'+E(NW.caption!=null?NW.caption:"FIG.02 — （这里放新闻图片）")+'</div><p class="zh">'+E(NW.zh!=null?NW.zh:"（示例）在这里写一小段配图文字：最近发生的一件小事、一次展览、一个想法。")+'</p><p class="ja">'+E(NW.ja!=null?NW.ja:"（サンプル）ここに写真のコメントを書きます。")+'</p></div>';
  R.appendChild(mod("News",nw));
  R.appendChild(mod("",'<div class="axs"><img src="images/ascii-side.png" alt="" onerror="this.parentNode.className+=\' empty\'"><span>ASCII IMAGE</span></div>',"axm"));
  // 首页：欢迎 + 电吉他 / 乌克丽丽
