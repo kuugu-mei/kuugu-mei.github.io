@@ -46,11 +46,12 @@ function init(){
  R.appendChild(mod("",'<div class="axs"><img src="images/ascii-side.png" alt="" onerror="this.parentNode.className+=\' empty\'"><span>ASCII IMAGE</span></div>',"axm"));
  // 首页：欢迎 + 电吉他 / 乌克丽丽
  if(P&&$("#h-welcome",P)){
+  var IB=window.INFOBOX||{},IBR=IB.rows||[["创建","開設","2026","2026"],["内容物","内容物","真菌","菌類"],["状态","状態","更新中","更新中"]];
   var nws=el("section","news");
   nws.innerHTML='<div class="nh"><span class="en">Welcome</span><em>'+y+'年'+(m+1)+'月'+td+'日 · 星期'+wd+'</em></div>'
   +'<h3 class="hd">Petri dish<span class="dh">——培养皿</span></h3>'
   +'<div class="by"><span class="zh">本报讯：暂无介绍</span><span class="ja">本紙：紹介はまだありません</span></div>'
-  +'<div class="nbody"><div class="tx"></div><aside class="infobox"><div class="it">Petri dish</div><div class="phb"><span>IMAGE</span></div><div class="ic"><span class="zh">图：（示例配图）</span><span class="ja">図：（サンプル）</span></div><table><tr><th><span class="zh">创建</span><span class="ja">開設</span></th><td>2026</td></tr><tr><th><span class="zh">内容物</span><span class="ja">内容物</span></th><td><span class="zh">真菌</span><span class="ja">菌類</span></td></tr><tr><th><span class="zh">状态</span><span class="ja">状態</span></th><td><span class="zh">更新中</span><span class="ja">更新中</span></td></tr></table></aside></div>'
+  +'<div class="nbody"><div class="tx"></div><aside class="infobox"><div class="it">'+E(IB.title!=null?IB.title:"Petri dish")+'</div>'+(IB.img?'<div class="phb" style="padding:0;border:0;background:none"><img src="'+E(IB.img)+'" alt="" style="width:100%;height:100%;object-fit:cover;display:block"></div>':'<div class="phb"><span>IMAGE</span></div>')+'<div class="ic"><span class="zh">'+E(IB.zh!=null?IB.zh:"图：（示例配图）")+'</span><span class="ja">'+E(IB.ja!=null?IB.ja:"図：（サンプル）")+'</span></div><table>'+IBR.map(function(r){return '<tr><th><span class="zh">'+E(r[0])+'</span><span class="ja">'+E(r[1])+'</span></th><td><span class="zh">'+E(r[2])+'</span><span class="ja">'+E(r[3])+'</span></td></tr>'}).join('')+'</table></aside></div>'
   +'<div class="brf">'+[["电吉他","エレキギター","最近在练的小段落。（示例音频，之后换成自己的录音）","最近練習しているフレーズ。（サンプル音源）","audio/guitar.mp3"],["乌克丽丽","ウクレレ","随手弹的一小段和弦。（示例音频，之后换成自己的录音）","気ままに弾いたコード。（サンプル音源）","audio/ukulele.mp3"]].map(function(b){return '<div class="bi"><div class="bt"><b class="zh">'+b[0]+'</b><b class="ja">'+b[1]+'</b><div class="mp" data-src="'+b[4]+'"><button type="button" class="pb" aria-label="play">'+IC.play+'</button><span class="tt">0:00 / 0:00</span><div class="pb2"><b></b></div><button type="button" class="vl" aria-label="mute">'+IC.vol+'</button><span class="kb">⋮</span></div></div></div>'}).join('')+'</div>';
   P.insertBefore(nws,P.firstChild);
   var wel=$("#h-welcome",P),txx=$(".tx",nws);if(wel&&txx)txx.appendChild(wel);
