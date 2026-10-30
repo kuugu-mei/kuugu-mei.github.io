@@ -45,13 +45,21 @@ window.SITE={
  },
 
  // ---------- 墨香（看过的书）：status 写 读完 / 在读 / 想读 ----------
- books:[
-  {title:"《小说是什么》",author:"三岛由纪夫",status:"在读"},
-  {title:"《昨日的世界》",author:"斯特凡茨威格",status:"读完"},
-  {title:"《说汉魏六朝诗》",author:"叶嘉莹",status:"读完"},
-  {title:"《樱与兽 帝国中心的上野动物园》",author:"伊恩 J 米勒",status:"读完"}
+  books:[
+  {year:2026,date:"2026-10",title:"《三国志》",author:"陈寿",status:"读完"},
+  {year:2025,date:"2025-11",title:"《三国志》",author:"陈寿",status:"在读"},
+  {year:2025,date:"2025-08",title:"书名",author:"作者",status:"读完"},
+  {year:2024,date:"2024-12",title:"《三国演义》",author:"罗贯中",status:"读完"},
+  {year:2024,date:"2024-06",title:"书名",author:"作者",status:"读完"}
  ],
-
+  // ---------- 推荐页 ----------
+ recs:[
+  {cat:"media",title:"作品名",img:"images/cv-1.png",url:"https://example.com"},
+  {cat:"game",title:"游戏名",img:"images/cv-2.png"},
+  {cat:"book",title:"书名",img:"images/cv-3.png"},
+  {cat:"site",title:"网站名",img:"images/cv-4.png"},
+  {cat:"item",title:"物品名",img:"images/cv-5.png"}
+ ],
  // ---------- 友链 ----------
  links:[
   {name:"站名",url:"https://example.com",desc:"一句话介绍"}
