@@ -1,0 +1,178 @@
+
+/* ======================================================================
+   像素旧报纸 · 梦核（参考 Cinni's Dream Home / Princess / 旧报纸）
+   一个像素花边大视窗：上刊头 · 左资料 · 中新闻 · 右目录
+   ====================================================================== */
+@font-face{font-family:"Fraktur";src:url(fonts/unifrakturcook-latin-700-normal.woff2) format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"OldStd";src:url(fonts/old-standard-tt-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"OldStd";src:url(fonts/old-standard-tt-latin-700-normal.woff2) format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"OldStd";src:url(fonts/old-standard-tt-latin-400-italic.woff2) format("woff2");font-weight:400;font-style:italic;font-display:swap}
+html[data-ui="y2k"]{--rd:#9c6668;--r:#cf9c98;--rl:#efd5cf;--rb:#dbb0ab;--mint:#dfe8dc;--mintd:#b9cdbf;--lav:#dad4ee;--peach:#f4dcc0;--paper:#e5e2d0;--paperd:#c9c5ae;--ink:#3f2b2d;--ink2:#6b4a4d;--lnk:#85587a;--serif:"OldStd","Times New Roman",serif;--edge:#9c6668;--win:#dfe8dc}
+html[data-ui="y2k"] body{background:#b7aca6;color:var(--ink)}
+html[data-ui="y2k"] #bgc{filter:grayscale(.55) sepia(.2) brightness(1.12) contrast(.82)}
+html[data-ui="y2k"] body::after{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background:linear-gradient(135deg,rgba(236,205,200,.42),rgba(223,232,220,.38))}
+html[data-ui="y2k"] *{image-rendering:auto}
+html[data-ui="y2k"] a{color:var(--lnk)}html[data-ui="y2k"] a:visited{color:#7d6a5a}html[data-ui="y2k"] a:hover{color:var(--rd)}
+/* ---------- 大视窗（仅正式显示时；开场卷轴时不套） ---------- */
+html[data-ui="y2k"]:not(.intro) body{overflow:hidden}
+html[data-ui="y2k"]:not(.intro) .wrap{position:relative;display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:8px;box-sizing:border-box;width:min(1280px,97vw);max-width:none;height:calc(100vh - 28px);max-height:990px;margin:14px auto;padding:8px 10px 6px;border:18px solid transparent;border-image:url(images/f-frame.png?v=25) 9/18px round;background:var(--rb) padding-box;image-rendering:pixelated;box-shadow:0 0 0 2px rgba(122,76,80,.0),10px 14px 0 rgba(63,43,45,.28)}
+html[data-ui="y2k"]:not(.intro) .wrap::after{content:"";position:absolute;inset:-26px;pointer-events:none;z-index:5;background:url(images/f-medal.png?v=25) left top,url(images/f-medal.png?v=25) right top,url(images/f-medal.png?v=25) left bottom,url(images/f-medal.png?v=25) right bottom;background-size:34px 34px;background-repeat:no-repeat;image-rendering:pixelated}
+html[data-ui="y2k"]:not(.intro) .wrap *{image-rendering:auto}
+html[data-ui="y2k"]:not(.intro) .wrap img{image-rendering:pixelated}
+/* ---------- 刊头 ---------- */
+html[data-ui="y2k"]:not(.intro) .head{position:relative;height:148px;padding:0!important;margin:0!important;border:10px solid transparent;border-image:url(images/f-panel-paper.png?v=25) 5/10px stretch;background:#ecdad3 url(images/d-banner.png?v=25) center/cover no-repeat padding-box!important;box-shadow:none!important;text-align:center;overflow:visible}
+html[data-ui="y2k"]:not(.intro) .head::before,html[data-ui="y2k"]:not(.intro) .head::after{display:none!important}
+html[data-ui="y2k"]:not(.intro) .head h1{position:absolute;left:0;right:0;top:6px;height:100px;margin:0;font-size:0;color:transparent;text-shadow:none;background:url(images/t-mast.png?v=25) center/339px 96px no-repeat;image-rendering:pixelated}
+html[data-ui="y2k"]:not(.intro) .head .sub{position:absolute;left:-2px;right:-2px;bottom:-2px;margin:0!important;padding:3px 130px;background:var(--paper);border-top:1px solid var(--ink);border-bottom:3px double var(--ink);color:var(--ink)!important;text-shadow:none!important;font:13px/1.5 var(--serif);letter-spacing:.16em;text-align:center}
+html[data-ui="y2k"]:not(.intro) .head .sub::before,html[data-ui="y2k"]:not(.intro) .head .sub::after{content:"";display:inline-block;width:12px;height:12px;vertical-align:-1px;margin:0 10px;background:url(images/px-star.png?v=25) center/12px no-repeat;image-rendering:pixelated}
+html[data-ui="y2k"]:not(.intro) .head .ear{position:absolute;top:8px;width:84px;padding:5px 4px;background:var(--paper);border:2px solid var(--ink);box-shadow:3px 3px 0 var(--rd);font:700 12px/1.5 var(--serif);letter-spacing:.14em;color:var(--ink);text-align:center}
+html[data-ui="y2k"]:not(.intro) .head .ear.l{left:12px}html[data-ui="y2k"]:not(.intro) .head .ear.r{right:12px}
+/* ---------- 三栏 ---------- */
+html[data-ui="y2k"]:not(.intro) .cols{display:grid;grid-template-columns:212px minmax(0,1fr) 230px;gap:8px;min-height:0;align-items:stretch}
+html[data-ui="y2k"]:not(.intro) .colL,html[data-ui="y2k"]:not(.intro) .colR{display:flex;flex-direction:column;gap:10px;min-height:0;overflow-y:auto;overflow-x:hidden;padding:0 3px 10px 0}
+html[data-ui="y2k"]:not(.intro) .colR{padding:0 0 10px 3px}
+html[data-ui="y2k"]:not(.intro) .mod{margin:0;flex:none}
+/* 小标题牌（PICLOG / STATUS 那种） */
+html[data-ui="y2k"]:not(.intro) .mod h4{position:relative;z-index:2;display:block;width:78%;margin:0 auto -9px;padding:0 6px;text-align:center;border:10px solid transparent;border-image:url(images/f-plaque.png?v=25) 5/10px stretch;background:var(--r) padding-box;font:700 14px/1.1 var(--serif);letter-spacing:.2em;text-transform:uppercase;color:#fff8f1;text-shadow:1px 1px 0 var(--rd);box-sizing:border-box;height:30px;overflow:hidden;white-space:nowrap}
+html[data-ui="y2k"]:not(.intro) .mb{position:relative;border:10px solid transparent;border-image:url(images/f-panel-mint.png?v=25) 5/10px stretch;background:var(--mint) padding-box;padding:14px 6px 8px;color:var(--ink2);font-size:13px;line-height:1.7;clip-path:none;box-shadow:none}
+html[data-ui="y2k"]:not(.intro) .mb.side{padding:14px 4px 8px}
+html[data-ui="y2k"] .win{background-image:none;clip-path:none;box-shadow:none}
+html[data-ui="y2k"] .win::before,html[data-ui="y2k"] .win::after{display:none!important}
+/* 资料 */
+html[data-ui="y2k"]:not(.intro) .ava{width:calc(100% - 8px);aspect-ratio:1/1;margin:0 auto 8px;display:grid;place-items:center;background:var(--mintd);border:2px solid var(--rd);color:var(--ink2);box-shadow:inset 0 0 0 2px var(--rl);position:relative;filter:none}
+html[data-ui="y2k"]:not(.intro) .ava img{filter:grayscale(.55) contrast(1.1) sepia(.15);image-rendering:pixelated}
+html[data-ui="y2k"]:not(.intro) .name{text-align:center;font:700 19px var(--serif);letter-spacing:.14em;color:var(--rd);border-bottom:1px dotted var(--r);padding-bottom:5px;margin:0 6px 5px}
+html[data-ui="y2k"]:not(.intro) #intro{text-align:center;padding:0 6px;color:var(--ink2)}
+html[data-ui="y2k"] .hl{background:none;border:0;padding:0;box-shadow:none}
+html[data-ui="y2k"] .hl h3{display:none}
+html[data-ui="y2k"] .hl>*{margin:2px 4px}
+html[data-ui="y2k"] .hl .yi,html[data-ui="y2k"] .hl .fs{color:var(--ink2)!important}
+html[data-ui="y2k"] .hl .ji{color:#a4606a!important}
+html[data-ui="y2k"] .cal{border-collapse:collapse;width:calc(100% - 8px);margin:0 4px;font:11px var(--serif);text-align:center;table-layout:fixed}
+html[data-ui="y2k"] .cal th{background:var(--rd);color:#fff7f0;padding:2px 0;font-weight:normal}
+html[data-ui="y2k"] .cal td{padding:2px 0;border:1px solid var(--mintd);color:var(--ink2)}
+html[data-ui="y2k"] .cal td.o{color:#a7b6ab}
+html[data-ui="y2k"] .cal td.t{background:var(--rd);color:#fff7f0}
+/* 歌单（图三） */
+html[data-ui="y2k"] .np{display:flex;justify-content:space-between;font:12px var(--serif);color:var(--ink2);margin:0 4px}
+html[data-ui="y2k"] .pbar{height:5px;margin:4px 4px;background:var(--mintd);border:1px solid var(--rd)}
+html[data-ui="y2k"] .pbar b{display:block;width:12%;height:100%;background:var(--rd)}
+html[data-ui="y2k"] .ctl{text-align:center;letter-spacing:.3em;color:var(--rd);font-size:12px;margin:2px 0 4px}
+html[data-ui="y2k"] .pl{list-style:none;margin:0 4px;padding:0;max-height:120px;overflow:auto;border:1px solid var(--mintd);background:#eaf0e7}
+html[data-ui="y2k"] .pl li{padding:2px 6px 2px 20px;border-bottom:1px solid var(--mintd);background:url(images/px-page.png?v=25) 5px 50%/7px no-repeat;font-size:12px;color:var(--ink2);image-rendering:pixelated}
+/* 更新日志 */
+html[data-ui="y2k"] .logm #notice{max-height:260px;overflow:auto;padding:0 6px 0 4px}
+html[data-ui="y2k"] .nt{margin:0 0 7px;padding:0 0 6px;background:none!important;border:0;border-bottom:1px dotted var(--r);box-shadow:none;clip-path:none}
+html[data-ui="y2k"] .nt time{font:700 12px var(--serif);color:var(--rd)!important}
+html[data-ui="y2k"] .nt p{margin:2px 0 0;color:var(--ink2)!important;font-size:13px;line-height:1.7}
+/* ---------- 右：目录（图一的大目录） ---------- */
+html[data-ui="y2k"]:not(.intro) .bar{display:block;padding:12px 4px 6px;margin:0;box-shadow:none!important;width:auto;background:var(--mint) padding-box!important;border:10px solid transparent!important;border-image:url(images/f-panel-mint.png?v=25) 5/10px stretch!important;counter-reset:none}
+html[data-ui="y2k"]:not(.intro) .bar a{display:flex;align-items:center;gap:9px;width:auto;margin:0;padding:4px 6px;border:0!important;border-bottom:1px dotted var(--r)!important;box-shadow:none!important;clip-path:none;background:transparent!important;font:17px/1.2 PixZH,sans-serif;letter-spacing:.06em;color:var(--ink2)!important;text-decoration:none}
+html[data-ui="y2k"]:not(.intro) .bar a::before{content:"";flex:none;width:24px;height:24px;background:url(images/nav-icons.png?v=25) calc(var(--n,0)*-24px) 0/240px 24px no-repeat;image-rendering:pixelated}
+html[data-ui="y2k"]:not(.intro) .bar a:nth-child(2)::before{--n:1}html[data-ui="y2k"]:not(.intro) .bar a:nth-child(3)::before{--n:2}html[data-ui="y2k"]:not(.intro) .bar a:nth-child(4)::before{--n:3}html[data-ui="y2k"]:not(.intro) .bar a:nth-child(5)::before{--n:4}html[data-ui="y2k"]:not(.intro) .bar a:nth-child(6)::before{--n:5}html[data-ui="y2k"]:not(.intro) .bar a:nth-child(7)::before{--n:6}html[data-ui="y2k"]:not(.intro) .bar a:nth-child(8)::before{--n:7}html[data-ui="y2k"]:not(.intro) .bar a:nth-child(9)::before{--n:8}html[data-ui="y2k"]:not(.intro) .bar a:nth-child(10)::before{--n:9}
+html[data-ui="y2k"]:not(.intro) .bar a:hover{background:var(--peach)!important}
+html[data-ui="y2k"]:not(.intro) .bar a.on{background:var(--lav)!important;color:var(--rd)!important;font-weight:bold}
+html[data-ui="y2k"]:not(.intro) .bar button{display:block;width:calc(100% - 12px);margin:8px 6px 2px;padding:3px 0;font:13px var(--serif);letter-spacing:.2em;color:var(--rd)!important;background:#f3ece4!important;border:2px solid var(--rd)!important;box-shadow:inset 0 0 0 2px var(--rl)!important;clip-path:none;cursor:pointer}
+/* 右栏其它 */
+html[data-ui="y2k"] .wk .wkt{font:italic 13px var(--serif);text-align:center;color:var(--rd);margin-bottom:4px}
+html[data-ui="y2k"] .wk img,html[data-ui="y2k"] .infobox img,html[data-ui="y2k"] .brf img{display:block;width:100%;image-rendering:pixelated;background:#ecdad3;border:2px solid var(--rd);box-sizing:border-box;filter:none;mix-blend-mode:normal}
+html[data-ui="y2k"] .cap2,html[data-ui="y2k"] .ic{font:italic 11px var(--serif);color:var(--ink2);margin-top:3px;text-align:center}
+html[data-ui="y2k"] .nbs{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:8px}
+html[data-ui="y2k"] .nb{display:flex;align-items:center;justify-content:center;height:31px;border:2px solid var(--rd);font:11px var(--serif);color:var(--ink)!important;text-decoration:none;overflow:hidden;white-space:nowrap;background:repeating-conic-gradient(#e7dccf 0 25%,#dccfbf 0 50%) 0 0/4px 4px}
+html[data-ui="y2k"] .nb.n1{background:var(--lav)}html[data-ui="y2k"] .nb.n2{background:var(--peach)}html[data-ui="y2k"] .nb.n3{background:var(--r);color:#fff8f1!important}
+html[data-ui="y2k"] .b88{width:88px;height:31px;margin:0 auto 4px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:repeating-conic-gradient(#efd5cf 0 25%,#e3c0ba 0 50%) 0 0/4px 4px;border:2px solid var(--rd);box-shadow:2px 2px 0 var(--rd);font:700 11px/1.1 var(--serif);color:var(--ink)}
+html[data-ui="y2k"] .b88 i{font-style:normal;color:var(--rd);font-size:8px;letter-spacing:.2em}
+html[data-ui="y2k"] .tiny{font:11px var(--serif);text-align:center;color:var(--ink2)}
+/* ---------- 中：旧报纸 ---------- */
+html[data-ui="y2k"]:not(.intro) main.scroll{position:relative;margin:0;min-width:0;min-height:0;overflow-y:auto;overflow-x:hidden;border:10px solid transparent;border-image:url(images/f-panel-paper.png?v=25) 5/10px stretch;padding:0;background:
+ radial-gradient(ellipse at 6% 4%,rgba(150,118,80,.22),transparent 34%),radial-gradient(ellipse at 96% 98%,rgba(140,110,84,.26),transparent 38%),radial-gradient(ellipse at 70% 30%,rgba(255,255,255,.22),transparent 45%),
+ url(images/xuan-w.jpg?v=25) 0 0/512px 512px,var(--paper) padding-box}
+html[data-ui="y2k"]:not(.intro) .rod{display:none!important}
+html[data-ui="y2k"]:not(.intro) .reveal{margin:0}
+html[data-ui="y2k"]:not(.intro) .paper{background:none!important;border:0;box-shadow:none;margin:0;padding:14px 22px 26px;font-size:14px;line-height:1.85;color:var(--ink);text-align:justify}
+html[data-ui="y2k"]:not(.intro) .paper h2{display:flex;align-items:center;justify-content:center;gap:12px;margin:14px 0 12px;padding:8px 0 6px;font:700 28px/1.2 var(--serif),PixZH;letter-spacing:.12em;color:var(--ink);text-align:center;border-top:3px double var(--ink);border-bottom:1px solid var(--ink);background:none}
+html[data-ui="y2k"]:not(.intro) .paper h2::before,html[data-ui="y2k"]:not(.intro) .paper h2::after{content:"";flex:none;width:18px;height:18px;background:url(images/px-star.png?v=25) center/18px no-repeat;image-rendering:pixelated;position:static;display:block}
+html[data-ui="y2k"]:not(.intro) .paper h2::after{background-image:url(images/px-star2.png?v=25)}
+html[data-ui="y2k"]:not(.intro) .paper h2:first-child{margin-top:4px}
+html[data-ui="y2k"]:not(.intro) .fret{height:0!important;border:0!important;border-top:1px dotted var(--ink2)!important;background:none!important;margin:16px 0!important;filter:none;opacity:1}
+/* 彩色标题条（图一） */
+html[data-ui="y2k"]:not(.intro) .paper h3:not(.ab-h):not(.hd),html[data-ui="y2k"]:not(.intro) .box h3,html[data-ui="y2k"]:not(.intro) .post h3{display:block;margin:0 0 6px;padding:3px 8px 3px 32px;background:var(--mint) url(images/px-star.png?v=25) 9px 50%/16px no-repeat!important;border:0!important;box-shadow:none!important;clip-path:none;font:17px/1.4 PixZH,sans-serif;letter-spacing:.06em;color:var(--ink2)!important;text-align:left;image-rendering:pixelated}
+html[data-ui="y2k"]:not(.intro) .tri .box:nth-child(2) h3,html[data-ui="y2k"]:not(.intro) .stack .post:nth-of-type(2n) h3,html[data-ui="y2k"]:not(.intro) .recs .rec:nth-child(4n+2) h3{background-color:var(--lav)!important;background-image:url(images/px-star2.png?v=25)!important}
+html[data-ui="y2k"]:not(.intro) .tri .box:nth-child(3) h3,html[data-ui="y2k"]:not(.intro) .recs .rec:nth-child(4n+3) h3{background-color:var(--peach)!important}
+html[data-ui="y2k"]:not(.intro) .recs .rec:nth-child(4n+4) h3{background-color:#f0d3d3!important}
+html[data-ui="y2k"]:not(.intro) .tri{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin:8px 0}
+html[data-ui="y2k"]:not(.intro) .tri .box{background:transparent!important;border:0!important;border-right:1px dotted var(--ink2)!important;box-shadow:none!important;padding:0 12px;clip-path:none}
+html[data-ui="y2k"]:not(.intro) .tri .box:first-child{padding-left:0}html[data-ui="y2k"]:not(.intro) .tri .box:last-child{border-right:0!important;padding-right:0}
+html[data-ui="y2k"]:not(.intro) .stack .box,html[data-ui="y2k"]:not(.intro) .post,html[data-ui="y2k"]:not(.intro) .nt2{background:transparent!important;border:0!important;border-bottom:1px dotted var(--ink2)!important;box-shadow:none!important;padding:8px 0 10px!important;margin:0!important;clip-path:none}
+html[data-ui="y2k"] .stack .box time,html[data-ui="y2k"] .post time,html[data-ui="y2k"] .box time,html[data-ui="y2k"] .tvr time{color:var(--rd)!important;font:700 13px var(--serif);letter-spacing:.04em}
+html[data-ui="y2k"]:not(.intro) .pet{background:#eae6d3!important;border:1px dotted var(--ink2)!important;box-shadow:none!important;clip-path:none}
+html[data-ui="y2k"]:not(.intro) .chip{display:inline-block;margin:0 4px 4px 0;padding:1px 9px;background:var(--lav)!important;border:2px solid var(--rd)!important;box-shadow:none!important;clip-path:none;font:12px var(--serif);color:var(--ink2)!important}
+html[data-ui="y2k"]:not(.intro) .paper img{image-rendering:pixelated;filter:grayscale(.5) sepia(.25) contrast(1.1);mix-blend-mode:multiply}
+html[data-ui="y2k"] ol.rank li::before{background:var(--rd)!important;color:#fff8f1!important;border-radius:0}
+html[data-ui="y2k"] ul.plain li::before{background:var(--r)!important;border-radius:0}
+/* ---------- 今日新闻（维基/报纸排版） ---------- */
+html[data-ui="y2k"] .news{margin:0 0 6px;padding:0 0 4px}
+html[data-ui="y2k"] .news .nh{display:flex;align-items:baseline;gap:12px;padding:3px 0;border-top:3px double var(--ink);border-bottom:1px solid var(--ink);margin-bottom:8px}
+html[data-ui="y2k"] .news .en{font:700 30px/1 "Fraktur","OldStd",serif;color:var(--ink);letter-spacing:.02em}
+html[data-ui="y2k"] .news .zn{font:15px PixZH,sans-serif;color:var(--rd);letter-spacing:.2em}
+html[data-ui="y2k"] .news .nh em{margin-left:auto;font:italic 12px var(--serif);color:var(--ink2)}
+html[data-ui="y2k"] .news h3.hd{margin:4px 0 2px;font:700 25px/1.25 var(--serif),PixZH;letter-spacing:.04em;color:var(--ink);background:none!important;padding:0!important}
+html[data-ui="y2k"] .news .by{font:italic 12px var(--serif);color:var(--ink2);margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid var(--ink2)}
+html[data-ui="y2k"] .news .nb{display:grid;grid-template-columns:minmax(0,1fr) 178px;gap:16px}
+html[data-ui="y2k"] .news .tx{columns:2;column-gap:20px;column-rule:1px dotted var(--ink2)}
+html[data-ui="y2k"] .news .tx p{margin:0 0 .6em;text-indent:2em;font-size:13.5px;line-height:1.8}
+html[data-ui="y2k"] .news .tx p:first-child::first-letter{font:700 2.9em/.8 "Fraktur","OldStd",serif;float:left;padding:4px 6px 0 0;color:var(--rd)}
+html[data-ui="y2k"] .infobox{background:#ece8d6;border:2px solid var(--ink);padding:0 0 4px;box-shadow:3px 3px 0 var(--rl);font-size:12px;line-height:1.5;text-align:left}
+html[data-ui="y2k"] .infobox .it{background:var(--lav);padding:3px 6px;text-align:center;font:700 14px var(--serif);border-bottom:2px solid var(--ink)}
+html[data-ui="y2k"] .infobox img{width:calc(100% - 12px);margin:6px}
+html[data-ui="y2k"] .infobox table{width:calc(100% - 12px);margin:3px 6px 0;border-collapse:collapse}
+html[data-ui="y2k"] .infobox th{text-align:left;width:38%;color:var(--rd);font-weight:bold;padding:2px 0;border-top:1px dotted var(--ink2)}
+html[data-ui="y2k"] .infobox td{padding:2px 0;border-top:1px dotted var(--ink2)}
+html[data-ui="y2k"] .brf{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:10px;border-top:1px solid var(--ink)}
+html[data-ui="y2k"] .brf .bi{display:flex;gap:8px;padding:8px 10px 4px 0;align-items:flex-start}
+html[data-ui="y2k"] .brf .bi+.bi{padding:8px 0 4px 10px;border-left:1px dotted var(--ink2)}
+html[data-ui="y2k"] .brf img{width:64px;flex:none}
+html[data-ui="y2k"] .brf b{display:block;font:700 15px/1.3 var(--serif),PixZH;color:var(--rd)}
+html[data-ui="y2k"] .brf p{margin:2px 0 0;font-size:12.5px;line-height:1.6;text-indent:0}
+/* 媒体推荐 / 研究记录 */
+html[data-ui="y2k"] .recs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px 18px}
+html[data-ui="y2k"] .rec{position:relative;padding:0 0 8px;border-bottom:1px dotted var(--ink2)}
+html[data-ui="y2k"] .rec .tag{display:inline-block;margin-bottom:4px;padding:0 6px;background:var(--ink);color:var(--paper);font:700 11px var(--serif);letter-spacing:.18em}
+html[data-ui="y2k"] .rec p{margin:0 0 4px;font-size:13px;line-height:1.65;text-indent:0}
+html[data-ui="y2k"] .rec .rate{color:var(--rd);letter-spacing:.1em}
+html[data-ui="y2k"] .rs{display:grid;grid-template-columns:178px minmax(0,1fr);gap:18px;align-items:start}
+html[data-ui="y2k"] .rs ol.tl{margin:0;padding:0;list-style:none;border-left:2px solid var(--rd)}
+html[data-ui="y2k"] .rs ol.tl li{position:relative;margin:0 0 12px;padding:0 0 0 16px}
+html[data-ui="y2k"] .rs ol.tl li::before{content:"";position:absolute;left:-8px;top:5px;width:12px;height:12px;background:url(images/px-star.png?v=25) center/12px no-repeat;image-rendering:pixelated}
+html[data-ui="y2k"] .rs ol.tl b{display:block;color:var(--rd);font:700 13px var(--serif)}
+/* ---------- 页脚 ---------- */
+html[data-ui="y2k"]:not(.intro) footer{margin:0;padding:0 8px;text-align:right;font:italic 11px var(--serif);letter-spacing:.14em;color:var(--rd);text-shadow:none;background:none}
+html[data-ui="y2k"]:not(.intro) footer .fret{display:none}
+/* ---------- 滚动条 ---------- */
+html[data-ui="y2k"] ::-webkit-scrollbar{width:10px;height:10px}
+html[data-ui="y2k"] ::-webkit-scrollbar-track{background:rgba(185,205,191,.5)}
+html[data-ui="y2k"] ::-webkit-scrollbar-thumb{background:var(--r);border:2px solid #f0e3dd}
+html[data-ui="y2k"] *{scrollbar-width:thin;scrollbar-color:#cf9c98 #dfe8dc}
+/* ---------- 开场：卷轴时隐藏窗口各部分 ---------- */
+html[data-ui="y2k"].intro .head,html[data-ui="y2k"].intro .colL,html[data-ui="y2k"].intro .colR,html[data-ui="y2k"].intro footer,html[data-ui="y2k"].intro .alien{display:none!important}
+html[data-ui="y2k"].intro .cols{display:block}
+html[data-ui="y2k"].opening .colL,html[data-ui="y2k"].opening .colR{transition:opacity 1s ease}
+html[data-ui="y2k"].opening:not(.sin) .colL,html[data-ui="y2k"].opening:not(.sin) .colR{opacity:0}
+/* ---------- 窄屏 ---------- */
+@media(max-width:900px){
+html[data-ui="y2k"]:not(.intro) body{overflow:auto}
+html[data-ui="y2k"]:not(.intro) .wrap{display:block;height:auto;max-height:none;margin:8px auto;width:98vw}
+html[data-ui="y2k"]:not(.intro) .head{margin-bottom:8px!important;height:130px}
+html[data-ui="y2k"]:not(.intro) .head .sub{padding:3px 10px;font-size:11px}
+html[data-ui="y2k"]:not(.intro) .head .ear{display:none}
+html[data-ui="y2k"]:not(.intro) .cols{display:flex;flex-direction:column}
+html[data-ui="y2k"]:not(.intro) .colR{order:-1;overflow:visible}
+html[data-ui="y2k"]:not(.intro) .colR .mod:not(.navmod){display:none}
+html[data-ui="y2k"]:not(.intro) .colL{overflow:visible;order:2}
+html[data-ui="y2k"]:not(.intro) main.scroll{overflow:visible}
+html[data-ui="y2k"]:not(.intro) .bar{display:flex!important;flex-wrap:wrap}
+html[data-ui="y2k"]:not(.intro) .bar a{flex:1 1 45%}
+html[data-ui="y2k"] .news .nb,html[data-ui="y2k"] .rs{grid-template-columns:1fr}
+html[data-ui="y2k"] .news .tx{columns:1}
+html[data-ui="y2k"]:not(.intro) .tri,html[data-ui="y2k"] .recs,html[data-ui="y2k"] .brf{grid-template-columns:1fr}
+}

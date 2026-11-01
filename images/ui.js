@@ -1,0 +1,4 @@
+(function(){var de=document.documentElement;function g(){try{return localStorage.getItem("ui2")||"y2k"}catch(e){return"y2k"}}
+var u=g();de.setAttribute("data-ui",u);
+document.addEventListener("DOMContentLoaded",function(){var d=document.createElement("div");d.style.cssText="position:fixed;left:8px;top:8px;z-index:300;display:flex;gap:4px;font:12px/1 sans-serif";
+[["old","竹林界面（现有）"],["y2k","千禧梦核（新）"]].forEach(function(x){var b=document.createElement("button");b.textContent=x[1];b.style.cssText="cursor:pointer;border:2px solid #fff;padding:6px 8px;color:"+(u===x[0]?"#111":"#fff")+";background:"+(u===x[0]?"#fff":"rgba(10,20,16,.78)");b.onclick=function(){try{localStorage.setItem("ui2",x[0])}catch(e){}de.setAttribute("data-ui",x[0]);location.reload()};d.appendChild(b)});document.body.appendChild(d)})})();
