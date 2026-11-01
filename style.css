@@ -995,7 +995,7 @@ html[data-ui="y2k"]:not(.intro) .pet b{color:#8a5a70!important}
 .post .back{display:inline-block;margin-bottom:6px;font-size:13px;color:var(--rd);text-decoration:none}
 .post .back:hover{text-decoration:underline}
 .post .bdy p{margin:0 0 .9em;line-height:1.9}
-.post img{max-width:100%;display:block;margin:8px 0}
+.post>img{max-width:100%;display:block;margin:8px 0}
 .box.plainp{cursor:default}.box .ttl{display:block;font-weight:700;margin:1px 0 2px}
 /* 推荐：标签 */
 html[data-ui="y2k"] .rc{position:relative}
