@@ -10,10 +10,49 @@
 
 // ---------- 全站基本信息 ----------
 window.SITE={
-  recs:[   // 推薦介面的內容:game/book/item/site/media
-  {cat:"game", title:"Pokémon Black", img:"images/media/pkm1.jpg", tip:"一兩句話的說明。"},
+  recs:[   // 推薦介面的內容:game/book/item/site/media，在jpg"后添加, tip:"一兩句話的說明。"} 可制作标签
+  {cat:"game", title:"Pokémon Black", img:"images/media/pkm1.jpg"},
   {cat:"game", title:"Pokémon Sword", img:"images/media/pkm2.jpg"},
   {cat:"game", title:"Pokémon Legend Arceus", img:"images/media/pkm3.jpg"},
+  {cat:"media", title:"Encounters at the End of the World 2007", img:"images/media/docu6.jpg"},
+  {cat:"media", title:"The Nightmare Before Christmas", img:"images/media/movie1.jpg"},
+  {cat:"media", title:"多啦A夢：大雄的恐龍2006", img:"images/media/movie2.jpg"},
+  {cat:"media", title:"哆啦A夢：大雄與風之使者", img:"images/media/movie3.jpg"},
+  {cat:"media", title:"Ernest & Celestine", img:"images/media/movie4.jpg"},
+  {cat:"media", title:"Ernest & Celestine- A Trip to Gibberitia", img:"images/media/movie5.jpg"},
+  {cat:"media", title:"A Grand Day Out", img:"images/media/movie6.jpg"},
+  {cat:"media", title:"Chicken Run", img:"images/media/movie7.jpg"},
+  {cat:"media", title:"海洋天堂", img:"images/media/movie8.jpg"},
+  {cat:"media", title:"ポケットモンスター 水の都の護神", img:"images/media/pkm4.jpg"},
+  {cat:"media", title:"ポケットモンスター 蒼海の王子", img:"images/media/pkm5.jpg"},
+  {cat:"media", title:"ポケットモンスター XY", img:"images/media/pkm7.jpg"},
+  {cat:"media", title:"ポケットモンスター XY&Z", img:"images/media/pkm8.jpg"},
+  {cat:"media", title:"仮面ライダー電王", img:"images/media/TV1.jpg"},
+  {cat:"media", title:"HUNTER X HUNTER", img:"images/media/TV2.jpg"},
+  {cat:"media", title:"パリピ孔明", img:"images/media/TV4.jpg", tip:"三國史同最大啟蒙之一"},
+  {cat:"media", title:"リトルウィッチアカデミア", img:"images/media/TV5.jpg"},
+  {cat:"media", title:"Planet Earth S1", img:"images/media/docu1.jpg"},
+  {cat:"media", title:"Planet Earth S2", img:"images/media/docu2.jpg"},
+  {cat:"media", title:"Planet Earth S3", img:"images/media/docu3.jpg", tip:"幕后制作最佳展现"},
+  {cat:"media", title:"Perfect Planet", img:"images/media/docu4.jpg"},
+  {cat:"media", title:"Our Planet S1", img:"images/media/docu5.jpg"},
+  {cat:"game", title:"Detroit：become human", img:"images/media/gm1.jpg"},
+  {cat:"game", title:"Mouthwashing", img:"images/media/gm2.jpg"},
+  {cat:"game", title:"真三國無雙·起源", img:"images/media/gm3.jpg", tip:"第一部三國無雙遊戲"},
+  {cat:"game", title:"真三國無雙·6", img:"images/media/gm4.jpg"},
+  {cat:"game", title:"Gabu Gabu Planet", img:"images/media/gm5.jpg"},
+  {cat:"game", title:"What Remains of Edith Finch", img:"images/media/gm6.jpg"},
+  {cat:"media", title:"How to Train Your Dragon", img:"images/media/movie9.jpg"},
+  {cat:"media", title:"How to Train Your Dragon2", img:"images/media/movie10.jpg"},
+  {cat:"media", title:"THE VVITCH", img:"images/media/movie11.jpg"},
+  {cat:"media", title:"AVATAR", img:"images/media/movie12.jpg"},
+  {cat:"media", title:"The Lost World-Jurassic Park", img:"images/media/movie13.jpg"},
+  {cat:"media", title:"Jurassic World", img:"images/media/movie14.jpg"},
+  {cat:"media", title:"ポケットモンスター 裂空の訪問者", img:"images/media/pkm6.jpg"},
+  {cat:"media", title:"ポケットモンスター ベストウイッシュ", img:"images/media/pkm7.jpg"},
+  {cat:"media", title:"魔法陣グルグル", img:"images/media/TV3.jpg"},
+  {cat:"media", title:"三國演義 1994", img:"images/media/TV6.jpg", tip:"三國歷史最感人之作"},
+
  ],
  title:"青涩的青色的Mei",                                   // 小标题
  subtitle:{zh:"请随意慢慢阅览。",ja:"ゆっくりしていってね、よろしく。"},
@@ -22,7 +61,7 @@ window.SITE={
 
  // ---------- 首页 ----------
  home:{
-  welcome:{zh:"真菌（Fungi）----主要包括酵母，霉菌以及蕈菌等。它们在生态系统中担任主要分解者的角色。其中霉菌是我最喜欢的真菌。你们仔细观察过食物或物品上的霉菌吗，上面毛茸茸的观感以及七彩的颜色让人着迷。那些毛毛是伸向空气的菌丝，叫气生菌丝（Aerial Mycelium）；而霉菌的颜色变化是根据菌本身的种类·基质以及环境因素而产生不同色彩，我更愿意称作“大地的颜色”。\n这里是个人自建的blog网站，但主要记录下自己的生活与见闻。我将自己本身以及内容比喻真菌，并放在这里的培养皿里。",ja:"ここは私の個人サイトです。日常や写真、好きなものを記録します。"},                  // 最近在玩
+  welcome:{zh:"真菌（Fungi）----主要包括酵母，霉菌以及蕈菌等。它们在生态系统中担任主要分解者的角色。霉菌是我最喜欢的真菌。尝试去仔细观察霉菌，上面毛茸的观感以及七彩的颜色其实很让人着迷。那些毛毛是伸向空气的菌丝，叫气生菌丝（Aerial Mycelium）；而霉菌的颜色变化是根据菌本身的种类·基质以及环境因素而产生颜色差异。\n这里是个人自建的blog网站，目前主要记录下自己的生活与见闻。我将自己本身以及内容比喻为真菌，「培养皿」是可以安全放置我的地方。",ja:"ここは私の個人サイトです。日常や写真、好きなものを記録します。"},                  // 最近在玩
   listening:["Maybe Tomorrow · Stereophonics"],        // 最近在听
   // 视频：id 是 YouTube 网址里 v= 后面那一串；不想要视频就把 id 改成 ""
   video:{id:"u9J99gB5psc",caption:{zh:"周杰伦 · 梯田（官方 MV）",ja:"周杰倫 · 梯田（公式MV）"}}
@@ -79,7 +118,7 @@ window.SITE={
  // ---------- 小外星人：在首页四处走动，点它会冒出气泡，说你最近在研究什么 ----------
  // 每一句可以写成 "文字"，也可以写成 {zh:"中文",ja:"日文"}。下面是示例，请改成你自己的
  alien:{messages:[
-  {zh:"最近在意的事：想弹乌克丽丽",ja:"最近気になる：ウクレレを弾いてみたいな"},
+  {zh:"最近在意的事：到底什麼時候買烏克麗麗",ja:"最近気になる：いつウクレレを買うかな"},
   {zh:"最近的研究：在看生物设计相关的书",ja:"最近の研究：生物デザインの本を読んでいる"},
   {zh:"最近的事情：古耽简直是毒品一样的存在",ja:"最近のこと：古代ジャンルのBL小説マジで毒品みたいな存在"},
  ]},
@@ -89,17 +128,15 @@ window.SITE={
 };
 
 // ---------- 日志：date 日期，time 时间，text 内容（没有标题）；img 可选，填图片路径 ----------
-// 发新日志：复制一个 {...} 方块，放在最前面，改日期时间和文字，换行文字前加\n就像这样写。
+// 发新日志：复制一个 {...} 方块，放在最前面，改日期时间和文字，换行文字前加\n，加標題時間後加, title:"...",，
 window.POSTS=[
+ {date:"2026-11-2",time:"02:49",text:"正在想盡辦法做出一些既能展示畫面又美觀的交互設計（苦惱）"},
  {date:"2026-10-23",time:"16:29",text:"苏民峰说这个月步伐会很慢，果真如此（表心碎）最没效率&自律的10月。"},
  {date:"2026-10-19",time:"02:56",text:"小宅基底已经终于建造结束。接下来是陆陆续续装修美观以及新添点新玩意。谢谢我的Claude。"},
  {date:"2026-10-30",time:"23:55",text:"背景圖跟開場的畫面還需要再修改才行（嘆氣）"},
- {date:"2026-10-20",time:"00:07",text:"之後會製作作品集的網站並添加在這裡。"},
- {date:"2025-10-02", time:"21:30", title:"雨天的长文", text:`第一段第一行
-第一段第二行
+ {date:"2025-10-02", time:"21:30", title:"例子", text:`第一段第一行。\n第一段第二行
 
 第二段，空了一行。`},
-{date:"2025-10-01", text:"没有 title 的普通日志"},
 {date:"2026-10-23",time:"16:29",title:"這裡寫標題",text:"原本的文字……"},
 ];
 
@@ -111,6 +148,7 @@ window.SIZHU={
 
 // ---------- 公告栏：显示在每个页面右侧，写更新了什么 ----------
 window.NOTICES=[
+ {date:"2026-11-02",time:"02:56",text:"大批上传了推荐内容。"},
  {date:"2026-10-30",time:"23:51",text:"已修改：開場畫面，整體UI；新增：推薦介面，新聞小板塊etc."},
  {date:"2026-10-24",time:"03:21",text:"新添开场画面，背景图改动成ASCII效果，整体配色&藏品界面已更改"},
  {date:"2026-10-21",time:"02:03",text:"简单修改留言板ui，添加可供选择的icon"},
