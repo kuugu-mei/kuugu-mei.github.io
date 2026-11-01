@@ -67,14 +67,7 @@ window.SITE={
   {year:2024,date:"2024-11",title:"《春雪》",author:"三岛由纪夫",status:"读完"},
   {year:2024,date:"2024-12",title:"《Night Bitch》",author:"雷切尔·约徳",status:"读完"},
  ],
-  // ---------- 推荐页 ----------
- recs:[
-  {cat:"media",title:"作品名",img:"images/cv-1.png"},
-  {cat:"game",title:"游戏名",img:"images/cv-2.png"},
-  {cat:"book",title:"书名",img:"images/cv-3.png"},
-  {cat:"site",title:"网站名",img:"images/cv-4.png"},
-  {cat:"item",title:"物品名",img:"images/cv-5.png"}
- ],
+
  // ---------- 友链 ----------
  links:[
   {name:"站名",url:"https://example.com",desc:"一句话介绍"}
