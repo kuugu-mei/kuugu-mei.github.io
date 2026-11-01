@@ -140,7 +140,7 @@ html{overflow-x:hidden}
 :root{--cream:#f0faf6;--shade:#0a2a24;--co:#a8486e;--vi:#5b57b0;--gd:#7d7a12;--tl:#128098;--win:#e3f3ee;--edge:#2f8f7c;--soft:#bfe3d9;--blu:#17493f;--grn:#14584c;--lnk:#14808f;--hb:#3aa58f;--tx-win:url(images/xuan-g.jpg?v=1);--tx-paper:url(images/xuan-w.jpg?v=1)}
 
 /* ---- 背景：竹林照片 + 慢慢变化的繁体字 + 水波（bg.js 绘制；不支持时只显示照片） ---- */
-#bgc{position:fixed;left:0;top:0;width:100%;height:100%;z-index:-1;display:block;pointer-events:none;background:#f1f2ec url(images/bg-petri.jpg?v=50) center/cover no-repeat}
+#bgc{position:fixed;left:0;top:0;width:100%;height:100%;z-index:-1;display:block;pointer-events:none;background:#f4f2ec url(images/bg-tiger.jpg?v=55) center/cover no-repeat}
 
 /* ---- 标题：去掉板块，字直接放在背景上 ---- */
 .head{background:none!important;box-shadow:none!important;padding:18px 14px 4px;margin:8px 4px 0;text-align:center}
@@ -916,8 +916,6 @@ html[data-ui="y2k"] .rg{grid-template-columns:repeat(auto-fill,minmax(90px,1fr))
 #ipw.err .et small{margin:4px 0 0;text-align:left;font-size:11px}
 #ipw.err .row{padding:4px 0;gap:16px}
 /* 欢迎页：深色发光屏 */
-#ipw.ok .bd{background:var(--dk);color:#fff}
-#ipw.ok small{color:var(--gl)}
 #ipw.w .glow{margin:0;font:700 17px/1.4 PixZH,monospace;color:#fff;text-shadow:0 0 6px var(--gl),0 0 14px var(--gl),0 0 26px var(--gl);letter-spacing:.08em;min-width:128px;text-align:left}
 #ipw.w .pg{height:5px;margin-top:9px;background:rgba(0,0,0,.4);border:1px solid var(--gl)}
 #ipw.w .pg b{display:block;height:100%;width:0;background:var(--gl);box-shadow:0 0 8px var(--gl)}
@@ -940,3 +938,73 @@ html[data-ui="y2k"]:not(.intro) .pet small{color:#5a3f4c!important;font-size:12p
 html[data-ui="y2k"]:not(.intro) .pet b{color:#8a5a70!important}
 .tvw{gap:64px}
 @media(max-width:760px){.tvw{gap:22px}}
+
+/* ---- 第十九轮：开场窗口＝海洋 404（中/日/英）；No = 半透明窗里的彩色像素泡沫 ---- */
+#ipw.p{--ink:#1d1a16;--ac:#f5973a;width:min(420px,92vw);color:#fff;font:15px "PixelLat",PixZH,monospace;transform:translate(-50%,-50%);-webkit-font-smoothing:none;background:#000;padding:14px 14px 46px;box-shadow:0 0 0 2px #222,10px 10px 0 rgba(0,0,0,.35)}
+#ipw.p *{box-sizing:border-box}
+#ipw.p .tb{display:none}
+#ipw.p .bd{position:relative;padding:26px 24px 24px;background:#456;overflow:hidden;filter:blur(.25px)}
+#ipw.p .bd::before{content:"";position:absolute;inset:0;background:url(images/win-dino-2.jpg) 22% 78%/cover;transition:filter .5s}
+#ipw.p.ok .bd::before{filter:sepia(.55) hue-rotate(-12deg) saturate(1.35) brightness(.96)}
+#ipw.p .bd::after{content:"";position:absolute;inset:0;pointer-events:none;background:url(images/noise.png);background-size:160px 160px;opacity:.55;animation:ipn .6s steps(3) infinite}
+@keyframes ipn{0%{background-position:0 0}33%{background-position:-40px 22px}66%{background-position:26px -50px}100%{background-position:0 0}}
+#ipw.p .row{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:16px}
+#ipw.p .row p,#ipw.p .wt{margin:0;flex:1;min-width:0;text-align:left}
+#ipw.p .t-zh{display:block;font:700 27px/1.25 PixZH,Arial,sans-serif;color:#fff;letter-spacing:.02em;text-shadow:0 0 6px rgba(255,255,255,.7),1px 1px 0 rgba(0,40,90,.5)}
+#ipw.p .t-ja{display:block;margin-top:8px;font:700 15px/1.45 PixJA,PixZH,Arial,sans-serif;color:#fff;text-shadow:0 0 5px rgba(255,255,255,.55),1px 1px 0 rgba(0,40,90,.45)}
+#ipw.p .t-en{display:block;margin-top:4px;font:700 13px/1.45 PixelLat,monospace;color:#fff;letter-spacing:.03em;text-shadow:0 0 5px rgba(255,255,255,.5),1px 1px 0 rgba(0,40,90,.45)}
+#ipw.p .wt .t-zh{min-height:34px}#ipw.p .wt .t-ja{min-height:22px}#ipw.p .wt .t-en{min-height:19px}
+#ipw.p .ph{flex:none;display:block;line-height:0;padding:3px;background:rgba(0,0,0,.45);border:1px solid #5ab4ff;box-shadow:0 0 0 2px rgba(0,0,0,.4),0 0 8px rgba(90,180,255,.35)}
+#ipw.p canvas#ipc{width:72px;height:72px;display:block;border:0;outline:0;box-shadow:none;image-rendering:pixelated;background:#000}
+#ipw.p .bt{position:relative;z-index:1;display:flex;justify-content:flex-start;gap:14px;margin-top:34px}
+#ipw.p .bt button{cursor:pointer;min-width:108px;height:36px;border:0;background:rgba(255,255,255,.16);color:#fff;font:700 16px PixelLat,monospace;letter-spacing:.08em;text-shadow:2px 2px 0 rgba(0,40,90,.55);box-shadow:inset 0 0 0 2px #fff,inset 4px 4px 0 rgba(255,255,255,.28),inset -4px -4px 0 rgba(0,30,70,.3);clip-path:polygon(0 4px,2px 4px,2px 2px,4px 2px,4px 0,calc(100% - 4px) 0,calc(100% - 4px) 2px,calc(100% - 2px) 2px,calc(100% - 2px) 4px,100% 4px,100% calc(100% - 4px),calc(100% - 2px) calc(100% - 4px),calc(100% - 2px) calc(100% - 2px),calc(100% - 4px) calc(100% - 2px),calc(100% - 4px) 100%,4px 100%,4px calc(100% - 2px),2px calc(100% - 2px),2px calc(100% - 4px),0 calc(100% - 4px))}
+#ipw.p .bt button:hover{background:rgba(255,255,255,.55);color:#0a3a68;text-shadow:none}
+#ipw.p .bt button:active{box-shadow:inset 0 0 0 2px #fff,inset 4px 4px 0 rgba(0,30,70,.3),inset -4px -4px 0 rgba(255,255,255,.28);transform:translate(1px,1px)}
+#ipw.p small{position:relative;z-index:1;display:block;margin-top:18px;color:#fff;font-size:11px;letter-spacing:.1em;text-shadow:0 0 5px #000;opacity:.85}
+#ipw.p .pg{position:relative;z-index:1;height:8px;background:rgba(0,0,0,.45);box-shadow:inset 0 0 0 1px #fff;padding:1px;margin-top:6px}
+#ipw.p .pg b{display:block;height:100%;width:0;background:#fff}
+#ipw.p .an{display:block;position:absolute;bottom:15px;font:12px/1 "Courier New",monospace;font-style:normal;color:var(--ac);letter-spacing:.04em}
+#ipw.p .an.a1{left:22px;padding:2px 6px;border:1.5px solid var(--ac);bottom:13px}
+#ipw.p .an.a1::after{content:"";position:absolute;left:calc(100% + 14px);top:50%;width:6px;height:6px;margin-top:-3px;border-radius:50%;background:var(--ac)}
+#ipw.p .an.a2{right:22px}
+
+/* No：半透明小窗 + 若隐若现的神经元 + 像素对话气泡 + 上浮泡沫 */
+#ipb{position:fixed;inset:0;z-index:310;cursor:pointer}
+#ipb .npw{position:absolute;left:50%;top:50%;width:230px;height:176px;margin:-88px 0 0 -115px;background:rgba(10,26,40,.5);backdrop-filter:blur(5px) saturate(1.15);box-shadow:inset 0 0 0 2px rgba(255,255,255,.55),inset 0 0 0 4px rgba(255,255,255,.12),6px 6px 0 rgba(0,0,0,.22);clip-path:polygon(0 8px,4px 8px,4px 4px,8px 4px,8px 0,calc(100% - 8px) 0,calc(100% - 8px) 4px,calc(100% - 4px) 4px,calc(100% - 4px) 8px,100% 8px,100% calc(100% - 8px),calc(100% - 4px) calc(100% - 8px),calc(100% - 4px) calc(100% - 4px),calc(100% - 8px) calc(100% - 4px),calc(100% - 8px) 100%,8px 100%,8px calc(100% - 4px),4px calc(100% - 4px),4px calc(100% - 8px),0 calc(100% - 8px));animation:nbp .35s steps(4) both;transition:opacity .25s}
+#ipb .npw.gone{opacity:0}
+#ipb .npw::before{content:"MICROBE.EXE";position:absolute;left:14px;top:6px;font:10px/1 "Courier New",monospace;letter-spacing:.14em;color:rgba(255,255,255,.65)}
+#ipb .nbi{position:absolute;left:50%;top:92px;width:64px;height:64px;margin-left:-32px;image-rendering:pixelated;transition:opacity .15s}
+#ipb .nsp{position:absolute;left:17px;top:22px;width:196px;height:58px;animation:nbp .4s .45s steps(4) both;transition:opacity .15s}
+#ipb .nsp svg{position:absolute;left:0;top:0;filter:drop-shadow(3px 3px 0 rgba(8,60,78,.55))}
+#ipb .nsp span{position:absolute;left:0;right:0;top:0;height:38px;display:grid;place-items:center;font:700 14px/1 PixelLat,monospace;color:#0b4a5c;letter-spacing:.04em}
+@keyframes nbp{0%{transform:scale(.2);opacity:0}70%{transform:scale(1.08);opacity:1}100%{transform:scale(1);opacity:1}}
+#ipb .bb{position:absolute;display:block;image-rendering:pixelated;pointer-events:none}
+#ipb .bb.rise{animation:bbr 2.4s linear forwards}
+@keyframes bbr{0%{transform:translate(0,0);opacity:0}15%{opacity:.95}40%{transform:translate(var(--dx),-18px)}70%{transform:translate(calc(var(--dx)*-.7),-36px);opacity:.85}100%{transform:translate(0,-54px);opacity:0}}
+#ipb .bb.zap{animation:none;transition:opacity .18s;opacity:0}
+#ipb .bb.fly{position:fixed;transition:transform .6s cubic-bezier(.15,.8,.3,1),opacity .6s}
+
+/* ===== 第二十轮：blog / 普通日志、推荐标签与气泡 ===== */
+.post.blog{cursor:pointer}
+.post.blog:hover{box-shadow:0 0 0 3px var(--edge)}
+.post .bt{font-weight:700;margin:6px 0 4px;font-size:16px;line-height:1.5;color:var(--ink)!important;background:none!important;padding:0!important;padding:0}
+.post .ex{color:var(--ink2);opacity:.9}
+.post .more{display:block;text-align:right;font-size:12px;color:var(--rd)}
+.post:not(.blog):not(.full){cursor:default}
+.post.full{padding:10px 16px 14px}
+.post .back{display:inline-block;margin-bottom:6px;font-size:13px;color:var(--rd);text-decoration:none}
+.post .back:hover{text-decoration:underline}
+.post .bdy p{margin:0 0 .9em;line-height:1.9}
+.post img{max-width:100%;display:block;margin:8px 0}
+.box.plainp{cursor:default}.box .ttl{display:block;font-weight:700;margin:1px 0 2px}
+/* 推荐：标签 */
+html[data-ui="y2k"] .rc{position:relative}
+html[data-ui="y2k"] .rc.hastip{cursor:pointer}
+.rc .tg{position:absolute;top:-5px;right:-7px;z-index:2;padding:0 5px;height:13px;line-height:13px;font:700 9px/13px var(--serif),monospace;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:#e58aa8;border:2px solid #b9577a;box-shadow:2px 2px 0 rgba(63,43,45,.35);pointer-events:none}
+.rc.hastip:hover .tg{background:#f19bb7;transform:translateY(-1px)}
+.tipb{position:fixed;z-index:9999;max-width:230px;padding:7px 10px 8px;background:#fff7ec;color:#3f2b2d;border:2px solid #3f2b2d;box-shadow:3px 3px 0 rgba(63,43,45,.4);font:13px/1.65 var(--serif),PixZH,"PingFang SC","Microsoft YaHei",sans-serif;animation:tipin .14s steps(3)}
+.tipb p{margin:0}.tipb a{display:block;margin-top:3px;text-align:right;font-size:12px;color:#b9577a}
+.tipb::after{content:"";position:absolute;left:var(--tx,20px);width:8px;height:8px;background:#fff7ec;transform:rotate(45deg)}
+.tipb.up::after{bottom:-6px;border-right:2px solid #3f2b2d;border-bottom:2px solid #3f2b2d}
+.tipb.dn::after{top:-6px;border-left:2px solid #3f2b2d;border-top:2px solid #3f2b2d}
+@keyframes tipin{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}

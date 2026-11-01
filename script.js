@@ -16,8 +16,7 @@ function pid(p){return "p-"+(p.id||(p.date+"-"+(p.time||"")).replace(/[^0-9a-z-]
 function fd(d,t){return String(d||"").replace(/^(\d{4})-(\d{1,2})-(\d{1,2})$/,function(m,y,mo,da){return y+"年"+(+mo)+"月"+(+da)+"日"})+(t?" "+t:"")}
 function paras(box,t){String(t||"").split("\n").forEach(function(s){if(s)box.appendChild(el("p",0,s))})}
 function TX(o){var f=document.createDocumentFragment();if(o==null)return f;if(typeof o=="string"){f.appendChild(document.createTextNode(o));return f}f.appendChild(el("span","zh",o.zh));f.appendChild(el("span","ja",o.ja!=null?o.ja:o.zh));return f}
-function SP(o){var f=document.createDocumentFragment();if(o==null)return f;if(typeof o=="string"){f.appendChild(el("p",0,o));return f}f.appendChild(el("p","zh",o.zh));f.appendChild(el("p","ja",o.ja!=null?o.ja:o.zh));return f}
-function SPN(o){var f=document.createDocumentFragment();if(o==null)return f;var L=typeof o==="string"?[[null,o]]:[["zh",o.zh],["ja",o.ja!=null?o.ja:o.zh]];L.forEach(function(p){String(p[1]||"").split("\n").forEach(function(t){if(t)f.appendChild(el("p",p[0],t))})});return f}
+function SP(o){var f=document.createDocumentFragment();if(o==null)return f;var L=typeof o==="string"?[[null,o]]:[["zh",o.zh],["ja",o.ja!=null?o.ja:o.zh]];L.forEach(function(p){String(p[1]||"").split("\n").forEach(function(t){if(t)f.appendChild(el("p",p[0],t))})});return f}
 function put(i,n){var e=gid(i);if(e&&n){e.textContent="";e.appendChild(n)}}
 function lst(cls,items){var u=el(cls=="rank"?"ol":"ul",cls);arr(items).forEach(function(x){var li=el("li");li.appendChild(TX(x));u.appendChild(li)});return u}
 function avatar(){var d=el("div","av"),i=new Image();i.src="images/avatar.png";i.alt="";i.onerror=function(){i.remove()};d.appendChild(i);return d}
@@ -31,8 +30,8 @@ if(SI.intro)put("intro",SP(SI.intro));
 put("h-welcome",SP(HM.welcome));put("h-play",lst("plain",HM.playing));put("h-listen",lst("rank",HM.listening));put("h-read",lst("plain",HM.reading));
 var vd=gid("video");
 if(vd){if(HM.video&&HM.video.id){var v=el("div","vid"),fr=document.createElement("iframe");fr.src="https://www.youtube-nocookie.com/embed/"+HM.video.id;fr.title="video";fr.loading="lazy";fr.allowFullscreen=true;fr.setAttribute("referrerpolicy","strict-origin-when-cross-origin");fr.setAttribute("allow","encrypted-media; picture-in-picture; fullscreen");v.appendChild(fr);vd.appendChild(v);var cp=el("p","cap");cp.appendChild(TX(HM.video.caption));vd.appendChild(cp);vd.appendChild(SP({zh:"视频来自 YouTube，部分地区可能无法播放。",ja:"動画はYouTubeです。地域によっては再生できない場合があります。"}))}else{var vh=gid("vh");if(vh)vh.style.display="none"}}
-(function(){var at=gid("a-text");if(!at)return;try{at.textContent="";if(AB.text)at.appendChild(SPN(AB.text));
-arr(AB.sections).forEach(function(s){if(!s||typeof s!=="object")return;if(s.title){var h=el("h3","ab-h");h.appendChild(TX(s.title));at.appendChild(h)}if(s.text)at.appendChild(SPN(s.text))})}catch(e){console.error("[小站] 关于我小标题出错：",e)}})();
+(function(){var at=gid("a-text");if(!at)return;try{at.textContent="";if(AB.text)at.appendChild(SP(AB.text));
+arr(AB.sections).forEach(function(s){if(!s||typeof s!=="object")return;if(s.title){var h=el("h3","ab-h");h.appendChild(TX(s.title));at.appendChild(h)}if(s.text)at.appendChild(SP(s.text))})}catch(e){console.error("[小站] 关于我小标题出错：",e)}})();
 put("a-contact",lst("plain",AB.contact));put("a-soc",lst("plain",AB.socials));
 var pe=gid("a-pets");
 if(pe)arr(AB.pets).forEach(function(p){var d=el("div","pet"),im=el("div","pimg",p.img?"":"照片");if(p.img)pic(p.img,p.name,"照片",im);d.appendChild(im);d.appendChild(el("b",0,p.name||""));d.appendChild(el("small",0,p.info||""));pe.appendChild(d)});
@@ -47,11 +46,21 @@ if(lk)arr(SI.links).forEach(function(k){var d=el("div","card"),a=el("a",0,k.name
 put("c-text",SP(SI.contact));
 var ga=gid("gal");
 if(ga){var GL=arr(SI.gallery);if(!GL.length)for(var n=0;n<6;n++)ga.appendChild(el("div","ph","图片位置"));GL.forEach(function(g){var d=el("div","ph");d.title=g.caption||"";pic(g.img,g.caption,"图片",d);d.lastChild.style.cssText="width:100%;height:100%;object-fit:cover";ga.appendChild(d)})}
-// 日志
+// 日志：有 title = 可点击进入的长文 blog；没有 title = 不可点击的普通日志。正文里换行写 \n，空一行（\n\n）= 新的一段
+function body(box,t){String(t||"").replace(/\r/g,"").split(/\n[ \t]*\n/).forEach(function(par){if(!par.replace(/\s/g,""))return;var p=el("p");par.split("\n").forEach(function(ln,i){if(i)p.appendChild(el("br"));p.appendChild(document.createTextNode(ln))});box.appendChild(p)})}
+function exc(t,n){t=String(t||"").replace(/\s+/g," ").trim();return t.slice(0,n)+(t.length>n?"…":"")}
+function head(p){var hd=el("div","phd"),w=el("div","who");hd.appendChild(avatar());w.appendChild(el("b",0,nm));w.appendChild(el("time",0,fd(p.date,p.time)));hd.appendChild(w);return hd}
+function imgs(a,p){[].concat(arr(p.img)).forEach(function(s){var i=new Image();i.src=s;i.alt="";i.loading="lazy";a.appendChild(i)})}
 var PS=srt(arr(window.POSTS),"date"),lat=gid("latest"),bp=gid("posts");
-if(lat)PS.slice(0,3).forEach(function(p){var a=el("a","box"),t=String(p.text||"").replace(/\s+/g," ");a.href="blog.html#"+pid(p);a.appendChild(el("time",0,fd(p.date,p.time)));a.appendChild(el("p",0,t.slice(0,44)+(t.length>44?"…":"")));lat.appendChild(a)});
-if(bp){PS.forEach(function(p){var a=el("article","post"),hd=el("div","phd"),w=el("div","who");a.id=pid(p);hd.appendChild(avatar());w.appendChild(el("b",0,nm));w.appendChild(el("time",0,fd(p.date,p.time)));hd.appendChild(w);a.appendChild(hd);paras(a,p.text);[].concat(arr(p.img)).forEach(function(s){var i=new Image();i.src=s;i.alt="";i.loading="lazy";a.appendChild(i)});bp.appendChild(a)});
-if(location.hash){var tg=gid(location.hash.slice(1));if(tg){tg.classList.add("hit");setTimeout(function(){tg.scrollIntoView({block:"center"})},60)}}}
+if(lat)PS.slice(0,3).forEach(function(p){var bl=!!p.title,a=el(bl?"a":"div","box"+(bl?"":" plainp"));if(bl)a.href="blog.html#"+pid(p);a.appendChild(el("time",0,fd(p.date,p.time)));if(bl)a.appendChild(el("b","ttl",p.title));a.appendChild(el("p",0,exc(p.text,bl?36:44)));lat.appendChild(a)});
+function renderBlog(){if(!bp)return;bp.textContent="";var h=location.hash.slice(1),cur=h?PS.filter(function(p){return p.title&&pid(p)===h})[0]:null;
+ if(cur){var a=el("article","post full"),bk=el("a","back");bk.href="#";bk.appendChild(el("span","zh","← 返回日志"));bk.appendChild(el("span","ja","← 日記へ戻る"));a.appendChild(bk);a.appendChild(el("div","bt",cur.title));a.appendChild(head(cur));var bd=el("div","bdy");body(bd,cur.text);a.appendChild(bd);imgs(a,cur);bp.appendChild(a);window.scrollTo(0,0);return}
+ PS.forEach(function(p){var bl=!!p.title,a=el("article","post"+(bl?" blog":""));a.id=pid(p);
+  if(bl){a.setAttribute("role","link");a.tabIndex=0;a.appendChild(head(p));a.appendChild(el("div","bt",p.title));a.appendChild(el("p","ex",exc(p.text,70)));var mo=el("span","more");mo.appendChild(el("span","zh","继续阅读 ›"));mo.appendChild(el("span","ja","続きを読む ›"));a.appendChild(mo);
+   var go=function(){location.hash=pid(p)};a.onclick=go;a.onkeydown=function(e){if(e.key==="Enter")go()}}
+  else{a.appendChild(head(p));body(a,p.text);imgs(a,p)}
+  bp.appendChild(a)})}
+renderBlog();addEventListener("hashchange",renderBlog);
 // 丝竹
 var SZ=window.SIZHU||{tops:[],entries:[]},tp=gid("tops"),se=gid("sentries");
 if(tp)arr(SZ.tops).slice().sort(function(a,b){return b.month.localeCompare(a.month)}).forEach(function(m,i){var bx=el(i?"details":"div","post");bx.appendChild(i?el("summary",0,m.month+" Top Tracks"):el("h3",0,m.month+" Top Tracks"));var ol=el("ol","rank");arr(m.tracks).forEach(function(s){ol.appendChild(el("li",0,s))});bx.appendChild(ol);tp.appendChild(bx)});
