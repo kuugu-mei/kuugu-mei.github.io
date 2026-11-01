@@ -10,9 +10,10 @@
 
 // ---------- 全站基本信息 ----------
 window.SITE={
-  recs:[   // 推薦介面的內容
-  {cat:"game", title:"Mouthwashing", img:"images/mouthwashing.png", tip:"一兩句話的說明。"},
-  {cat:"book", title:"書名", img:"images/cv-3.png"},
+  recs:[   // 推薦介面的內容:game/book/item/site/media
+  {cat:"game", title:"Pokémon Black", img:"images/media/pkm1.jpg", tip:"一兩句話的說明。"},
+  {cat:"game", title:"Pokémon Sword", img:"images/media/pkm2.jpg"},
+  {cat:"game", title:"Pokémon Legend Arceus", img:"images/media/pkm3.jpg"},
  ],
  title:"青涩的青色的Mei",                                   // 小标题
  subtitle:{zh:"请随意慢慢阅览。",ja:"ゆっくりしていってね、よろしく。"},
