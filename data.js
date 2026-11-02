@@ -20,7 +20,7 @@ window.SITE={
   {cat:"media", title:"哆啦A夢：大雄與風之使者", img:"images/media/movie3.jpg"},
   {cat:"media", title:"Ernest & Celestine", img:"images/media/movie4.jpg"},
   {cat:"media", title:"Ernest & Celestine- A Trip to Gibberitia", img:"images/media/movie5.jpg"},
-  {cat:"media", title:"A Grand Day Out", img:"images/media/movie6.jpg"},
+  {cat:"media", title:"A Grand Day Out", img:"images/media/movie6.jpg", tip:"Wallace and Gromit全部系列都超喜欢"},
   {cat:"media", title:"海洋天堂", img:"images/media/movie8.jpg"},
   {cat:"media", title:"ポケットモンスター 水の都の護神", img:"images/media/pkm4.jpg"},
   {cat:"media", title:"ポケットモンスター 蒼海の王子", img:"images/media/pkm5.jpg"},
@@ -31,21 +31,21 @@ window.SITE={
   {cat:"media", title:"リトルウィッチアカデミア", img:"images/media/TV5.jpg"},
   {cat:"media", title:"Planet Earth S1", img:"images/media/docu1.jpg"},
   {cat:"media", title:"Perfect Planet", img:"images/media/docu2.jpg"},
-  {cat:"media", title:"Our Planet S1", img:"images/media/docu3.jpg"},
+  {cat:"media", title:"Our Planet S1-S3", img:"images/media/docu3.jpg", tip:"三季制作都非常好看，S3的幕后制作展示很有意义"},
   {cat:"game", title:"Detroit：become human", img:"images/media/gm1.jpg"},
   {cat:"game", title:"Mouthwashing", img:"images/media/gm2.jpg"},
-  {cat:"game", title:"真三國無雙·起源", img:"images/media/gm3.jpg", tip:"第一部三國無雙遊戲"},
+  {cat:"game", title:"真三國無雙·起源", img:"images/media/gm3.jpg", tip:"入坑佳作"},
   {cat:"game", title:"真三國無雙·6", img:"images/media/gm4.jpg"},
   {cat:"game", title:"machinarium", img:"images/media/gm5.jpg"},
   {cat:"game", title:"What Remains of Edith Finch", img:"images/media/gm6.jpg"},
-  {cat:"media", title:"How to Train Your Dragon", img:"images/media/movie9.jpg"},
+  {cat:"media", title:"How to Train Your Dragon S1-S2", img:"images/media/movie9.jpg"},
   {cat:"media", title:"THE VVITCH", img:"images/media/movie11.jpg"},
   {cat:"media", title:"AVATAR", img:"images/media/movie12.jpg"},
   {cat:"media", title:"The Lost World-Jurassic Park", img:"images/media/movie10.jpg"},
   {cat:"media", title:"Jurassic World", img:"images/media/movie7.jpg"},
   {cat:"media", title:"ポケットモンスター ベストウイッシュ", img:"images/media/pkm7.jpg"},
   {cat:"media", title:"魔法陣グルグル", img:"images/media/TV3.jpg"},
-  {cat:"media", title:"三國演義 1994", img:"images/media/TV6.jpg", tip:"三國歷史最感人之作"},
+  {cat:"media", title:"三國演義 1994", img:"images/media/TV6.jpg", tip:"三國歷史最感人的作品"},
 
  ],
  title:"青涩的青色的Mei",                                   // 小标题
@@ -65,8 +65,8 @@ window.SITE={
  about:{
   text:{zh:"你好，我是mei。红长明是我的全名ID，Redmei/kuugu也是可以的。二创占比80%，原创20%，创作内容仅发布在下方提到的社交平台。现日本艺术留学中。",ja:"ここに自己紹介を書いてください。"},
   sections:[
- {title:{zh:"关于这个网站",ja:"このサイトについて"},text:{zh:"做这个网站是出于一时兴起，但也是为了之后的story website project提前尝试。我对代码接触为0一切代码运作相关由Claude协助进行。网站存在的主要目的是研究如何在网站展现个人视觉艺术上的创作和进行有趣的互动，这是我最感兴趣的地方。\n网站更偏向私人内容，记录我接触的事物，我的创作历程。关于发布的内容，我并不是某方面的专家，很多时候只是因为感兴趣而写下来，所以请多见谅。ps网站内会出现本人简体繁体字混用的情况，并不是文字出错。或许一天会统一修改。\n网站内除了首页新闻板块图片·推荐界面的影视游戏etc图片，其他图片，包括背景图，小图案etc皆出于本人绘制/拍摄。不可外用。",ja:"第一段落。\n第二段落。"}},
- {title:{zh:"小言小语：",ja:"自分の話し"},text:{zh:"我喜欢有情绪的事物，是传统历史与宗教的痴迷者；热爱古生物恐龙跟现代生物乃至整个自然生态，因此我对自己的定位是自然保护全肯定。\n我会进行二次创作的圈子是 ·真三国无双 ·NIJISANJI JP&EN · Sonic the Hedgehog\n欢迎联系。我不在意对家或雷圈，我更在意人是否真诚与礼貌。",ja:"ここに書きます。"}}
+ {title:{zh:"关于这个网站",ja:"このサイトについて"},text:{zh:"做这个网站是出于一时兴起，但也是为了之后的story website project提前尝试。我对代码接触为0一切代码运作相关由Claude协助进行。网站存在的主要目的是研究如何在网站展现个人视觉艺术上的创作和进行有趣的互动，这是我最感兴趣的地方。\n网站更偏向私人内容，记录我接触的事物，我的创作历程。关于发布的内容，我并不是某方面的专家，很多时候只是因为感兴趣而写下来，请不要太过挑剔（流汗）。*网站内会出现本人简体繁体字混用的情况，并不是文字出错。\n网站内除了首页新闻板块图片·推荐界面的图片，其他图片，包括背景图，小图案，图标etc皆出于本人绘制/拍摄。",ja:"第一段落。\n第二段落。"}},
+ {title:{zh:"小言小语：",ja:"自分の話し"},text:{zh:"我喜欢有情绪的事物，是传统历史与宗教的痴迷者；热爱范围从古生物恐龙-现代生物-整个自然生态，因此我对自己的定位是自然保护全肯定。\n我会进行二次创作的圈子是 ·真三国无双 ·NIJISANJI JP&EN · Sonic the Hedgehog\n欢迎联系。我不在意对家或雷圈，我更在意人是否真诚与礼貌。",ja:"ここに書きます。"}}
 ],
   contact:["邮箱：64836204ttjycket@gmail.com","QQ（扩列请告知）：3568557065",],                                   // 联系方式，一行一条
   socials:["Instagram：redme12cht","X（原twitter）：@Redch0me1","小红书：紅長明","微博：初五長明兔"],   // 社交平台，一行一条
